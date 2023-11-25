@@ -44,7 +44,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("9_g32ke")
 }],
-"loop": true,
+"loop": false,
 "name": &"door_enter",
 "speed": 8.0
 }, {
@@ -80,8 +80,7 @@ shape = SubResource("CapsuleShape2D_s8yxw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fs3e2")
-animation = &"walk"
-frame_progress = 0.302231
+animation = &"door_enter"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

@@ -4,4 +4,4 @@ TODO:
 - add minor enemies to level 2
 - create 2 doors/choices to progress to level 3.1 and level 3.2
 - animate flying sword
-- create door animation
+- figure out the color change so Will stops being angry

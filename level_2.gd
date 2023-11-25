@@ -1,6 +1,5 @@
 extends Node2D
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Player.position.x = Global.get_saved_x()
@@ -8,14 +7,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#print($Player.position.x)
-	pass
-	
+	if Global.get_in_door():
+		$Player/AnimatedSprite2D.play("door_enter")
+		await get_tree().create_timer($Player/AnimatedSprite2D.get_playing_speed()).timeout
+		get_tree().change_scene_to_file("res://level_1.tscn")
 	
 func _on_door_body_entered(body):
-	print("entered")
 	if body == $Player:
-		print("hi")
-		$Player/AnimatedSprite2D.play("door_enter")
-		get_tree().change_scene_to_file("res://level_1.tscn")
-		print("why")
+		Global.set_in_door(true)
+		
+

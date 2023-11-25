@@ -31,18 +31,20 @@ func jump():
 func move():
 	var direction = Input.get_axis("move_left", "move_right")
 	
-	# if moving
-	if direction:
-		velocity.x = direction * SPEED
-		$AnimatedSprite2D.play("walk")
-		change_direction(direction)
-	
-	# if stopped/stopping
-	else:
-		$AnimatedSprite2D.play("idle")
-		velocity.x = move_toward(velocity.x, 0, SPEED / 2)  # stop mechanism, how quickly it slows
-	
-	move_and_slide()
+	# if allowed to run
+	if not Global.get_in_door():
+		# if moving
+		if direction:
+			velocity.x = direction * SPEED
+			$AnimatedSprite2D.play("walk")
+			change_direction(direction)
+		
+		# if stopped/stopping
+		else:
+			$AnimatedSprite2D.play("idle")
+			velocity.x = move_toward(velocity.x, 0, SPEED / 2)  # stop mechanism, how quickly it slows
+		
+		move_and_slide()
 
 
 # ---------------------change_direction---------------------------
@@ -54,3 +56,6 @@ func change_direction(direction):
 		get_node("AnimatedSprite2D").set_flip_h(true)
 
 
+# ---------------------door---------------------------
+func door():
+	$AnimatedSprite2D.play("door_enter")
