@@ -55,7 +55,3 @@ func change_direction(direction):
 	elif direction < 0:
 		get_node("AnimatedSprite2D").set_flip_h(true)
 
-
-# ---------------------door---------------------------
-func door():
-	$AnimatedSprite2D.play("door_enter")

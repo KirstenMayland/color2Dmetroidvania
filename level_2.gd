@@ -10,10 +10,10 @@ func _process(delta):
 	if Global.get_in_door():
 		$Player/AnimatedSprite2D.play("door_enter")
 		await get_tree().create_timer($Player/AnimatedSprite2D.get_playing_speed()).timeout
-		get_tree().change_scene_to_file("res://level_1.tscn")
-	
+		get_tree().change_scene_to_file("res://level_3.tscn")
+		Global.set_in_door(false)
+
+
 func _on_door_body_entered(body):
 	if body == $Player:
 		Global.set_in_door(true)
-		
-
