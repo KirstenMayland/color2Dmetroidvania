@@ -1,5 +1,4 @@
 TODO:
-- figure out falling glitch (appears to flash load the player before setting it where it needs?)
 - backup godot project to git
 - add minor enemies to level 2
 - create 2 doors/choices to progress to level 3.1 and level 3.2

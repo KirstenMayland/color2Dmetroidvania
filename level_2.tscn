@@ -1291,6 +1291,6 @@ layer_0/tile_data = PackedInt32Array(1638400, 131072, 8, 1638401, 131072, 8, 163
 position = Vector2(1081, 260)
 
 [node name="Player" parent="." instance=ExtResource("1_rfltw")]
-position = Vector2(70, 24)
+position = Vector2(1704, 24)
 
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
