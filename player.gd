@@ -32,7 +32,7 @@ func move():
 	var direction = Input.get_axis("move_left", "move_right")
 	
 	# if allowed to run
-	if not Global.get_in_door():
+	if Global.get_player_can_move():
 		# if moving
 		if direction:
 			velocity.x = direction * SPEED
@@ -54,4 +54,4 @@ func change_direction(direction):
 		get_node("AnimatedSprite2D").set_flip_h(false)
 	elif direction < 0:
 		get_node("AnimatedSprite2D").set_flip_h(true)
-
+		

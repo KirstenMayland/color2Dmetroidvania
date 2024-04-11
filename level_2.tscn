@@ -1294,3 +1294,4 @@ position = Vector2(1081, 260)
 position = Vector2(1704, 24)
 
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
+[connection signal="body_exited" from="Door" to="." method="_on_door_body_exited"]

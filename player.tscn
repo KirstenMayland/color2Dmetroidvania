@@ -43,6 +43,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("9_g32ke")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"door_enter",
