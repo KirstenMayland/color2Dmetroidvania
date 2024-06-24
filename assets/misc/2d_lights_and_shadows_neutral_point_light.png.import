@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0q7emdsvqgxm"
-path="res://.godot/imported/Sprite_door6.png-939de6f118edbff7bbaa04e646b4ec9a.ctex"
+uid="uid://cv0j8scxdym8u"
+path="res://.godot/imported/2d_lights_and_shadows_neutral_point_light.png-8eb6558872da0c8224b2845386cc2e31.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PlayerSprites/DoorAnimation/Sprite_door6.png"
-dest_files=["res://.godot/imported/Sprite_door6.png-939de6f118edbff7bbaa04e646b4ec9a.ctex"]
+source_file="res://assets/misc/2d_lights_and_shadows_neutral_point_light.png"
+dest_files=["res://.godot/imported/2d_lights_and_shadows_neutral_point_light.png-8eb6558872da0c8224b2845386cc2e31.ctex"]
 
 [params]
 

@@ -27,13 +27,13 @@ func get_player_can_move():
 # ---------------------door---------------------------
 	
 var in_door = false
-	
+
 func set_in_door_status(state):
 	in_door = state
 
 func get_in_door_status():
 	return in_door
-	
+
 func travel_through_door(player_sprite, destination): #player_sprite = $Player/AnimatedSprite2D
 	# play door animation and wait until finished
 	set_player_can_move(false)
@@ -42,7 +42,7 @@ func travel_through_door(player_sprite, destination): #player_sprite = $Player/A
 	# go through door
 	get_tree().change_scene_to_file(destination)
 	set_player_can_move(true)
-	
+
 func inside_door(body, player, door_sprite): #body, $Player, $Player/AnimatedSprite2D
 	if body == player:
 		set_in_door_status(true)
@@ -52,5 +52,5 @@ func outside_door(body, player, door_sprite):
 	if body == player:
 		set_in_door_status(false)
 		door_sprite.set_self_modulate(Color(1, 1, 1, 1))
-		
+
 

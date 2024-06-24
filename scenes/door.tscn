@@ -1,12 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://jf1iu5qc5bt"]
+[gd_scene load_steps=5 format=3 uid="uid://jf1iu5qc5bt"]
 
-[ext_resource type="Script" path="res://door.gd" id="1_87pft"]
-[ext_resource type="Texture2D" uid="uid://dnk7npyn4mro7" path="res://Background/1bitTilemap.png" id="1_5074y"]
+[ext_resource type="Texture2D" uid="uid://dnk7npyn4mro7" path="res://assets/background/1bitTilemap.png" id="1_jwfpu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcad6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vd4p2"]
-atlas = ExtResource("1_5074y")
+atlas = ExtResource("1_jwfpu")
 region = Rect2(280, 40, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7xgkd"]
@@ -21,7 +20,6 @@ animations = [{
 }]
 
 [node name="Door" type="Area2D"]
-script = ExtResource("1_87pft")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vcad6")

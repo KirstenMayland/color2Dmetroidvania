@@ -5,4 +5,4 @@ TODO:
 - figure out the color change so Will stops being angry
 - create a home/start screen
 - create a settings screen
-- change it so that if you switch back to level 2 from level 3 you end up by the door
+- fix doors so that if you switch back to level 2 from level 3 you end up by the door

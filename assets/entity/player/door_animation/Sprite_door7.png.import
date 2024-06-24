@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvtu6844drr2d"
-path="res://.godot/imported/Sprite2.png-6f8928c38a3d50cda4ea4f5e46274a50.ctex"
+uid="uid://dkc3s2hsnvgjm"
+path="res://.godot/imported/Sprite_door7.png-7a9da4b379a799ae016b156c7c32b87e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PlayerSprites/Sprite2.png"
-dest_files=["res://.godot/imported/Sprite2.png-6f8928c38a3d50cda4ea4f5e46274a50.ctex"]
+source_file="res://assets/entity/player/door_animation/Sprite_door7.png"
+dest_files=["res://.godot/imported/Sprite_door7.png-7a9da4b379a799ae016b156c7c32b87e.ctex"]
 
 [params]
 

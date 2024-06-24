@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnk7npyn4mro7"
-path="res://.godot/imported/1bitTilemap.png-0cab51b8ac9e1894f148914c9fcbf8fa.ctex"
+uid="uid://dgs1int30g81j"
+path="res://.godot/imported/Sprite1.png-5e5cc08b50c6f9131028fb175b6119fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Background/1bitTilemap.png"
-dest_files=["res://.godot/imported/1bitTilemap.png-0cab51b8ac9e1894f148914c9fcbf8fa.ctex"]
+source_file="res://assets/entity/player/walk_animation/Sprite1.png"
+dest_files=["res://.godot/imported/Sprite1.png-5e5cc08b50c6f9131028fb175b6119fa.ctex"]
 
 [params]
 
