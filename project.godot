@@ -11,13 +11,12 @@ config_version=5
 [application]
 
 config/name="Creepy2D"
-run/main_scene="res://scenes/level_1.tscn"
+run/main_scene="res://scenes/levels/level_1.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://scripts/global.gd"
+Global="*res://scripts/autoload/global.gd"
 
 [input]
 

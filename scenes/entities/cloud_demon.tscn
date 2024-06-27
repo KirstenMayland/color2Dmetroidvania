@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://ddjxjhhsp26p3"]
+
+[ext_resource type="Texture2D" uid="uid://ciyfndbdmjbao" path="res://assets/entity/cloud_demon/CloudEnemy1.png" id="1_wsst6"]
+[ext_resource type="Texture2D" uid="uid://liqdqvvwuqbp" path="res://assets/entity/cloud_demon/CloudEnemy2.png" id="2_w0gqs"]
+[ext_resource type="Texture2D" uid="uid://qqnmioi1xalo" path="res://assets/entity/cloud_demon/CloudEnemy3.png" id="3_2kni8"]
+[ext_resource type="Texture2D" uid="uid://dns1x51o8yv45" path="res://assets/entity/cloud_demon/CloudEnemy4.png" id="4_qu8e2"]
+[ext_resource type="Texture2D" uid="uid://x6sex35tykbm" path="res://assets/entity/cloud_demon/CloudEnemy5.png" id="5_semhu"]
+[ext_resource type="Texture2D" uid="uid://b170ve8siesu0" path="res://assets/entity/cloud_demon/CloudEnemy6.png" id="6_482sk"]
+[ext_resource type="Texture2D" uid="uid://bsytefgwvjeqj" path="res://assets/entity/cloud_demon/CloudEnemy7.png" id="7_iugj1"]
+[ext_resource type="Texture2D" uid="uid://dfsglyrtjfd5n" path="res://assets/entity/cloud_demon/CloudEnemy8.png" id="8_x8nao"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ma34"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wsst6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_w0gqs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2kni8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qu8e2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_semhu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_482sk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_iugj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_x8nao")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b4cgf"]
+radius = 15.0
+height = 32.0
+
+[node name="cloud_demon" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.84375, 0.8125)
+sprite_frames = SubResource("SpriteFrames_1ma34")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_b4cgf")
