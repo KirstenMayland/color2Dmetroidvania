@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ctp67a0qjcvom"]
+[gd_scene load_steps=17 format=3 uid="uid://ctp67a0qjcvom"]
 
 [ext_resource type="Texture2D" uid="uid://dfgrssua0tbo4" path="res://assets/entity/player/door_animation/Sprite_door1.png" id="2_e8o4r"]
 [ext_resource type="Texture2D" uid="uid://3eqpg3fhp7va" path="res://assets/entity/player/door_animation/Sprite_door2.png" id="3_vn51s"]
@@ -74,10 +74,6 @@ func change_direction(direction):
 		
 "
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kkf10"]
-radius = 5.5
-height = 52.0
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_fs3e2"]
 animations = [{
 "frames": [{
@@ -142,13 +138,14 @@ height = 52.0
 [node name="Player" type="CharacterBody2D"]
 script = SubResource("GDScript_qxt2g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 1.5)
-shape = SubResource("CapsuleShape2D_kkf10")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fs3e2")
-animation = &"idle"
+animation = &"walk"
+frame_progress = 0.411429
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0.5, 1.5)
+polygon = PackedVector2Array(-2.5, -25.5, 2.5, -25.5, 5.5, -22.5, 5.5, -16.5, 2.5, -10.5, 2.5, 4.5, 5.5, 25.5, -5.5, 25.5, -3.5, 4.5, -3.5, -10.5, -5.5, -16.5, -5.5, -22.5)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -158,6 +155,7 @@ limit_left = 0
 max_health = 100.0
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("14_jqlrc")]
+visible = false
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]

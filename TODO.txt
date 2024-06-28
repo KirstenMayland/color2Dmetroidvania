@@ -1,8 +1,11 @@
 TODO:
-- add minor enemies to level 2
+- add minor enemies to level 3
 - create 2 doors/choices to progress to level 3.1 and level 3.2
 - animate flying sword
 - figure out the color change so Will stops being angry
 - create a home/start screen
 - create a settings screen
 - fix doors so that if you switch back to level 2 from level 3 you end up by the door
+
+
+# @onready var health_component : HealthComponent = $HealthComponent

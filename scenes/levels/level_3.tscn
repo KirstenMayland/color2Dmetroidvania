@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dnk7npyn4mro7" path="res://assets/background/1bitTilemap.png" id="1_8t6uy"]
 [ext_resource type="PackedScene" uid="uid://jf1iu5qc5bt" path="res://scenes/door.tscn" id="2_wyraw"]
 [ext_resource type="PackedScene" uid="uid://ctp67a0qjcvom" path="res://scenes/entities/player.tscn" id="3_vltrx"]
-[ext_resource type="PackedScene" uid="uid://ddjxjhhsp26p3" path="res://scenes/entities/cloud_demon.tscn" id="4_dffjx"]
+[ext_resource type="PackedScene" uid="uid://wbbgttji4k7b" path="res://scenes/entities/sheep.tscn" id="4_5tbdl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dqlxu"]
 texture = ExtResource("1_8t6uy")
@@ -1293,5 +1293,5 @@ layer_0/tile_data = PackedInt32Array(1638400, 131072, 8, 1638401, 131072, 8, 163
 [node name="Door" parent="." instance=ExtResource("2_wyraw")]
 position = Vector2(107, 314)
 
-[node name="CloudDemon" parent="." instance=ExtResource("4_dffjx")]
-position = Vector2(369, 303)
+[node name="Sheep" parent="." instance=ExtResource("4_5tbdl")]
+position = Vector2(889, 334)
