@@ -1281,6 +1281,10 @@ sources/0 = SubResource("TileSetAtlasSource_dqlxu")
 
 [node name="level_3" type="Node2D"]
 
+[node name="Player" parent="." instance=ExtResource("3_vltrx")]
+position = Vector2(108, 326)
+scale = Vector2(1.02679, 0.886591)
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_he78a")
 format = 2
@@ -1289,9 +1293,5 @@ layer_0/tile_data = PackedInt32Array(1638400, 131072, 8, 1638401, 131072, 8, 163
 [node name="Door" parent="." instance=ExtResource("2_wyraw")]
 position = Vector2(107, 314)
 
-[node name="Player" parent="." instance=ExtResource("3_vltrx")]
-position = Vector2(108, 326)
-scale = Vector2(1.02679, 0.886591)
-
-[node name="cloud_demon" parent="." instance=ExtResource("4_dffjx")]
-position = Vector2(1001, 349)
+[node name="CloudDemon" parent="." instance=ExtResource("4_dffjx")]
+position = Vector2(369, 303)

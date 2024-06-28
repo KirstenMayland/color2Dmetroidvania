@@ -1,6 +1,5 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctp67a0qjcvom"]
+[gd_scene load_steps=18 format=3 uid="uid://ctp67a0qjcvom"]
 
-[ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_hr86n"]
 [ext_resource type="Texture2D" uid="uid://dfgrssua0tbo4" path="res://assets/entity/player/door_animation/Sprite_door1.png" id="2_e8o4r"]
 [ext_resource type="Texture2D" uid="uid://3eqpg3fhp7va" path="res://assets/entity/player/door_animation/Sprite_door2.png" id="3_vn51s"]
 [ext_resource type="Texture2D" uid="uid://crhj6aoagw87i" path="res://assets/entity/player/door_animation/Sprite_door3.png" id="4_3t1qe"]
@@ -12,9 +11,71 @@
 [ext_resource type="Texture2D" uid="uid://dgs1int30g81j" path="res://assets/entity/player/walk_animation/Sprite1.png" id="10_8ki83"]
 [ext_resource type="Texture2D" uid="uid://bvtu6844drr2d" path="res://assets/entity/player/walk_animation/Sprite2.png" id="11_0x6x7"]
 [ext_resource type="Texture2D" uid="uid://dru627ruxoc7c" path="res://assets/entity/player/walk_animation/Sprite3.png" id="12_in3lm"]
+[ext_resource type="PackedScene" uid="uid://d2ojf0bbv5n5j" path="res://scenes/components/health_component.tscn" id="13_3h35b"]
+[ext_resource type="PackedScene" uid="uid://dty8yax2de5v4" path="res://scenes/components/hurtbox_component.tscn" id="14_jqlrc"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s8yxw"]
-radius = 6.2
+[sub_resource type="GDScript" id="GDScript_qxt2g"]
+script/source = "extends CharacterBody2D
+
+
+@export var SPEED:float = 250.0
+@export var JUMP_VELOCITY:float = -400.0
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
+
+
+# ---------------------_physics_process---------------------------
+# main function
+func _physics_process(delta):
+	add_gravity(delta)
+	jump()
+	move()
+
+# ---------------------add_gravity---------------------------
+func add_gravity(delta):
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+
+# ---------------------jump---------------------------
+func jump():
+	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+
+# ---------------------move---------------------------
+func move():
+	var direction = Input.get_axis(\"move_left\", \"move_right\")
+	
+	# if allowed to run
+	if Global.get_player_can_move():
+		# if moving
+		if direction:
+			velocity.x = direction * SPEED
+			$AnimatedSprite2D.play(\"walk\")
+			change_direction(direction)
+		
+		# if stopped/stopping
+		else:
+			$AnimatedSprite2D.play(\"idle\")
+			velocity.x = move_toward(velocity.x, 0, SPEED / 2)  # stop mechanism, how quickly it slows
+		
+		move_and_slide()
+
+
+# ---------------------change_direction---------------------------
+# helper function for move; player faces direction it's moving
+func change_direction(direction):
+	if direction > 0:
+		get_node(\"AnimatedSprite2D\").set_flip_h(false)
+	elif direction < 0:
+		get_node(\"AnimatedSprite2D\").set_flip_h(true)
+		
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kkf10"]
+radius = 5.5
 height = 52.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fs3e2"]
@@ -74,17 +135,31 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d4615"]
+radius = 5.5
+height = 52.0
+
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_hr86n")
+script = SubResource("GDScript_qxt2g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, 1.5)
-shape = SubResource("CapsuleShape2D_s8yxw")
+position = Vector2(0.5, 1.5)
+shape = SubResource("CapsuleShape2D_kkf10")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fs3e2")
-animation = &"door_enter"
+animation = &"idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 limit_left = 0
+
+[node name="HealthComponent" parent="." instance=ExtResource("13_3h35b")]
+max_health = 100.0
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("14_jqlrc")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0.5, 1.5)
+shape = SubResource("CapsuleShape2D_d4615")
