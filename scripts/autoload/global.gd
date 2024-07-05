@@ -53,4 +53,14 @@ func outside_door(body, player, door_sprite):
 		set_in_door_status(false)
 		door_sprite.set_self_modulate(Color(1, 1, 1, 1))
 
+# ---------------------visuals---------------------------
+
+# helper function for move; entity faces direction it's moving
+func change_animated_sprite_direction(direction, sprite):
+	if sprite != null and sprite is AnimatedSprite2D:
+		if direction > 0:
+			sprite.set_flip_h(false)
+		elif direction < 0:
+			sprite.set_flip_h(true)
+
 

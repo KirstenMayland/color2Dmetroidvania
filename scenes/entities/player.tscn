@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctp67a0qjcvom"]
+[gd_scene load_steps=23 format=3 uid="uid://ctp67a0qjcvom"]
 
+[ext_resource type="Texture2D" uid="uid://dm1plr7jyijq5" path="res://assets/entity/player/player_damage_animation/player_damage.png" id="1_1fkt4"]
 [ext_resource type="Texture2D" uid="uid://dfgrssua0tbo4" path="res://assets/entity/player/door_animation/Sprite_door1.png" id="2_e8o4r"]
 [ext_resource type="Texture2D" uid="uid://3eqpg3fhp7va" path="res://assets/entity/player/door_animation/Sprite_door2.png" id="3_vn51s"]
 [ext_resource type="Texture2D" uid="uid://crhj6aoagw87i" path="res://assets/entity/player/door_animation/Sprite_door3.png" id="4_3t1qe"]
@@ -10,9 +11,15 @@
 [ext_resource type="Texture2D" uid="uid://b7y2xwg0geu2m" path="res://assets/entity/player/door_animation/Sprite_door8.png" id="9_4ro8b"]
 [ext_resource type="Texture2D" uid="uid://dgs1int30g81j" path="res://assets/entity/player/walk_animation/Sprite1.png" id="10_8ki83"]
 [ext_resource type="Texture2D" uid="uid://bvtu6844drr2d" path="res://assets/entity/player/walk_animation/Sprite2.png" id="11_0x6x7"]
+[ext_resource type="Texture2D" uid="uid://bocljj8ukot3g" path="res://assets/entity/player/sword_slash_animation/sword_slash1.png" id="11_tttqc"]
 [ext_resource type="Texture2D" uid="uid://dru627ruxoc7c" path="res://assets/entity/player/walk_animation/Sprite3.png" id="12_in3lm"]
+[ext_resource type="Texture2D" uid="uid://bdb2elkajfbho" path="res://assets/entity/player/sword_slash_animation/sword_slash2.png" id="12_jfonc"]
 [ext_resource type="PackedScene" uid="uid://d2ojf0bbv5n5j" path="res://scenes/components/health_component.tscn" id="13_3h35b"]
+[ext_resource type="Texture2D" uid="uid://dscucp7qo1hj" path="res://assets/entity/player/sword_slash_animation/sword_slash3.png" id="13_8t04q"]
+[ext_resource type="Texture2D" uid="uid://c8nnvvm1ccrqu" path="res://assets/entity/player/sword_slash_animation/sword_slash4.png" id="14_8ikwe"]
 [ext_resource type="PackedScene" uid="uid://dty8yax2de5v4" path="res://scenes/components/hurtbox_component.tscn" id="14_jqlrc"]
+[ext_resource type="Texture2D" uid="uid://cmhu0hujbhxbj" path="res://assets/entity/player/sword_slash_animation/sword_slash5.png" id="15_p88ot"]
+[ext_resource type="Texture2D" uid="uid://djwjbxs1n0akl" path="res://assets/entity/player/sword_slash_animation/sword_slash6.png" id="16_k5x36"]
 
 [sub_resource type="GDScript" id="GDScript_qxt2g"]
 script/source = "extends CharacterBody2D
@@ -54,7 +61,7 @@ func move():
 		if direction:
 			velocity.x = direction * SPEED
 			$AnimatedSprite2D.play(\"walk\")
-			change_direction(direction)
+			Global.change_animated_sprite_direction(direction, get_node(\"AnimatedSprite2D\"))
 		
 		# if stopped/stopping
 		else:
@@ -62,20 +69,18 @@ func move():
 			velocity.x = move_toward(velocity.x, 0, SPEED / 2)  # stop mechanism, how quickly it slows
 		
 		move_and_slide()
-
-
-# ---------------------change_direction---------------------------
-# helper function for move; player faces direction it's moving
-func change_direction(direction):
-	if direction > 0:
-		get_node(\"AnimatedSprite2D\").set_flip_h(false)
-	elif direction < 0:
-		get_node(\"AnimatedSprite2D\").set_flip_h(true)
-		
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fs3e2"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1fkt4")
+}],
+"loop": true,
+"name": &"damage",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_e8o4r")
@@ -118,46 +123,64 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_8ki83")
+"texture": ExtResource("11_tttqc")
 }, {
+"duration": 1.0,
+"texture": ExtResource("12_jfonc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8t04q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_8ikwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_p88ot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_k5x36")
+}],
+"loop": true,
+"name": &"sword_slash",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 1.0,
 "texture": ExtResource("11_0x6x7")
 }, {
 "duration": 1.0,
 "texture": ExtResource("12_in3lm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_8ki83")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 8.0
+"speed": 7.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d4615"]
-radius = 5.5
-height = 52.0
-
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2147483648
 script = SubResource("GDScript_qxt2g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fs3e2")
 animation = &"walk"
-frame_progress = 0.411429
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0.5, 1.5)
 polygon = PackedVector2Array(-2.5, -25.5, 2.5, -25.5, 5.5, -22.5, 5.5, -16.5, 2.5, -10.5, 2.5, 4.5, 5.5, 25.5, -5.5, 25.5, -3.5, 4.5, -3.5, -10.5, -5.5, -16.5, -5.5, -22.5)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(2.8, 2.8)
 limit_left = 0
 
 [node name="HealthComponent" parent="." instance=ExtResource("13_3h35b")]
 max_health = 100.0
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("14_jqlrc")]
-visible = false
 health_component = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="HurtboxComponent"]
 position = Vector2(0.5, 1.5)
-shape = SubResource("CapsuleShape2D_d4615")
+polygon = PackedVector2Array(-2.5, -25.5, 2.5, -25.5, 5.5, -22.5, 5.5, -16.5, 2.5, -10.5, 2.5, 4.5, 5.5, 25.5, -5.5, 25.5, -3.5, 4.5, -3.5, -10.5, -5.5, -16.5, -5.5, -22.5)

@@ -20,6 +20,7 @@ animations = [{
 }]
 
 [node name="Door" type="Area2D"]
+collision_mask = 2147483648
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vcad6")
