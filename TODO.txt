@@ -17,3 +17,12 @@ visuals =========
 - add jumping animation for player
 - add hurt damage for sprite
 - add sheep walking animation
+
+
+
+NOTES:
+	Player exists on level 2, all non-damaging things or entities exist on level 1 or no level
+	- Player HURTBOX exists on level 2, Player weapon HITBOX exists on level 3
+		- checks for damage coming from level 4 (things that hurt)
+	- Enemies/things that can hurt exist on level 4
+		- checks for damage coming from level 3 (player weapon hitbox)

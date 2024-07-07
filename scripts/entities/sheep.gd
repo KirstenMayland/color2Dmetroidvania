@@ -36,15 +36,11 @@ func get_direction_to_player():
 		return (player_node.global_position - global_position).normalized()
 	return Vector2.ZERO
 	
-func collide_with_player():
-	# when sheep collides with player hurtbox
-	# call the health_componenent damage function on the player
-	pass
-	
-func on_area_entered(other_area: HurtboxComponent):
+
+func on_area_entered(other_area: Area2D):
 	var player_node = get_parent().get_node("Player") as Node2D
 	if player_node != null:
 		if other_area.get_parent() != player_node:
 			return
-		health_component.damage(100)
-		#player_node.health_component.damage(100)
+		var player_health_component = player_node.get_node("HealthComponent") as HealthComponent
+		player_health_component.damage(100)
