@@ -3,8 +3,7 @@ extends CharacterBody2D
 
 @export var max_speed : float = 50.0
 @export var jump_velocity : float = -200.0
-
-@onready var health_component: HealthComponent = $HealthComponent
+@export var damage_dealt : int = 15
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -43,4 +42,4 @@ func on_area_entered(other_area: Area2D):
 		if other_area.get_parent() != player_node:
 			return
 		var player_health_component = player_node.get_node("HealthComponent") as HealthComponent
-		player_health_component.damage(100)
+		player_health_component.damage(damage_dealt)

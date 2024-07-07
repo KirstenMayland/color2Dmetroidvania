@@ -28,8 +28,6 @@ script/source = "extends CharacterBody2D
 @export var SPEED:float = 250.0
 @export var JUMP_VELOCITY:float = -400.0
 
-@export var hurt_animation_length:float = 0.1
-
 @onready var health_component: HealthComponent = $HealthComponent
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -77,13 +75,8 @@ func move():
 		
 		move_and_slide()
 		
-# ---------------------on_hurt---------------------------
 func on_hurt():
-	print(\"hurt\")
-	Global.set_player_can_move(false)
 	$AnimatedSprite2D.play(\"hurt\")
-	await get_tree().create_timer(hurt_animation_length).timeout
-	Global.set_player_can_move(true)
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fs3e2"]
@@ -124,9 +117,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_1fkt4")
 }],
-"loop": false,
+"loop": true,
 "name": &"hurt",
-"speed": 1.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,

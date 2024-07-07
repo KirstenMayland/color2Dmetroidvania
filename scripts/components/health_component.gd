@@ -2,6 +2,7 @@ extends Node2D
 class_name HealthComponent
 
 signal died
+signal hurt
 
 @export var max_health: float = 15
 var current_health
@@ -11,6 +12,7 @@ func _ready():
 
 func damage(damage_amount: float):
 	current_health = max(current_health - damage_amount, 0)
+	hurt.emit()
 	Callable(check_death).call_deferred()
 
 func check_death():

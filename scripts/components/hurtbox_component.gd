@@ -3,5 +3,3 @@ class_name HurtboxComponent
 
 @export var health_component: Node
 
-
-
