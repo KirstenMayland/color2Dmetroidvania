@@ -1,8 +1,9 @@
 TODO:
+	
+	1) create AnimationPlayer for player
 
 enemies =========
-- make enemies and player take damage
-- animate sword
+- make enemies take damage with sword
 
 levels ==========
 - fix doors so that if you switch back to level 2 from level 3 you end up by the door
@@ -11,12 +12,19 @@ levels ==========
 UI ==============
 - create a home/start screen
 - create a settings screen
+- create health bar
 
 visuals =========
 - figure out land moving color change so Will stops being angry
 - add jumping animation for player
 - add hurt damage for sprite
 - add sheep walking animation
+
+components ======
+- velocity component
+- pathfind component
+- basic statemachine class component
+- status reciever component
 
 
 
@@ -26,3 +34,7 @@ NOTES:
 		- checks for damage coming from level 4 (things that hurt)
 	- Enemies/things that can hurt exist on level 4
 		- checks for damage coming from level 3 (player weapon hitbox)
+		
+		
+Hitboxes DEAL damage
+Hurtboxes RECEIVE damage
