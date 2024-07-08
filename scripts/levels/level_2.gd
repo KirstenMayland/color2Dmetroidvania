@@ -8,7 +8,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Global.get_in_door_status() and Input.is_action_just_pressed("interact"):
-		Global.travel_through_door($Player/AnimatedSprite2D, "res://scenes/levels/level_3.tscn")
+		Global.travel_through_door($Player/AnimationPlayer, "res://scenes/levels/level_3.tscn")
 
 
 

@@ -20,7 +20,7 @@ IDEAS TO POTENTIALLY IMPLEMENT:
 		- locking the color away in the vault saves it from being drained but it locks the color away from the land
 		- the only remanents of the color remain in your abilities and in the eyes of the people (and their muted clothes)
 		
-		Stage 4 -- Final Boss:
+		Stage 4 -- Finality:
 		- defending the vault which at the moment bleeds color into the pocket of the world around it
 		- invading army catches on and tries to fight you with their stolen power to get to the vault
 		- when you defeat an enemy, the stolen power runs along the ground in colorful rivulets back into the vault
@@ -32,13 +32,6 @@ IDEAS TO POTENTIALLY IMPLEMENT:
 		- a young child (with colorful eyes?) comes to the vault overgrown with grey foliage many years down the line, 
 		unlocking the vault and releasing the color within
 		
-		
-		Evolution of Color Saturation:
-			1) Under occupation: land and people are full of color (maybe have desaturating around capture zones);
-			   Color locked away: land is bleached, people have muted color and bright eyes;
-			   Vault unlocked: land and people are full of color
-
-	ENTITIES:
 
 	LEVELS:
 		i) Black
@@ -49,11 +42,31 @@ IDEAS TO POTENTIALLY IMPLEMENT:
 		v) Orange
 		vi) Purple
 		
+		Evolution of Color Saturation:
+			1) Under occupation: land and people are full of color (maybe have desaturating around capture zones);
+			   Color locked away: land is bleached, people have muted color and bright eyes;
+			   Vault unlocked: land and people are full of color
+		
 		Before & After:
 			- Each level has a before and after, which for most is color --> no/muted color
 				- Black is the only one to go to no/muted color --> color
 			- Each level has a with color - cheery musical score and a without color
+			
+	ENTITIES:
 
 	VIBES:
 		- idea is centered around that lotr feeling of the endless march of time, and even when you win,
 		something essential to the uniqueness of the world is lost
+		
+	POTENTIAL TITLES:
+		From ChatGPT:
+			Chromatic Quest
+			Vault of Colors
+			Spectrum's End !
+			Echoes of Hue
+			Prism Warriors
+			Colorbound !
+			Chroma Chronicles
+			The Last Palette
+			Tinted Valor
+			Hues of Hope

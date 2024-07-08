@@ -34,11 +34,11 @@ func set_in_door_status(state):
 func get_in_door_status():
 	return in_door
 
-func travel_through_door(player_sprite, destination): #player_sprite = $Player/AnimatedSprite2D
+func travel_through_door(animation, destination):
 	# play door animation and wait until finished
 	set_player_can_move(false)
-	player_sprite.play("door_enter")
-	await get_tree().create_timer(player_sprite.get_playing_speed()).timeout
+	animation.play("DoorEnter")
+	await get_tree().create_timer(animation.get_playing_speed()).timeout
 	# go through door
 	get_tree().change_scene_to_file(destination)
 	set_player_can_move(true)
@@ -56,11 +56,17 @@ func outside_door(body, player, door_sprite):
 # ---------------------visuals---------------------------
 
 # helper function for move; entity faces direction it's moving
-func change_animated_sprite_direction(direction, sprite):
+func change_sprite_direction(direction, sprite, hitbox, hurtbox):
 	if sprite != null and sprite is AnimatedSprite2D:
 		if direction > 0:
 			sprite.set_flip_h(false)
 		elif direction < 0:
 			sprite.set_flip_h(true)
+			
+	if hitbox != null and hitbox is HitboxComponent:
+			hitbox.scale.x = hitbox.scale.x * -1
+			
+	if hurtbox != null and hurtbox is HurtboxComponent:
+			hurtbox.scale.x = hurtbox.scale.x * -1
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ctp67a0qjcvom"]
+[gd_scene load_steps=33 format=3 uid="uid://ctp67a0qjcvom"]
 
 [ext_resource type="Texture2D" uid="uid://dm1plr7jyijq5" path="res://assets/entity/player/player_damage_animation/player_damage.png" id="1_1fkt4"]
 [ext_resource type="Texture2D" uid="uid://dfgrssua0tbo4" path="res://assets/entity/player/door_animation/Sprite_door1.png" id="2_e8o4r"]
@@ -24,6 +24,7 @@
 
 [sub_resource type="GDScript" id="GDScript_qxt2g"]
 script/source = "extends CharacterBody2D
+class_name Player
 
 
 @export var SPEED:float = 250.0
@@ -32,34 +33,47 @@ script/source = "extends CharacterBody2D
 @export var hurt_animation_length:float = 0.085
 
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var animation = $AnimationPlayer
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
 
-# ---------------------ready---------------------------
+
+# ----------------------------------------------------------------
+# -----------------------------ready------------------------------
+# ----------------------------------------------------------------
 func _ready():
 	health_component.health_change.connect(on_health_change)
 
+
+func on_health_change(current_health: float, heal: bool):
+	if heal == false:
+		print(\"hurt\")
+		Global.set_player_can_move(false)
+		animation.play(\"Hurt\")
+		await get_tree().create_timer(hurt_animation_length).timeout
+		Global.set_player_can_move(true)
+
+
+# ----------------------------------------------------------------
 # ---------------------_physics_process---------------------------
-# main function
+# ----------------------------------------------------------------
 func _physics_process(delta):
 	add_gravity(delta)
 	jump()
 	move()
 
-# ---------------------add_gravity---------------------------
+
 func add_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
 
-# ---------------------jump---------------------------
 func jump():
 	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+ 
 
-
-# ---------------------move---------------------------
 func move():
 	var direction = Input.get_axis(\"move_left\", \"move_right\")
 	
@@ -68,24 +82,15 @@ func move():
 		# if moving
 		if direction:
 			velocity.x = direction * SPEED
-			$AnimatedSprite2D.play(\"walk\")
-			Global.change_animated_sprite_direction(direction, get_node(\"AnimatedSprite2D\"))
+			animation.play(\"Walk\")
+			Global.change_sprite_direction(direction, get_node(\"AnimatedSprite2D\"), get_node(\"HitboxComponent\"), get_node(\"HurtboxComponent\"))
 		
 		# if stopped/stopping
 		else:
-			$AnimatedSprite2D.play(\"idle\")
+			animation.play(\"Idle\")
 			velocity.x = move_toward(velocity.x, 0, SPEED / 2)  # stop mechanism, how quickly it slows
 		
 		move_and_slide()
-		
-# ---------------------on_health_change---------------------------
-func on_health_change(current_health: float, heal: bool):
-	if heal == false:
-		print(\"hurt\")
-		Global.set_player_can_move(false)
-		$AnimatedSprite2D.play(\"hurt\")
-		await get_tree().create_timer(hurt_animation_length).timeout
-		Global.set_player_can_move(true)
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fs3e2"]
@@ -176,6 +181,62 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="Animation" id="Animation_pepxw"]
+resource_name = "DoorEnter"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"door_enter"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_d5oc0"]
+resource_name = "Hurt"
+length = 0.085
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hurt"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_7r3hc"]
 resource_name = "Idle"
 tracks/0/type = "value"
@@ -203,33 +264,6 @@ tracks/1/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_eynmj"]
-resource_name = "Walk"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"walk"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-
 [sub_resource type="Animation" id="Animation_6tk6g"]
 length = 0.001
 tracks/0/type = "value"
@@ -245,62 +279,10 @@ tracks/0/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_pepxw"]
-resource_name = "DoorEnter"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"door_enter"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
-}
-
-[sub_resource type="Animation" id="Animation_d5oc0"]
-resource_name = "Hurt"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.9),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"hurt"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.9),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="Animation" id="Animation_qsbw4"]
 resource_name = "SwordSlash"
+length = 0.6
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -308,7 +290,7 @@ tracks/0/path = NodePath("AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"sword_slash"]
@@ -326,6 +308,34 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_eynmj"]
+resource_name = "Walk"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mj16g"]
 _data = {
 "DoorEnter": SubResource("Animation_pepxw"),
@@ -336,14 +346,19 @@ _data = {
 "Walk": SubResource("Animation_eynmj")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yejrp"]
+size = Vector2(13, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3i8uc"]
+size = Vector2(13, 20)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = SubResource("GDScript_qxt2g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fs3e2")
-animation = &"walk"
-frame = 1
+animation = &"idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -364,8 +379,13 @@ max_health = 100.0
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("14_jqlrc")]
 health_component = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="HurtboxComponent"]
-position = Vector2(0.5, 1.5)
-polygon = PackedVector2Array(-2.5, -25.5, 2.5, -25.5, 5.5, -22.5, 5.5, -16.5, 2.5, -10.5, 2.5, 4.5, 5.5, 25.5, -5.5, 25.5, -3.5, 4.5, -3.5, -10.5, -5.5, -16.5, -5.5, -22.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_yejrp")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("21_iamod")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0.5, 17)
+shape = SubResource("RectangleShape2D_3i8uc")
+debug_color = Color(0.685779, 0, 0, 0.419608)
