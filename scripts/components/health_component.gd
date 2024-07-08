@@ -9,6 +9,9 @@ signal health_change(current_health: float, heal: bool)
 var current_health: float
 var is_invulnerable: bool = false
 
+# ----------------------------------------------------------------
+# -----------------------------ready------------------------------
+# ----------------------------------------------------------------
 func _ready():
 	current_health = max_health
 

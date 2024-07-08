@@ -2,7 +2,7 @@
 extends Area2D
 class_name HurtboxComponent
 
-@export var health_component: HealthComponent # used to be Node
+@export var health_component: HealthComponent
 
 # ----------------------------------------------------------------
 # -----------------------------ready------------------------------
@@ -22,5 +22,5 @@ func on_hurtbox_entered(other_area: HitboxComponent):
 	# and this entity can accept a damage collision (maybe add something about time between attacks)
 	# then call damage() on our health component using the damage_dealt amount from the opponent hitbox
 	if can_accept_damage_collision():
-		print("hiiiiiiiiiiii")
+		print("hurt")
 		health_component.damage(other_area.get_damage_dealt())

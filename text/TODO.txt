@@ -1,9 +1,10 @@
 TODO:
 	
-	1) get hitboxes and hurtboxes between sheep and player sword to have base functionality
-	2) create "main screen" with player, etc, so that the levels exist behind that
-	3) create home/start screen
-	4) rework animations (make player smaller, can change art later but need to finalize size right now)
+	1) add cool down period for taking damage
+	2) have character slash when you click
+	3) create "main scene" with player, etc, so that the levels exist behind that
+	4) create home/start screen
+	5) rework animations (make player smaller, can change art later but need to finalize size right now)
 
 enemies =========
 - make enemies take damage with sword

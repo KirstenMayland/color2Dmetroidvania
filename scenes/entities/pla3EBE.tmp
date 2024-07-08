@@ -94,7 +94,7 @@ func sword_slash():
 	if Input.is_action_just_pressed(\"attack\"):
 		Global.set_player_can_move(false)
 		animation.play(\"SwordSlash\")
-		#await get_tree().create_timer(animation.get_playing_speed()).timeout
+		await get_tree().create_timer(animation.get_playing_speed()).timeout
 		#await get_tree().create_timer(hurt_animation_length).timeout
 		Global.set_player_can_move(true)
 "
@@ -336,6 +336,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id="Animation_qsbw4"]
 resource_name = "SwordSlash"
 length = 0.6
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -490,7 +491,6 @@ shape = SubResource("RectangleShape2D_yejrp")
 [node name="HitboxComponent" parent="." instance=ExtResource("21_iamod")]
 collision_layer = 2
 collision_mask = 2
-damage_dealt = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(16.602, -15.2365)
