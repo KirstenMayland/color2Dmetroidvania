@@ -1,6 +1,9 @@
 TODO:
 	
-	1) create AnimationPlayer for player
+	1) get hitboxes and hurtboxes between sheep and player sword to have base functionality
+	2) create "main screen" with player, etc, so that the levels exist behind that
+	3) create home/start screen
+	4) rework animations (make player smaller, can change art later but need to finalize size right now)
 
 enemies =========
 - make enemies take damage with sword
@@ -35,6 +38,10 @@ NOTES:
 	- Enemies/things that can hurt exist on level 4
 		- checks for damage coming from level 3 (player weapon hitbox)
 		
+	Player Hitbox = 2
+	Player Hurtbox = 3
+	Enemy Hitbox = 3
+	Enemy Hurtbox = 2
 		
 Hitboxes DEAL damage
 Hurtboxes RECEIVE damage
