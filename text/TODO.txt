@@ -7,7 +7,6 @@ TODO:
 	5) rework animations (make player smaller, can change art later but need to finalize size right now)
 
 enemies =========
-- make enemies take damage with sword
 
 levels ==========
 - fix doors so that if you switch back to level 2 from level 3 you end up by the door
@@ -29,6 +28,9 @@ components ======
 - pathfind component
 - basic statemachine class component
 - status reciever component
+
+other ===========
+- make it so that not every hurtbox_component needs a timer
 
 
 

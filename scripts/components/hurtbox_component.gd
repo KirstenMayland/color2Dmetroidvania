@@ -11,12 +11,14 @@ var is_invulnerable: bool = false
 # ----------------------------------------------------------------
 func _ready():
 	area_entered.connect(on_hurtbox_entered)
-	invulnerablilty_timer.timeout.connect(self._on_invulnerablilty_timer_timeout)
+	if invulnerablilty_timer != null:
+		invulnerablilty_timer.timeout.connect(self._on_invulnerablilty_timer_timeout)
 
 func on_hurtbox_entered(other_area: HitboxComponent):
 	if can_accept_damage_collision():
 		print("hurt")
-		start_invulnerablility()
+		if invulnerablilty_timer != null:
+			start_invulnerablility()
 		health_component.damage(other_area.get_damage_dealt())
 
 func can_accept_damage_collision():

@@ -37,7 +37,7 @@ polygon = PackedVector2Array(-11, -6, 6, -6, 7, -11, 15, -11, 15, -2, 11, 0, 11,
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "invulnerablilty_timer") instance=ExtResource("4_r5lim")]
 health_component = NodePath("../HealthComponent")
-invulnerablilty_timer = NodePath("../Timer")
+invulnerablilty_timer = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(2.00184, 0.498147)
@@ -50,7 +50,3 @@ shape = SubResource("RectangleShape2D_ufglh")
 position = Vector2(10, -5)
 shape = SubResource("RectangleShape2D_5hrmn")
 debug_color = Color(0.686275, 0, 0, 0.419608)
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.05
-one_shot = true
