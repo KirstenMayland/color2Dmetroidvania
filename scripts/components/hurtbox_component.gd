@@ -3,24 +3,38 @@ extends Area2D
 class_name HurtboxComponent
 
 @export var health_component: HealthComponent
+@export var invulnerablilty_timer: Timer
+var is_invulnerable: bool = false
 
 # ----------------------------------------------------------------
 # -----------------------------ready------------------------------
 # ----------------------------------------------------------------
 func _ready():
 	area_entered.connect(on_hurtbox_entered)
+	invulnerablilty_timer.timeout.connect(self._on_invulnerablilty_timer_timeout)
+
+func on_hurtbox_entered(other_area: HitboxComponent):
+	if can_accept_damage_collision():
+		print("hurt")
+		start_invulnerablility()
+		health_component.damage(other_area.get_damage_dealt())
 
 func can_accept_damage_collision():
 	# can accept if has health left and not invulnverable
-	if health_component.get_invulnerablility():
+	if get_invulnerablility():
 		return false
 	else:
 		return health_component.has_health_remaining() 
-		
-func on_hurtbox_entered(other_area: HitboxComponent):
-	# if the other_area was a hitbox
-	# and this entity can accept a damage collision (maybe add something about time between attacks)
-	# then call damage() on our health component using the damage_dealt amount from the opponent hitbox
-	if can_accept_damage_collision():
-		print("hurt")
-		health_component.damage(other_area.get_damage_dealt())
+
+func _on_invulnerablilty_timer_timeout():
+	set_invulnerablility(false)
+
+func start_invulnerablility():
+	set_invulnerablility(true)
+	invulnerablilty_timer.start()
+
+func set_invulnerablility(boolean: bool):
+	is_invulnerable = boolean
+
+func get_invulnerablility():
+	return is_invulnerable

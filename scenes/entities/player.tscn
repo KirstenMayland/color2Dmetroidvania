@@ -478,10 +478,11 @@ limit_left = 0
 [node name="HealthComponent" parent="." instance=ExtResource("13_3h35b")]
 max_health = 100.0
 
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("14_jqlrc")]
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "invulnerablilty_timer") instance=ExtResource("14_jqlrc")]
 collision_layer = 4
 collision_mask = 4
 health_component = NodePath("../HealthComponent")
+invulnerablilty_timer = NodePath("../Timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0.5, 1)
@@ -498,3 +499,6 @@ rotation = 1.19655
 shape = SubResource("RectangleShape2D_3i8uc")
 disabled = true
 debug_color = Color(0.685779, 0, 0, 0.419608)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
