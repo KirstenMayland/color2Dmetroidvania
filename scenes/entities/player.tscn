@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ctp67a0qjcvom"]
+[gd_scene load_steps=42 format=3 uid="uid://ctp67a0qjcvom"]
 
 [ext_resource type="Texture2D" uid="uid://dm1plr7jyijq5" path="res://assets/entity/player/player_damage_animation/player_damage.png" id="1_1fkt4"]
 [ext_resource type="Texture2D" uid="uid://dfgrssua0tbo4" path="res://assets/entity/player/door_animation/Sprite_door1.png" id="2_e8o4r"]
@@ -10,16 +10,25 @@
 [ext_resource type="Texture2D" uid="uid://dkc3s2hsnvgjm" path="res://assets/entity/player/door_animation/Sprite_door7.png" id="8_jmfh5"]
 [ext_resource type="Texture2D" uid="uid://b7y2xwg0geu2m" path="res://assets/entity/player/door_animation/Sprite_door8.png" id="9_4ro8b"]
 [ext_resource type="Texture2D" uid="uid://dgs1int30g81j" path="res://assets/entity/player/walk_animation/Sprite1.png" id="10_8ki83"]
+[ext_resource type="Texture2D" uid="uid://dewv73057b8ot" path="res://assets/entity/player/player2.0.png" id="10_uo5kk"]
 [ext_resource type="Texture2D" uid="uid://bvtu6844drr2d" path="res://assets/entity/player/walk_animation/Sprite2.png" id="11_0x6x7"]
+[ext_resource type="Texture2D" uid="uid://chtecgg8hsbd6" path="res://assets/entity/player/player2.1.png" id="11_gjtts"]
 [ext_resource type="Texture2D" uid="uid://bocljj8ukot3g" path="res://assets/entity/player/sword_slash_animation/sword_slash1.png" id="11_tttqc"]
+[ext_resource type="Texture2D" uid="uid://b0uvo31j6a4fd" path="res://assets/entity/player/player2.2.png" id="12_7uv24"]
 [ext_resource type="Texture2D" uid="uid://dru627ruxoc7c" path="res://assets/entity/player/walk_animation/Sprite3.png" id="12_in3lm"]
 [ext_resource type="Texture2D" uid="uid://bdb2elkajfbho" path="res://assets/entity/player/sword_slash_animation/sword_slash2.png" id="12_jfonc"]
 [ext_resource type="PackedScene" uid="uid://d2ojf0bbv5n5j" path="res://scenes/components/health_component.tscn" id="13_3h35b"]
 [ext_resource type="Texture2D" uid="uid://dscucp7qo1hj" path="res://assets/entity/player/sword_slash_animation/sword_slash3.png" id="13_8t04q"]
+[ext_resource type="Texture2D" uid="uid://coxlebcoycjpu" path="res://assets/entity/player/player2.3.png" id="13_47frw"]
 [ext_resource type="Texture2D" uid="uid://c8nnvvm1ccrqu" path="res://assets/entity/player/sword_slash_animation/sword_slash4.png" id="14_8ikwe"]
 [ext_resource type="PackedScene" uid="uid://dty8yax2de5v4" path="res://scenes/components/hurtbox_component.tscn" id="14_jqlrc"]
+[ext_resource type="Texture2D" uid="uid://bkvechllkkc3g" path="res://assets/entity/player/player2.4.png" id="14_yr7m6"]
 [ext_resource type="Texture2D" uid="uid://cmhu0hujbhxbj" path="res://assets/entity/player/sword_slash_animation/sword_slash5.png" id="15_p88ot"]
+[ext_resource type="Texture2D" uid="uid://vvvreotwschc" path="res://assets/entity/player/player2.5.png" id="15_v4kg3"]
 [ext_resource type="Texture2D" uid="uid://djwjbxs1n0akl" path="res://assets/entity/player/sword_slash_animation/sword_slash6.png" id="16_k5x36"]
+[ext_resource type="Texture2D" uid="uid://dxynp7uxso5r6" path="res://assets/entity/player/player2.6.png" id="16_nugex"]
+[ext_resource type="Texture2D" uid="uid://blquxvc8gig86" path="res://assets/entity/player/player2.7.png" id="17_76kc8"]
+[ext_resource type="Texture2D" uid="uid://co8rwnre50i13" path="res://assets/entity/player/player2.8.png" id="18_m6y6e"]
 [ext_resource type="PackedScene" uid="uid://dodtc5a30e5v2" path="res://scenes/components/hitbox_component.tscn" id="21_iamod"]
 
 [sub_resource type="GDScript" id="GDScript_qxt2g"]
@@ -79,7 +88,7 @@ func move():
 		# if moving
 		if direction:
 			velocity.x = direction * SPEED
-			animation.play(\"Walk\")
+			animation.play(\"Idle\") # TODO: should be \"Walk\", switch back once sprite is updated
 			Global.change_sprite_direction(direction, get_node(\"AnimatedSprite2D\"), get_node(\"HitboxComponent\"), get_node(\"HurtboxComponent\"))
 		
 		# if stopped/stopping
@@ -94,8 +103,6 @@ func sword_slash():
 	if Input.is_action_just_pressed(\"attack\"):
 		Global.set_player_can_move(false)
 		animation.play(\"SwordSlash\")
-		#await get_tree().create_timer(animation.get_playing_speed()).timeout
-		#await get_tree().create_timer(hurt_animation_length).timeout
 		Global.set_player_can_move(true)
 "
 
@@ -143,11 +150,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_8ki83")
+"texture": ExtResource("10_uo5kk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_gjtts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7uv24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_47frw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yr7m6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_v4kg3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_nugex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_76kc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_m6y6e")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 11.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -245,6 +276,8 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_7r3hc"]
 resource_name = "Idle"
+length = 0.9
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -264,10 +297,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
 }
 
 [sub_resource type="Animation" id="Animation_6tk6g"]
@@ -448,7 +481,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yejrp"]
-size = Vector2(13, 52)
+size = Vector2(13, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3i8uc"]
 size = Vector2(20.9595, 26.5624)
@@ -459,7 +492,7 @@ script = SubResource("GDScript_qxt2g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fs3e2")
-animation = &"sword_slash"
+animation = &"idle"
 frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -468,8 +501,9 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(0.5, 1.5)
-polygon = PackedVector2Array(-2.5, -25.5, 2.5, -25.5, 5.5, -22.5, 5.5, -16.5, 2.5, -10.5, 2.5, 4.5, 5.5, 25.5, -5.5, 25.5, -3.5, 4.5, -3.5, -10.5, -5.5, -16.5, -5.5, -22.5)
+position = Vector2(0.5, 6.97292)
+scale = Vector2(1, 0.743056)
+polygon = PackedVector2Array(-2.5, -25.5, 1.5, -25.5336, 5.5, -22.8421, 5.5, -16.5, 5.5, -8.03832, 5.5, 6.76542, -5.5, 6.76542, -5.5, -10.7299, -5.5, -16.5, -5.5, -22.5)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.8, 2.8)
@@ -485,7 +519,7 @@ health_component = NodePath("../HealthComponent")
 invulnerablilty_timer = NodePath("../Timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0.5, 1)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_yejrp")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("21_iamod")]

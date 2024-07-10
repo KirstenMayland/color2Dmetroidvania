@@ -1,10 +1,8 @@
 TODO:
 	
-	1) add cool down period for taking damage
-	2) have character slash when you click
-	3) create "main scene" with player, etc, so that the levels exist behind that
-	4) create home/start screen
-	5) rework animations (make player smaller, can change art later but need to finalize size right now)
+	1) create "main scene" with player, etc, so that the levels exist behind that
+	2) create home/start screen
+	3) rework animations (make player smaller, can change art later but need to finalize size right now)
 
 enemies =========
 
@@ -30,7 +28,7 @@ components ======
 - status reciever component
 
 other ===========
-- make it so that not every hurtbox_component needs a timer
+
 
 
 
