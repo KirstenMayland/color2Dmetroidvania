@@ -2,9 +2,12 @@ TODO:
 	
 	1) create "main scene" with player, etc, so that the levels exist behind that
 	2) create home/start screen
-	3) rework animations (make player smaller, can change art later but need to finalize size right now)
 
 enemies =========
+
+player ==========
+- add coyote time
+- add jump buffering
 
 levels ==========
 - fix doors so that if you switch back to level 2 from level 3 you end up by the door
