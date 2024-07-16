@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8nnvvm1ccrqu"
-path="res://.godot/imported/sword_slash4.png-d0ab571911562e38ec2002de0ccc3271.ctex"
+uid="uid://c7qdwk1sq4op6"
+path="res://.godot/imported/player2.0-Jump_4.png-d8cb36d23fac2245ece232999a0e3633.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entity/player/sword_slash_animation/sword_slash4.png"
-dest_files=["res://.godot/imported/sword_slash4.png-d0ab571911562e38ec2002de0ccc3271.ctex"]
+source_file="res://assets/entity/player/player_jump/player2.0-Jump_4.png"
+dest_files=["res://.godot/imported/player2.0-Jump_4.png-d8cb36d23fac2245ece232999a0e3633.ctex"]
 
 [params]
 

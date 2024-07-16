@@ -37,7 +37,7 @@ func get_in_door_status():
 func travel_through_door(animation, destination):
 	# play door animation and wait until finished
 	set_player_can_move(false)
-	animation.play("DoorEnter")
+	animation.play("ThroughDoor")
 	await get_tree().create_timer(animation.get_playing_speed()).timeout
 	# go through door
 	get_tree().change_scene_to_file(destination)
@@ -68,5 +68,10 @@ func change_sprite_direction(direction, sprite, hitbox, hurtbox):
 			
 	if hurtbox != null and hurtbox is HurtboxComponent:
 			hurtbox.scale.x = hurtbox.scale.x * -1
+
+func change_character_visual_direction(character):
+	if character is CharacterBody2D:
+#		for child in character.get_children():
+		character.scale.x = character.scale.x * -1
 
 
