@@ -16,7 +16,7 @@ class_name Player
 
 
 @export var SPEED:float = 250.0
-@export var JUMP_VELOCITY:float = -400.0
+@export var JUMP_VELOCITY:float = -375.0 #jumps just shy of 5 blocks
 @export var hurt_animation_length:float = 0.1
 
 
@@ -143,9 +143,8 @@ func update_animation_parameters(delta):
 		animation_tree[\"parameters/conditions/in_air\"] = false
 		animation_tree[\"parameters/JumpStateMachine/conditions/on_ground\"] = true
 	
-	# jump cont.
+	# jump cont.  ----- Note: x = velocity.y, y = velocity.y v acceleration.y (abs(v.y) > abs(a.y) == 1; abs(v.y) < abs(a.y) == -1)
 	animation_tree[\"parameters/JumpStateMachine/BlendSpace2D/blend_position\"] = Vector2(1 if velocity.y > 0 else -1, 1 if abs(velocity.y) >= abs(gravity * delta * 10) else -1)
-	# Note: x = velocity.y, y = velocity.y v acceleration.y (abs(v.y) > abs(a.y) == 1; abs(v.y) < abs(a.y) == -1)
 	
 	# slash
 	if Input.is_action_just_pressed(\"attack\"):

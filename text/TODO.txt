@@ -6,8 +6,7 @@ TODO:
 enemies =========
 
 player ==========
-- add coyote time
-- add jump buffering
+- fix jump glitch from jump buffering
 
 levels ==========
 - fix doors so that if you switch back to level 2 from level 3 you end up by the door
@@ -20,9 +19,6 @@ UI ==============
 
 visuals =========
 - figure out land moving color change so Will stops being angry
-- add jumping animation for player
-- add hurt damage for sprite
-- add sheep walking animation
 
 components ======
 - velocity component
