@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://ctp67a0qjcvom"]
+[gd_scene load_steps=113 format=3 uid="uid://ctp67a0qjcvom"]
 
 [ext_resource type="Texture2D" uid="uid://gqfx5jpp751" path="res://assets/entity/player/player2.0-Door.png" id="1_1sbcy"]
 [ext_resource type="Texture2D" uid="uid://d20fhc7yd6r28" path="res://assets/entity/player/player2.0-Hurt.png" id="1_kr57g"]
@@ -118,35 +118,34 @@ func update_animation_parameters(delta):
 	if velocity == Vector2.ZERO:
 		animation_tree[\"parameters/conditions/idle\"] = true
 		animation_tree[\"parameters/conditions/is_moving\"] = false
+		
 		animation_tree[\"parameters/conditions/in_air\"] = false
+		animation_tree[\"parameters/JumpStateMachine/conditions/on_ground\"] = true
 	# jump
 	elif velocity.y != 0:
 		animation_tree[\"parameters/conditions/idle\"] = false
 		animation_tree[\"parameters/conditions/is_moving\"] = false
+		
 		animation_tree[\"parameters/conditions/in_air\"] = true
+		animation_tree[\"parameters/JumpStateMachine/conditions/on_ground\"] = false
+		
+		if velocity.y > 0:
+			animation_tree[\"parameters/JumpStateMachine/conditions/jump\"] = false
+			animation_tree[\"parameters/JumpStateMachine/conditions/fall\"] = true
+		else:
+			animation_tree[\"parameters/JumpStateMachine/conditions/jump\"] = true
+			animation_tree[\"parameters/JumpStateMachine/conditions/fall\"] = false
 	# walk
 	else: 
 		animation_tree[\"parameters/conditions/idle\"] = false
 		animation_tree[\"parameters/conditions/is_moving\"] = true
+		
 		animation_tree[\"parameters/conditions/in_air\"] = false
-	
-	if is_on_floor():
 		animation_tree[\"parameters/JumpStateMachine/conditions/on_ground\"] = true
-	else:
-		animation_tree[\"parameters/JumpStateMachine/conditions/on_ground\"] = false
 	
+	# jump cont.
+	animation_tree[\"parameters/JumpStateMachine/BlendSpace2D/blend_position\"] = Vector2(1 if velocity.y > 0 else -1, 1 if abs(velocity.y) >= abs(gravity * delta * 10) else -1)
 	# Note: x = velocity.y, y = velocity.y v acceleration.y (abs(v.y) > abs(a.y) == 1; abs(v.y) < abs(a.y) == -1)
-	var v
-	if velocity.y > 0:
-		v = 1
-	else:
-		v = -1
-	var a
-	if (abs(velocity.y) >= abs(gravity*delta*10)):
-		a = 1
-	else:
-		a = -1
-	animation_tree[\"parameters/JumpStateMachine/BlendSpace2D/blend_position\"] = Vector2(v, a)
 	
 	# slash
 	if Input.is_action_just_pressed(\"attack\"):
@@ -1022,6 +1021,7 @@ animation = &"JumpP2Down"
 animation = &"JumpP1Down"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_6i0hd"]
+auto_triangles = false
 blend_point_0/node = SubResource("AnimationNodeAnimation_cpnec")
 blend_point_0/pos = Vector2(-0.9, 0.9)
 blend_point_1/node = SubResource("AnimationNodeAnimation_43xec")
@@ -1030,6 +1030,7 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_oakck")
 blend_point_2/pos = Vector2(1, 1)
 blend_point_3/node = SubResource("AnimationNodeAnimation_3tlm3")
 blend_point_3/pos = Vector2(0.9, -0.9)
+triangles = PackedInt32Array(0, 1, 3, 0, 2, 3)
 x_label = "velocity"
 y_label = "vel_versus_acc"
 
@@ -1041,6 +1042,7 @@ animation = &"JumpStart"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sacpi"]
 advance_mode = 2
+advance_condition = &"jump"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4s3bs"]
 switch_mode = 2
@@ -1054,6 +1056,11 @@ advance_mode = 2
 advance_mode = 2
 advance_condition = &"on_ground"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5avj0"]
+priority = 0
+advance_mode = 2
+advance_condition = &"fall"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tjmsk"]
 states/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_6i0hd")
 states/BlendSpace2D/position = Vector2(625, 100)
@@ -1061,9 +1068,9 @@ states/End/position = Vector2(1258, 100)
 states/JumpLand/node = SubResource("AnimationNodeAnimation_2hj85")
 states/JumpLand/position = Vector2(989, 100)
 states/JumpStart/node = SubResource("AnimationNodeAnimation_8iwxt")
-states/JumpStart/position = Vector2(280, 100)
+states/JumpStart/position = Vector2(329, 24)
 states/Start/position = Vector2(90, 100)
-transitions = ["Start", "JumpStart", SubResource("AnimationNodeStateMachineTransition_sacpi"), "JumpLand", "End", SubResource("AnimationNodeStateMachineTransition_4s3bs"), "JumpStart", "BlendSpace2D", SubResource("AnimationNodeStateMachineTransition_1qirk"), "BlendSpace2D", "JumpLand", SubResource("AnimationNodeStateMachineTransition_ua6om")]
+transitions = ["Start", "JumpStart", SubResource("AnimationNodeStateMachineTransition_sacpi"), "JumpLand", "End", SubResource("AnimationNodeStateMachineTransition_4s3bs"), "JumpStart", "BlendSpace2D", SubResource("AnimationNodeStateMachineTransition_1qirk"), "BlendSpace2D", "JumpLand", SubResource("AnimationNodeStateMachineTransition_ua6om"), "Start", "BlendSpace2D", SubResource("AnimationNodeStateMachineTransition_5avj0")]
 graph_offset = Vector2(0, -52.6787)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qn8xm"]
@@ -1186,7 +1193,7 @@ states/JumpStateMachine/node = SubResource("AnimationNodeStateMachine_tjmsk")
 states/JumpStateMachine/position = Vector2(739.668, 344.978)
 states/Start/position = Vector2(185, 140)
 states/SwordSlash/node = SubResource("AnimationNodeAnimation_qn8xm")
-states/SwordSlash/position = Vector2(739.668, 246.702)
+states/SwordSlash/position = Vector2(739.668, 216.702)
 states/ThroughDoor/node = SubResource("AnimationNodeAnimation_puu23")
 states/ThroughDoor/position = Vector2(739.668, 51.702)
 states/Walk/node = SubResource("AnimationNodeAnimation_0a4tn")
@@ -1224,6 +1231,8 @@ parameters/conditions/in_air = false
 parameters/conditions/is_moving = false
 parameters/conditions/slash = false
 parameters/conditions/through_door = false
+parameters/JumpStateMachine/conditions/fall = false
+parameters/JumpStateMachine/conditions/jump = false
 parameters/JumpStateMachine/conditions/on_ground = false
 parameters/JumpStateMachine/BlendSpace2D/blend_position = Vector2(-0.925627, 0.883289)
 
