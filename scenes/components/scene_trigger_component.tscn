@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsmnunnhaal0q"]
+
+[ext_resource type="Script" path="res://scripts/components/scene_trigger_component.gd" id="1_1jh27"]
+
+[node name="SceneTriggerComponent" type="Area2D"]
+collision_mask = 32768
+script = ExtResource("1_1jh27")

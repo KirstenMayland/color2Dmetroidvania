@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://co2aa6mrqn8p8"]
+[gd_scene load_steps=10 format=3 uid="uid://co2aa6mrqn8p8"]
 
 [ext_resource type="Texture2D" uid="uid://dnk7npyn4mro7" path="res://assets/background/1bitTilemap.png" id="1_8t6uy"]
+[ext_resource type="Script" path="res://scripts/levels/base_scene.gd" id="1_rfm8p"]
 [ext_resource type="PackedScene" uid="uid://jf1iu5qc5bt" path="res://scenes/door.tscn" id="2_wyraw"]
 [ext_resource type="PackedScene" uid="uid://ctp67a0qjcvom" path="res://scenes/entities/player.tscn" id="3_vltrx"]
 [ext_resource type="PackedScene" uid="uid://wbbgttji4k7b" path="res://scenes/entities/sheep.tscn" id="4_5tbdl"]
+[ext_resource type="Script" path="res://scripts/components/scene_trigger_component.gd" id="6_3oxt0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dqlxu"]
 texture = ExtResource("1_8t6uy")
@@ -1279,7 +1281,11 @@ separation = Vector2i(8, 8)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_dqlxu")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bsn6g"]
+size = Vector2(24.4998, 41)
+
 [node name="level_3" type="Node2D"]
+script = ExtResource("1_rfm8p")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_he78a")
@@ -1294,3 +1300,18 @@ position = Vector2(889, 334)
 
 [node name="Player" parent="." instance=ExtResource("3_vltrx")]
 position = Vector2(107, 334)
+
+[node name="SceneTrigger" type="Area2D" parent="."]
+position = Vector2(11, 349)
+collision_mask = 32768
+script = ExtResource("6_3oxt0")
+connected_scene = "level_2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTrigger"]
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_bsn6g")
+
+[node name="EntranceMarkers" type="Node2D" parent="."]
+
+[node name="level_2" type="Marker2D" parent="EntranceMarkers"]
+position = Vector2(1094, 343)
