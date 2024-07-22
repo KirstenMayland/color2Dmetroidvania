@@ -1,21 +1,15 @@
 class_name Player extends CharacterBody2D
 
 
-@export var SPEED:float = 250.0
-@export var JUMP_VELOCITY:float = -375.0 #jumps just shy of 5 blocks
-@export var hurt_animation_length:float = 0.1
+@export var hurt_animation_length: float = 0.1
 
-
-@onready var health_component: HealthComponent = $HealthComponent
-@onready var animation = $AnimationPlayer
-@onready var animation_tree = $AnimationTree
-
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+var SPEED: float = 300.0
+var JUMP_VELOCITY: float = -375.0  # jumps just shy of 5 blocks
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction_old: float = 1
 
+# jump values
 var coyote_time = 0.13
 var coyote_time_left = 0.0
 var jump_buffer_time = 0.13
@@ -25,6 +19,9 @@ var jump_buffer_time_left = 0.0
 var heal_ani: bool = false
 var hurt_ani: bool = false
 
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var animation = $AnimationPlayer
+@onready var animation_tree = $AnimationTree
 
 # ----------------------------------------------------------------
 # -----------------------------ready------------------------------
@@ -33,7 +30,7 @@ func _ready():
 	health_component.health_change.connect(on_health_change)
 	animation_tree.active = true
 
-func on_health_change(current_health: float, heal: bool):
+func on_health_change(_current_health: float, heal: bool):
 	if heal == false:
 		hurt_ani = true
 		heal_ani = false

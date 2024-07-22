@@ -5,8 +5,5 @@ class_name SceneTrigger extends Area2D
 func _ready():
 	body_entered.connect(_on_body_entered)
 
-func _on_body_entered(body):
-	print("hi")
-	if body is Player:
-		print("body entered")
-		scene_manager.change_scene(get_owner(), connected_scene)
+func _on_body_entered(body: Player):
+	scene_manager.change_scene(get_owner(), connected_scene)

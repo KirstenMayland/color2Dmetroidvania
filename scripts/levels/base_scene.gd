@@ -6,9 +6,11 @@ class_name BaseScene extends Node
 func _ready():
 	if scene_manager.player:
 		if player:
+			player.name = "_Player"
 			player.queue_free()
 		
 		player = scene_manager.player
+		player.name = "Player"
 		add_child(player)
 	
 	position_player()
@@ -18,8 +20,9 @@ func position_player() -> void:
 	if last_scene.is_empty():
 		last_scene = "any"
 	
-	for entrance in entrance_markers.get_children():
-		var entrance_name = entrance.name.to_lower().replace('_', '').replace(' ', '')
-			
-		if entrance is Marker2D and entrance_name == "any" or entrance_name == last_scene:
-			player.global_position = entrance.global_position
+	if entrance_markers:
+		for entrance in entrance_markers.get_children():
+			var entrance_name = entrance.name.to_lower().replace('_', '').replace(' ', '')
+				
+			if entrance is Marker2D and entrance_name == "any" or entrance_name == last_scene:
+				player.global_position = entrance.global_position

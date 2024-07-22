@@ -1058,8 +1058,6 @@ size = Vector2(20.9595, 26.5624)
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 32768
 script = ExtResource("1_m4g60")
-SPEED = 300.0
-JUMP_VELOCITY = -400.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -2)
@@ -1091,16 +1089,13 @@ position = Vector2(0, -0.5)
 polygon = PackedVector2Array(-5, -1, -5, 12, 6, 12, 6, -8, 2, -12, -2, -12, -5, -8)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 zoom = Vector2(3, 3)
 limit_left = 0
 
 [node name="HealthComponent" parent="." instance=ExtResource("13_3h35b")]
-visible = false
 max_health = 100.0
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "invulnerablilty_timer") instance=ExtResource("14_jqlrc")]
-visible = false
 collision_layer = 4
 collision_mask = 4
 health_component = NodePath("../HealthComponent")
@@ -1111,7 +1106,6 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_yejrp")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("21_iamod")]
-visible = false
 collision_layer = 2
 collision_mask = 2
 damage_dealt = 40

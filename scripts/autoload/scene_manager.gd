@@ -6,6 +6,7 @@ var last_scene_name: String
 var scene_dir_path = "res://scenes/levels/"
 
 func change_scene(from, to_scene_name: String) -> void:
+	print("changed from " + str(from.name) + " to " + str(to_scene_name))
 	last_scene_name = from.name
 	
 	player = from.player

@@ -1287,6 +1287,13 @@ size = Vector2(24.4998, 41)
 [node name="level_3" type="Node2D"]
 script = ExtResource("1_rfm8p")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -15.0
+offset_top = -3.0
+offset_right = 1240.0
+offset_bottom = 600.0
+color = Color(0, 0.0196078, 0.184314, 1)
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_he78a")
 format = 2
@@ -1314,4 +1321,4 @@ shape = SubResource("RectangleShape2D_bsn6g")
 [node name="EntranceMarkers" type="Node2D" parent="."]
 
 [node name="level_2" type="Marker2D" parent="EntranceMarkers"]
-position = Vector2(1094, 343)
+position = Vector2(49, 353)

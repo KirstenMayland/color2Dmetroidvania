@@ -10,7 +10,7 @@ class_name HitboxComponent
 func _ready():
 	area_entered.connect(on_hitbox_entered)
 
-func on_hitbox_entered(other_area: HurtboxComponent):
+func on_hitbox_entered(_other_area: HurtboxComponent):
 	pass
 
 func get_damage_dealt():
