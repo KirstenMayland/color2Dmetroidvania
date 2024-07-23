@@ -1090,7 +1090,6 @@ polygon = PackedVector2Array(-5, -1, -5, 12, 6, 12, 6, -8, 2, -12, -2, -12, -5, 
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
-limit_left = 0
 
 [node name="HealthComponent" parent="." instance=ExtResource("13_3h35b")]
 max_health = 100.0

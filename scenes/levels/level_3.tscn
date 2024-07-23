@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://co2aa6mrqn8p8"]
+[gd_scene load_steps=12 format=3 uid="uid://co2aa6mrqn8p8"]
 
 [ext_resource type="Texture2D" uid="uid://dnk7npyn4mro7" path="res://assets/background/1bitTilemap.png" id="1_8t6uy"]
 [ext_resource type="Script" path="res://scripts/levels/base_scene.gd" id="1_rfm8p"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ctp67a0qjcvom" path="res://scenes/entities/player.tscn" id="3_vltrx"]
 [ext_resource type="PackedScene" uid="uid://wbbgttji4k7b" path="res://scenes/entities/sheep.tscn" id="4_5tbdl"]
 [ext_resource type="Script" path="res://scripts/components/scene_trigger_component.gd" id="6_3oxt0"]
+[ext_resource type="PackedScene" uid="uid://c83w2rf5qwajx" path="res://scenes/components/camera_boundaries_component.tscn" id="7_yxk1y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dqlxu"]
 texture = ExtResource("1_8t6uy")
@@ -1284,6 +1285,9 @@ sources/0 = SubResource("TileSetAtlasSource_dqlxu")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bsn6g"]
 size = Vector2(24.4998, 41)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lm51"]
+size = Vector2(1180, 512)
+
 [node name="level_3" type="Node2D"]
 script = ExtResource("1_rfm8p")
 
@@ -1322,3 +1326,9 @@ shape = SubResource("RectangleShape2D_bsn6g")
 
 [node name="level_2" type="Marker2D" parent="EntranceMarkers"]
 position = Vector2(49, 353)
+
+[node name="CameraBoundariesComponent" parent="." instance=ExtResource("7_yxk1y")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundariesComponent"]
+position = Vector2(592, 246)
+shape = SubResource("RectangleShape2D_3lm51")

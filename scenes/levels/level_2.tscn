@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://hqjl78u3uo73"]
+[gd_scene load_steps=11 format=3 uid="uid://hqjl78u3uo73"]
 
 [ext_resource type="Script" path="res://scripts/levels/base_scene.gd" id="1_dsi1c"]
 [ext_resource type="Texture2D" uid="uid://dnk7npyn4mro7" path="res://assets/background/1bitTilemap.png" id="2_jg6iu"]
 [ext_resource type="PackedScene" uid="uid://jf1iu5qc5bt" path="res://scenes/door.tscn" id="3_iu1pb"]
 [ext_resource type="PackedScene" uid="uid://ctp67a0qjcvom" path="res://scenes/entities/player.tscn" id="4_e33r1"]
 [ext_resource type="Script" path="res://scripts/components/scene_trigger_component.gd" id="5_puqul"]
+[ext_resource type="PackedScene" uid="uid://c83w2rf5qwajx" path="res://scenes/components/camera_boundaries_component.tscn" id="6_shaho"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_55ljc"]
 texture = ExtResource("2_jg6iu")
@@ -1283,6 +1284,9 @@ sources/3 = SubResource("TileSetAtlasSource_55ljc")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxty8"]
 size = Vector2(20, 31)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4bve"]
+size = Vector2(1160, 544)
+
 [node name="level_2" type="Node2D"]
 script = ExtResource("1_dsi1c")
 
@@ -1310,6 +1314,13 @@ connected_scene = "level_3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTrigger"]
 shape = SubResource("RectangleShape2D_oxty8")
+
+[node name="CameraBoundariesComponent" parent="." instance=ExtResource("6_shaho")]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundariesComponent"]
+position = Vector2(566, 193)
+shape = SubResource("RectangleShape2D_g4bve")
 
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
 [connection signal="body_exited" from="Door" to="." method="_on_door_body_exited"]
