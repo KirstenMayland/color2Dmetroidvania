@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
 
-@export var hurt_animation_length: float = 0.1
+@export var hurt_animation_length: float = 0.2
 
 var SPEED: float = 300.0
 var JUMP_VELOCITY: float = -375.0  # jumps just shy of 5 blocks
@@ -142,5 +142,3 @@ func update_animation_parameters(delta):
 	else:
 		# reset
 		animation_tree["parameters/conditions/hurt"] = false
-	
-	# through door
