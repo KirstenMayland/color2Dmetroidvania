@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D
 
 @export var hurt_animation_length: float = 0.2
 
-var SPEED: float = 300.0
+var SPEED: float = 250.0
 var JUMP_VELOCITY: float = -375.0  # jumps just shy of 5 blocks
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
