@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://co2aa6mrqn8p8"]
+[gd_scene load_steps=13 format=3 uid="uid://co2aa6mrqn8p8"]
 
 [ext_resource type="Texture2D" uid="uid://dnk7npyn4mro7" path="res://assets/background/1bitTilemap.png" id="1_8t6uy"]
 [ext_resource type="Script" path="res://scripts/levels/base_scene.gd" id="1_rfm8p"]
@@ -1285,6 +1285,9 @@ sources/0 = SubResource("TileSetAtlasSource_dqlxu")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bsn6g"]
 size = Vector2(24.4998, 41)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mlqw4"]
+size = Vector2(30, 53)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3lm51"]
 size = Vector2(1180, 512)
 
@@ -1322,12 +1325,21 @@ connected_scene = "level_2"
 rotation = 3.14159
 shape = SubResource("RectangleShape2D_bsn6g")
 
+[node name="SceneTrigger2" type="Area2D" parent="."]
+script = ExtResource("6_3oxt0")
+connected_scene = "russet_grove_tutorial_room"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTrigger2"]
+position = Vector2(1112, 344)
+shape = SubResource("RectangleShape2D_mlqw4")
+
 [node name="EntranceMarkers" type="Node2D" parent="."]
 
 [node name="level_2" type="Marker2D" parent="EntranceMarkers"]
 position = Vector2(49, 353)
 
 [node name="CameraBoundariesComponent" parent="." instance=ExtResource("7_yxk1y")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundariesComponent"]
 position = Vector2(592, 246)
