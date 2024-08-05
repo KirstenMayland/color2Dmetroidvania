@@ -1326,6 +1326,7 @@ rotation = 3.14159
 shape = SubResource("RectangleShape2D_bsn6g")
 
 [node name="SceneTrigger2" type="Area2D" parent="."]
+collision_mask = 32768
 script = ExtResource("6_3oxt0")
 connected_scene = "russet_grove_tutorial_room"
 

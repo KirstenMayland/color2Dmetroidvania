@@ -1063,6 +1063,7 @@ script = ExtResource("1_m4g60")
 position = Vector2(1, -2)
 sprite_frames = SubResource("SpriteFrames_rbujn")
 animation = &"slash"
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
