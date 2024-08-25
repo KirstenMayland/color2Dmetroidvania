@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkwvgsgxr5c5v"]
+[gd_scene load_steps=10 format=3 uid="uid://dkwvgsgxr5c5v"]
 
 [ext_resource type="Texture2D" uid="uid://dvouwkm58lq3w" path="res://assets/background/RussetGroveTilemap.png" id="1_6c8oq"]
 [ext_resource type="Script" path="res://scripts/levels/base_scene.gd" id="1_x88gm"]
 [ext_resource type="PackedScene" uid="uid://ctp67a0qjcvom" path="res://scenes/entities/player.tscn" id="2_orf0l"]
 [ext_resource type="PackedScene" uid="uid://c83w2rf5qwajx" path="res://scenes/components/camera_boundaries_component.tscn" id="3_r5gp8"]
+[ext_resource type="PackedScene" uid="uid://bsmnunnhaal0q" path="res://scenes/components/scene_trigger_component.tscn" id="5_cfrjk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_udrmd"]
 texture = ExtResource("1_6c8oq")
@@ -156,6 +157,9 @@ sources/0 = SubResource("TileSetAtlasSource_udrmd")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5rrlj"]
 size = Vector2(1240, 543)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5dyh"]
+size = Vector2(63, 54)
+
 [node name="russet_grove_tutorial_room" type="Node2D"]
 script = ExtResource("1_x88gm")
 metadata/_edit_vertical_guides_ = [-433.0]
@@ -184,6 +188,14 @@ position = Vector2(-23, -224.5)
 shape = SubResource("RectangleShape2D_5rrlj")
 
 [node name="EntranceMarkers" type="Node2D" parent="."]
-position = Vector2(-92, -14)
+position = Vector2(353, -21)
 
 [node name="level_3" type="Marker2D" parent="EntranceMarkers"]
+
+[node name="SceneTriggerComponent" parent="." instance=ExtResource("5_cfrjk")]
+position = Vector2(280, 49)
+connected_scene = "level_3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTriggerComponent"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_s5dyh")
