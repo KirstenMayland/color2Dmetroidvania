@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvouwkm58lq3w"
-path="res://.godot/imported/RussetGroveTilemap.png-2ed5eabb0d5f7263045e4b360705cf6a.ctex"
+uid="uid://dnk7npyn4mro7"
+path="res://.godot/imported/1bitTilemap.png-b9952d0d3a0661bb8c69458417cf6214.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background/RussetGroveTilemap.png"
-dest_files=["res://.godot/imported/RussetGroveTilemap.png-2ed5eabb0d5f7263045e4b360705cf6a.ctex"]
+source_file="res://assets/tilesets/1bitTilemap.png"
+dest_files=["res://.godot/imported/1bitTilemap.png-b9952d0d3a0661bb8c69458417cf6214.ctex"]
 
 [params]
 

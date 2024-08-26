@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="Color2DMetroidvania"
-run/main_scene="res://scenes/levels/level_1.tscn"
+run/main_scene="res://scenes/levels/russet_grove_1.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 
 [autoload]
 
 Global="*res://scripts/autoload/global.gd"
 scene_manager="*res://scripts/autoload/scene_manager.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [input]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnk7npyn4mro7"
-path="res://.godot/imported/1bitTilemap.png-85e6e7fdf29508d93870a9d35bca935d.ctex"
+uid="uid://og58iqswnewb"
+path="res://.godot/imported/russet_grove_tileset.png-c57d260ca6f70a30ccdd09631ce31091.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background/1bitTilemap.png"
-dest_files=["res://.godot/imported/1bitTilemap.png-85e6e7fdf29508d93870a9d35bca935d.ctex"]
+source_file="res://assets/tilesets/russet_grove_tileset.png"
+dest_files=["res://.godot/imported/russet_grove_tileset.png-c57d260ca6f70a30ccdd09631ce31091.ctex"]
 
 [params]
 
