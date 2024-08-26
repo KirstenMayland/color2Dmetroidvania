@@ -26,10 +26,18 @@
         },
         "assets/tilesets/Tiled_tilemaps/russet_grove_1.tmx": {
             "scale": 1,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
                 "x": 454.5,
-                "y": 230.5
+                "y": 208.5
+            }
+        },
+        "assets/tilesets/Tiled_tilemaps/russet_grove_2.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1202.3333333333333,
+                "y": 317
             }
         },
         "assets/tilesets/rules/RussetGrove_rules.tmx": {
@@ -45,7 +53,7 @@
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 342.25,
-                "y": 139.25
+                "y": 79.25
             }
         },
         "assets/tilesets/russet_grove_tileset.tsx": {
@@ -68,8 +76,8 @@
     ],
     "project": "Color2D.tiled-project",
     "recentFiles": [
-        "assets/tilesets/rules/russet_grove_rules.tmx",
         "assets/tilesets/Tiled_tilemaps/russet_grove_1.tmx",
+        "assets/tilesets/rules/russet_grove_rules.tmx",
         "assets/tilesets/russet_grove_tileset.tsx",
         "assets/tilesets/rules/RussetGrove_rules.tmx",
         "assets/tilesets/RussetGrove.tmx",
