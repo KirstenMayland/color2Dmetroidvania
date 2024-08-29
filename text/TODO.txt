@@ -1,30 +1,28 @@
-TODO:
-	1) create "main scene" with player, etc, so that the levels exist behind that
-	2) create home/start screen
-
 enemies =========
+- add boss to russet_grove_4
 
 player ==========
-- fix jump glitch from jump buffering
+- redesign character swing
 
 levels ==========
-- fix scene switcher glitch to get into russet grove tutoial room
 
 UI ==============
-- create a home/start screen
 - create a settings screen
-- create health bar
+- create a pause screen
+- create a character health bar
+- add save feature to main menu
 
 visuals =========
-- figure out land moving color change so Will stops being angry
+- add landing pixels when transitioning between landing and walking
 
 components ======
-- velocity component
-- pathfind component
-- basic statemachine class component
+- create velocity component
+- create pathfind component
+- create basic statemachine class component
 - status reciever component
 
 other ===========
+- create main file
 
 
 

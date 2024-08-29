@@ -6,10 +6,10 @@
     "activeFile": "assets/tilesets/Tiled_tilemaps/russet_grove_4.tmx",
     "expandedProjectPaths": [
         "assets/tilesets/rules",
-        ".",
-        "assets/tilesets",
         "assets",
-        "assets/tilesets/Tiled_tilemaps"
+        "assets/tilesets/Tiled_tilemaps",
+        "assets/tilesets",
+        "."
     ],
     "fileStates": {
         "RussetGrove.tsx": {
@@ -36,16 +36,16 @@
             "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1025,
-                "y": 387
+                "x": 1023,
+                "y": 511
             }
         },
         "assets/tilesets/Tiled_tilemaps/russet_grove_3.tmx": {
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 512.5,
-                "y": 292.5
+                "x": 511.5,
+                "y": 255.5
             }
         },
         "assets/tilesets/Tiled_tilemaps/russet_grove_4.tmx": {
@@ -68,8 +68,8 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 441.66666666666663,
-                "y": 101
+                "x": 1024.3333333333333,
+                "y": 541
             }
         },
         "assets/tilesets/russet_grove_tileset.tsx": {
