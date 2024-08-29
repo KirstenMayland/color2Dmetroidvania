@@ -492,4 +492,4 @@ shape = SubResource("RectangleShape2D_aji2q")
 [node name="EntranceMarkers" type="Node2D" parent="."]
 
 [node name="russet_grove_2" type="Marker2D" parent="EntranceMarkers"]
-position = Vector2(978, 287)
+position = Vector2(978, 290)

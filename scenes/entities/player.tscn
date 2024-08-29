@@ -1014,7 +1014,6 @@ advance_mode = 2
 advance_condition = &"slash"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dx6bi"]
-switch_mode = 2
 advance_mode = 2
 advance_condition = &"is_moving"
 
@@ -1047,7 +1046,7 @@ states/ThroughDoor/position = Vector2(739.668, 51.702)
 states/Walk/node = SubResource("AnimationNodeAnimation_0a4tn")
 states/Walk/position = Vector2(1212.67, 140)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_h6uyb"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_jt5gu"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_idf2i"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_7eepu"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_y1bfj"), "Hurt", "Walk", SubResource("AnimationNodeStateMachineTransition_hvjd7"), "Walk", "Hurt", SubResource("AnimationNodeStateMachineTransition_lrjwm"), "Idle", "ThroughDoor", SubResource("AnimationNodeStateMachineTransition_daxxs"), "ThroughDoor", "Idle", SubResource("AnimationNodeStateMachineTransition_yixbn"), "ThroughDoor", "Walk", SubResource("AnimationNodeStateMachineTransition_0k7ut"), "Walk", "ThroughDoor", SubResource("AnimationNodeStateMachineTransition_i8qax"), "Idle", "SwordSlash", SubResource("AnimationNodeStateMachineTransition_ybnpu"), "SwordSlash", "Idle", SubResource("AnimationNodeStateMachineTransition_a5t7l"), "SwordSlash", "Walk", SubResource("AnimationNodeStateMachineTransition_6a2em"), "Walk", "SwordSlash", SubResource("AnimationNodeStateMachineTransition_m16fy"), "JumpStateMachine", "Hurt", SubResource("AnimationNodeStateMachineTransition_0uewf"), "Hurt", "JumpStateMachine", SubResource("AnimationNodeStateMachineTransition_8dynq"), "SwordSlash", "JumpStateMachine", SubResource("AnimationNodeStateMachineTransition_rg3p2"), "JumpStateMachine", "SwordSlash", SubResource("AnimationNodeStateMachineTransition_rfm5r"), "JumpStateMachine", "Walk", SubResource("AnimationNodeStateMachineTransition_dx6bi"), "Walk", "JumpStateMachine", SubResource("AnimationNodeStateMachineTransition_l1qmc"), "JumpStateMachine", "Idle", SubResource("AnimationNodeStateMachineTransition_wnlha"), "Idle", "JumpStateMachine", SubResource("AnimationNodeStateMachineTransition_ylpky")]
-graph_offset = Vector2(128.668, 77.7849)
+graph_offset = Vector2(128.668, 34.6637)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yejrp"]
 size = Vector2(13, 24)
@@ -1063,7 +1062,6 @@ script = ExtResource("1_m4g60")
 position = Vector2(1, -2)
 sprite_frames = SubResource("SpriteFrames_rbujn")
 animation = &"slash"
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
