@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0goti3pww7ou"
-path="res://.godot/imported/player2.0-Jump_2.png-17100ec465f92b60c2ae1a6b326024d4.ctex"
+uid="uid://ciyfndbdmjbao"
+path="res://.godot/imported/CloudEnemy1.png-5435c6de3ad532027a0e3baee063bb8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entity/player/player_jump/player2.0-Jump_2.png"
-dest_files=["res://.godot/imported/player2.0-Jump_2.png-17100ec465f92b60c2ae1a6b326024d4.ctex"]
+source_file="res://assets/entities/cloud_demon/CloudEnemy1.png"
+dest_files=["res://.godot/imported/CloudEnemy1.png-5435c6de3ad532027a0e3baee063bb8c.ctex"]
 
 [params]
 

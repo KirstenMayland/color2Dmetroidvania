@@ -1,12 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://huoqkmgswaek"]
+[gd_scene load_steps=4 format=3 uid="uid://huoqkmgswaek"]
 
 [ext_resource type="PackedScene" uid="uid://ctp67a0qjcvom" path="res://scenes/entities/player.tscn" id="1_382ph"]
+[ext_resource type="Script" path="res://scripts/gui/core.gd" id="1_y5cdo"]
+[ext_resource type="PackedScene" uid="uid://bduv2ruwnvnui" path="res://scenes/gui/pause_menu.tscn" id="3_jqyij"]
 
-[node name="core" type="Node2D"]
+[node name="Core" type="Node2D"]
+script = ExtResource("1_y5cdo")
 
 [node name="Player" parent="." instance=ExtResource("1_382ph")]
 
 [node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="pause_menu" parent="GUI" instance=ExtResource("3_jqyij")]
+visible = false
 
 [node name="Panel" type="Panel" parent="GUI"]
 offset_left = 14.0

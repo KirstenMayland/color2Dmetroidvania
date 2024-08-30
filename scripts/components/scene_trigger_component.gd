@@ -6,4 +6,4 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Player):
-	scene_manager.change_scene(get_owner(), connected_scene)
+	scene_manager.change_scene(body.get_parent().get_parent(), connected_scene)

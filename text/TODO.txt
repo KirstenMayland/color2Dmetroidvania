@@ -22,7 +22,7 @@ components ======
 - status reciever component
 
 other ===========
-- create main file
+- change that the same button to interact with buttons (click), is the same to slash
 
 
 

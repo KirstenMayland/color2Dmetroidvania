@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://wbbgttji4k7b"]
 
-[ext_resource type="Texture2D" uid="uid://b5yf3qbb7bv6q" path="res://assets/entity/sheep/sheep.png" id="1_78m1i"]
 [ext_resource type="Script" path="res://scripts/entities/sheep.gd" id="1_xv23r"]
+[ext_resource type="Texture2D" uid="uid://b5yf3qbb7bv6q" path="res://assets/entities/sheep/sheep.png" id="2_m7uom"]
 [ext_resource type="PackedScene" uid="uid://d2ojf0bbv5n5j" path="res://scenes/components/health_component.tscn" id="3_i5oi7"]
 [ext_resource type="PackedScene" uid="uid://dty8yax2de5v4" path="res://scenes/components/hurtbox_component.tscn" id="4_r5lim"]
 [ext_resource type="PackedScene" uid="uid://dodtc5a30e5v2" path="res://scenes/components/hitbox_component.tscn" id="5_rmope"]
@@ -10,7 +10,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_78m1i")
+"texture": ExtResource("2_m7uom")
 }],
 "loop": true,
 "name": &"default",
