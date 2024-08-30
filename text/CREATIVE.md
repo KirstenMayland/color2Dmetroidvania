@@ -1,3 +1,4 @@
+```
 IDEAS TO POTENTIALLY IMPLEMENT:
 
 OVERVIEW: Hollowknight x Gris x Warbreaker x LOTR
@@ -77,3 +78,4 @@ KEY PLOT POINTS:
 	1) in a black/white/gray world, kneeling outside The Citadel doors, you are asked, "Do you want to try again?"
 		a) click no --- get Achievement of Acceptance, "You have accepted the cards as they fell. The world continues on."
 		b) click yes -- the game starts and you start again in Russet Grove
+```
