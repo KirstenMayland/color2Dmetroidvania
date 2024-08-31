@@ -7,7 +7,6 @@ var scene_dir_path = "res://scenes/levels/"
 
 func change_scene(from, to_scene_name: String) -> void:
 	last_scene_name = from.name
-	print(last_scene_name)
 	
 	core = from.core
 	core.get_parent().remove_child(core)

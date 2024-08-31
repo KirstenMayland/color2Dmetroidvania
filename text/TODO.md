@@ -5,6 +5,7 @@ player ==========
 - redesign character swing
 
 levels ==========
+- fix bug where it crashes after 1) starting game and switching scenes 2) pausing and exitting to main menu 3) trying to start again
 
 UI ==============
 - create a settings screen

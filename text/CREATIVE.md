@@ -54,7 +54,7 @@ LEVELS:
 
 
 ENTITIES:
-
+	- mom suggests cats
 
 VIBES:
 	- idea is centered around that lotr feeling of the endless march of time, and even when you win,
@@ -68,7 +68,7 @@ POTENTIAL TITLES:
 		Spectrum's End !
 		Echoes of Hue
 		Prism Warriors
-		Colorbound !
+		Colorbound ! (too close to Heartbound)
 		Chroma Chronicles
 		The Last Palette
 		Tinted Valor

@@ -93,7 +93,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ec00b")
 theme_override_styles/hover = SubResource("StyleBoxFlat_au7nd")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jslor")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8tk5j")
-text = "Exit to Main Menu"
+text = "Exit Game"
 
 [connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
