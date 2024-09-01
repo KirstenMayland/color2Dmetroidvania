@@ -12,7 +12,6 @@ func get_player_can_move():
 
 # ---------------------visuals---------------------------
 func change_character_visual_direction(character):
-	if character is CharacterBody2D:
-#		for child in character.get_children():
+	if character is CharacterBody2D and Engine.time_scale != 0:
 		character.scale.x = character.scale.x * -1
 
