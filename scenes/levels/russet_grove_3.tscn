@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgosrp8rmcq4w"]
+[gd_scene load_steps=12 format=3 uid="uid://cgosrp8rmcq4w"]
 
 [ext_resource type="Script" path="res://scripts/levels/base_scene.gd" id="1_bus6f"]
 [ext_resource type="Texture2D" uid="uid://c8inkaek5lgw8" path="res://assets/backgrounds/russet_grove_3.png" id="2_wkl04"]
 [ext_resource type="PackedScene" uid="uid://bsmnunnhaal0q" path="res://scenes/components/scene_trigger_component.tscn" id="4_kic5e"]
 [ext_resource type="PackedScene" uid="uid://huoqkmgswaek" path="res://scenes/gui/core.tscn" id="4_v0ww0"]
 [ext_resource type="PackedScene" uid="uid://c83w2rf5qwajx" path="res://scenes/components/camera_boundaries_component.tscn" id="5_ifgre"]
+[ext_resource type="PackedScene" uid="uid://wbbgttji4k7b" path="res://scenes/entities/sheep.tscn" id="7_o4uk1"]
 [ext_resource type="Texture2D" uid="uid://og58iqswnewb" path="res://assets/tilesets/russet_grove_tileset.png" id="russet_grove_tileset"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0"]
@@ -494,3 +495,6 @@ offset_top = 432.0
 offset_right = 1011.0
 offset_bottom = 512.0
 color = Color(0.180392, 0.0823529, 0.0509804, 1)
+
+[node name="Sheep" parent="." instance=ExtResource("7_o4uk1")]
+position = Vector2(802, 435)

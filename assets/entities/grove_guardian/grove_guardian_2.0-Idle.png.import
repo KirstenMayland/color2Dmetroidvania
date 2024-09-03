@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciyfndbdmjbao"
-path="res://.godot/imported/CloudEnemy1.png-5435c6de3ad532027a0e3baee063bb8c.ctex"
+uid="uid://d0djuollqe6ux"
+path="res://.godot/imported/grove_guardian_2.0-Idle.png-041d2365e8df414252a3ce9c3addf55a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entities/cloud_demon/CloudEnemy1.png"
-dest_files=["res://.godot/imported/CloudEnemy1.png-5435c6de3ad532027a0e3baee063bb8c.ctex"]
+source_file="res://assets/entities/grove_guardian/grove_guardian_2.0-Idle.png"
+dest_files=["res://.godot/imported/grove_guardian_2.0-Idle.png-041d2365e8df414252a3ce9c3addf55a.ctex"]
 
 [params]
 

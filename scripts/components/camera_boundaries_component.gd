@@ -19,7 +19,7 @@ func _process(_delta):
 func update_camera_position():
 	# Node paths to the player and the camera
 	player = get_parent().get_node("Core").get_node("Player") as Player
-	camera = player.get_node("Camera2D") as Camera2D
+ 	camera = player.get_node("Camera2D") as Camera2D
 	
 	# Get the collision shape and set the boundaries based on its extents
 	var pos = $CollisionShape2D.global_position

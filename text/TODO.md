@@ -2,19 +2,19 @@ enemies =========
 - add boss to russet_grove_4
 
 player ==========
-- redesign character swing
+- create death scene
 
 levels ==========
 - fix bug where it crashes after 1) starting game and switching scenes 2) pausing and exitting to main menu 3) trying to start again
 
 UI ==============
 - create a settings screen
-- create a pause screen
 - create a character health bar
 - add save feature to main menu
 
 visuals =========
-- add landing pixels when transitioning between landing and walking
+- add landing pixels when transitioning between landing and walking (instead of landing to idle)
+- add parallax backgrounds
 
 components ======
 - create velocity component
