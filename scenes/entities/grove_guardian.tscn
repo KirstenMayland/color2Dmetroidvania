@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://xlupq7k0124k"]
+[gd_scene load_steps=20 format=3 uid="uid://xlupq7k0124k"]
 
 [ext_resource type="Texture2D" uid="uid://d0djuollqe6ux" path="res://assets/entities/grove_guardian/grove_guardian_2.0-Idle.png" id="1_04r56"]
 [ext_resource type="Script" path="res://scripts/entities/grove_guardian.gd" id="1_ukhr5"]
@@ -94,10 +94,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+"values": [0, 1, 2, 3, 4, 5, 6, 0]
 }
 
 [sub_resource type="Animation" id="Animation_ur63v"]
@@ -121,15 +121,11 @@ _data = {
 "RESET": SubResource("Animation_ur63v")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e1war"]
-radius = 39.9977
-height = 94.0374
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i2r7u"]
 radius = 41.0
 height = 93.9945
 
-[node name="grove_guardian" type="CharacterBody2D"]
+[node name="GroveGuardian" type="CharacterBody2D"]
 script = ExtResource("1_ukhr5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -142,11 +138,9 @@ libraries = {
 "": SubResource("AnimationLibrary_wt3ko")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
-position = Vector2(-3, -5)
-rotation = 1.5706
-shape = SubResource("CapsuleShape2D_e1war")
+polygon = PackedVector2Array(-46, -26, -23, -44, 3, -44, 17, -42, 21, -32, 33, -26, 40, -17, 44, -7, 44, -2, 36, 12, 35, 23, 20, 34, 13, 34, 8, 30, 2, 32, -4, 36, -23, 29, -33, 17, -42, 9, -43, 4, -47, -5, -45, -17)
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_ps1je")]
 max_health = 300.0

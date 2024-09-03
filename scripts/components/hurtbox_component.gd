@@ -2,9 +2,12 @@
 extends Area2D
 class_name HurtboxComponent
 
+
 @export var health_component: HealthComponent
 @export var invulnerablilty_timer: Timer
 var is_invulnerable: bool = false
+
+@onready var parent = get_parent() as CharacterBody2D
 
 # ----------------------------------------------------------------
 # -----------------------------ready------------------------------
@@ -14,12 +17,12 @@ func _ready():
 	if invulnerablilty_timer != null:
 		invulnerablilty_timer.timeout.connect(self._on_invulnerablilty_timer_timeout)
 
-func on_hurtbox_entered(other_area: HitboxComponent):
+func on_hurtbox_entered(other_hitbox: HitboxComponent):
 	if can_accept_damage_collision():
-		print("hurt")
+		print(str(other_hitbox.get_parent().get_name()) + " hurt " + str(parent.get_name()))
 		if invulnerablilty_timer != null:
 			start_invulnerablility()
-		health_component.damage(other_area.get_damage_dealt())
+		health_component.damage(other_hitbox.get_damage_dealt())
 
 func can_accept_damage_collision():
 	# can accept if has health left and not invulnverable
