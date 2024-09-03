@@ -468,7 +468,6 @@ layer_1/tile_data = PackedInt32Array(0, 786432, 2, 1, 786432, 2, 2, 786432, 2, 3
 position = Vector2(85, 418)
 
 [node name="CameraBoundariesComponent" parent="." instance=ExtResource("5_ifgre")]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundariesComponent"]
 position = Vector2(521, 258.75)

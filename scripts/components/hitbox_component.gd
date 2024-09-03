@@ -1,4 +1,4 @@
-# handles 
+# handles dealing damage
 extends Area2D
 class_name HitboxComponent
 
