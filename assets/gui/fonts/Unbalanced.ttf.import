@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://c05s4j8qxq8k6"
-path="res://.godot/imported/Unbalanced.ttf-752b07ff9cead4708f6ff84d3f3eaeae.fontdata"
+path="res://.godot/imported/Unbalanced.ttf-21b5eeb6d877cc9ce4ffaac8180dda55.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/Unbalanced.ttf"
-dest_files=["res://.godot/imported/Unbalanced.ttf-752b07ff9cead4708f6ff84d3f3eaeae.fontdata"]
+source_file="res://assets/gui/fonts/Unbalanced.ttf"
+dest_files=["res://.godot/imported/Unbalanced.ttf-21b5eeb6d877cc9ce4ffaac8180dda55.fontdata"]
 
 [params]
 

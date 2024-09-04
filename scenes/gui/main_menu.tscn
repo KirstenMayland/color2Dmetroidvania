@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://hkv456ism5o5"]
 
 [ext_resource type="Script" path="res://scripts/gui/main_menu.gd" id="1_s2c22"]
-[ext_resource type="FontFile" uid="uid://c05s4j8qxq8k6" path="res://assets/fonts/Unbalanced.ttf" id="2_d3cer"]
+[ext_resource type="FontFile" uid="uid://c05s4j8qxq8k6" path="res://assets/gui/fonts/Unbalanced.ttf" id="2_d3cer"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smpni"]
 bg_color = Color(1, 1, 1, 1)

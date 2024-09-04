@@ -1,20 +1,27 @@
+1) make camera seperate from player (in core, just not in player)
+2) make functioning character health bar
+3) create some way to lock the bounds of the fighting arena for boss fights
+
+
 enemies =========
-- add boss to russet_grove_4
+- create boss fight in russet_grove_4
 
 player ==========
 - create death scene
 
 levels ==========
 - fix bug where it crashes after 1) starting game and switching scenes 2) pausing and exitting to main menu 3) trying to start again
+- when boss fight starts, camera stablizes to the middle of the screen
 
 UI ==============
 - create a settings screen
-- create a character health bar
 - add save feature to main menu
 
 visuals =========
-- add landing pixels when transitioning between landing and walking (instead of landing to idle)
+- add landing pixels when player transitions between landing and walking (instead of landing to idle)
 - add parallax backgrounds
+- add slowly moving floating particle effects (like r_g_1 but moving )
+- create foreground visuals
 
 components ======
 - create velocity component

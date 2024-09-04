@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://huoqkmgswaek"]
+[gd_scene load_steps=7 format=3 uid="uid://huoqkmgswaek"]
 
 [ext_resource type="PackedScene" uid="uid://ctp67a0qjcvom" path="res://scenes/entities/player.tscn" id="1_382ph"]
 [ext_resource type="Script" path="res://scripts/gui/core.gd" id="1_y5cdo"]
 [ext_resource type="PackedScene" uid="uid://bduv2ruwnvnui" path="res://scenes/gui/pause_menu.tscn" id="3_jqyij"]
+[ext_resource type="Texture2D" uid="uid://efsdgl5hh6jy" path="res://assets/gui/health_bar.png" id="3_vd4kn"]
+[ext_resource type="Script" path="res://scripts/gui/health_bar.gd" id="4_acide"]
+[ext_resource type="Texture2D" uid="uid://6jahmgp6d3o4" path="res://assets/gui/health_bar_top.png" id="5_agxyv"]
 
 [node name="Core" type="Node2D"]
 script = ExtResource("1_y5cdo")
@@ -14,18 +17,11 @@ script = ExtResource("1_y5cdo")
 [node name="pause_menu" parent="GUI" instance=ExtResource("3_jqyij")]
 visible = false
 
-[node name="Panel" type="Panel" parent="GUI"]
-offset_left = 14.0
-offset_top = 15.0
-offset_right = 179.0
-offset_bottom = 55.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="GUI"]
-offset_left = 18.0
-offset_top = 22.0
-offset_right = 173.0
-offset_bottom = 48.0
-text = "Add health bar here
-"
-metadata/_edit_use_anchors_ = true
+[node name="TextureProgressBar" type="TextureProgressBar" parent="GUI"]
+offset_top = -4.0
+offset_right = 128.0
+offset_bottom = 60.0
+scale = Vector2(3, 3)
+texture_under = ExtResource("3_vd4kn")
+texture_progress = ExtResource("5_agxyv")
+script = ExtResource("4_acide")

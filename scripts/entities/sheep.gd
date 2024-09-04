@@ -36,7 +36,9 @@ func _physics_process(delta):
 	move_and_slide()
 
 func get_direction_vector_to_player():
-	var player_node = get_parent().get_node("Core").get_node("Player") as Player
-	if player_node != null:
-		return (player_node.global_position - global_position).normalized()
+	var core_node = get_parent().get_node("Core")
+	if core_node != null:
+		var player_node = core_node.get_node("Player") as Player
+		if player_node != null:
+			return (player_node.global_position - global_position).normalized()
 	return Vector2.ZERO
