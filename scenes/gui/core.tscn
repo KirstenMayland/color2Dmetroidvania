@@ -17,20 +17,21 @@ script = ExtResource("1_y5cdo")
 [node name="pause_menu" parent="GUI" instance=ExtResource("3_jqyij")]
 visible = false
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="GUI"]
+[node name="HealthBar" type="TextureProgressBar" parent="GUI" node_paths=PackedStringArray("player")]
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(3, 3)
-texture_under = ExtResource("3_vd4kn")
+texture_over = ExtResource("3_vd4kn")
 texture_progress = ExtResource("5_agxyv")
 texture_progress_offset = Vector2(22, 21)
 script = ExtResource("4_acide")
+player = NodePath("../../Player")
 
-[node name="ColorRect" type="ColorRect" parent="GUI/TextureProgressBar"]
+[node name="HealthBarBackground" type="ColorRect" parent="GUI/HealthBar"]
 show_behind_parent = true
 layout_mode = 0
 offset_left = 22.0
-offset_top = 21.0
+offset_top = 20.0
 offset_right = 88.0
-offset_bottom = 26.0
+offset_bottom = 27.0
 color = Color(0, 0, 0, 1)

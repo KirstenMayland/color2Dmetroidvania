@@ -3,7 +3,7 @@ extends Node2D
 class_name HealthComponent
 
 signal died
-signal health_change
+signal health_change(heal: bool)
 
 @export var max_health: float = 15
 var current_health: float
@@ -16,7 +16,7 @@ func _ready():
 
 func damage(damage_amount: float):
 	current_health = min(max(current_health - damage_amount, 0), max_health)
-	health_change.emit()
+	health_change.emit(damage_amount < 0)
 	Callable(check_death).call_deferred()
 
 func check_death():
