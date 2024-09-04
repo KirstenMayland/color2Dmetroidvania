@@ -18,10 +18,19 @@ script = ExtResource("1_y5cdo")
 visible = false
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="GUI"]
-offset_top = -4.0
-offset_right = 128.0
-offset_bottom = 60.0
+offset_right = 40.0
+offset_bottom = 40.0
 scale = Vector2(3, 3)
 texture_under = ExtResource("3_vd4kn")
 texture_progress = ExtResource("5_agxyv")
+texture_progress_offset = Vector2(22, 21)
 script = ExtResource("4_acide")
+
+[node name="ColorRect" type="ColorRect" parent="GUI/TextureProgressBar"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 22.0
+offset_top = 21.0
+offset_right = 88.0
+offset_bottom = 26.0
+color = Color(0, 0, 0, 1)

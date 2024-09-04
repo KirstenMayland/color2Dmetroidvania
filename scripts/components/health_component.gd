@@ -3,7 +3,7 @@ extends Node2D
 class_name HealthComponent
 
 signal died
-signal health_change()
+signal health_change
 
 @export var max_health: float = 15
 var current_health: float
