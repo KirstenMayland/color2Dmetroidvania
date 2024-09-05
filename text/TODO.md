@@ -20,10 +20,11 @@ UI ==============
 
 visuals =========
 - add landing pixels when player transitions between landing and walking (instead of landing to idle) + fix getting stuck in that animation
-^ proposal, instead of the pixels being tied to the player animation, just have them seperate and have them appear for a blip whenever the player touches the ground
+		^ proposal, instead of the pixels being tied to the player animation, just have them seperate and have them appear for a blip whenever the player touches the ground
 
 - add parallax backgrounds
 - add slowly moving, floating red light particle effects (like russet_grove_1 but moving )
+		^ add subemitter so red -> smaller orange; see if can add light
 - create black foreground visuals
 
 components ======
