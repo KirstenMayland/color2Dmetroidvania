@@ -18,6 +18,7 @@ var jump_buffer_time_left = 0.0
 # animation bools
 var heal_ani: bool = false
 var hurt_ani: bool = false
+var is_dead_ani: bool = false
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var animation = $AnimationPlayer
@@ -28,9 +29,10 @@ var hurt_ani: bool = false
 # ----------------------------------------------------------------
 func _ready():
 	health_component.health_change.connect(on_health_change)
+	health_component.died.connect(on_death)
 	animation_tree.active = true
 
-func on_health_change(_current_health: float, heal: bool):
+func on_health_change(heal: bool):
 	if heal == false:
 		hurt_ani = true
 		heal_ani = false
@@ -38,6 +40,9 @@ func on_health_change(_current_health: float, heal: bool):
 		hurt_ani = false
 		heal_ani = true
 
+func on_death():
+	is_dead_ani = true
+	Global.set_player_can_move(false)
 
 # ----------------------------------------------------------------
 # ---------------------_physics_process---------------------------
@@ -49,24 +54,25 @@ func _physics_process(delta):
 	update_animation_parameters(delta)
 
 func move():
-	var direction = Input.get_axis("move_left", "move_right")
-	# way facing
-	if (direction):
-		if (direction_old != direction):
-			Global.change_character_visual_direction(get_node("."))
-		direction_old = direction
-	
-	# if allowed to run
-	if Global.get_player_can_move():
-		# if moving
-		if direction:
-			velocity.x = direction * SPEED
+	if Engine.time_scale != 0:
+		var direction = Input.get_axis("move_left", "move_right")
+		# way facing
+		if (direction):
+			if (direction_old != direction):
+				Global.change_character_visual_direction(get_node("."))
+			direction_old = direction
 		
-		# if stopped/stopping
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED / 2)  # stop mechanism, how quickly it slows
-		
-		move_and_slide()
+		# if allowed to run
+		if Global.get_player_can_move():
+			# if moving
+			if direction:
+				velocity.x = direction * SPEED
+			
+			# if stopped/stopping
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED / 2)  # stop mechanism, how quickly it slows
+			
+			move_and_slide()
 
 
 func jump(delta):
@@ -97,48 +103,57 @@ func add_gravity(delta):
 
 
 func update_animation_parameters(delta):
-	# idle
-	if velocity == Vector2.ZERO:
-		animation_tree["parameters/conditions/idle"] = true
-		animation_tree["parameters/conditions/is_moving"] = false
+	# dead:
+	if not is_dead_ani:
+		animation_tree["parameters/conditions/dead"] = false
 		
-		animation_tree["parameters/conditions/in_air"] = false
-		animation_tree["parameters/JumpStateMachine/conditions/on_ground"] = true
-	# jump
-	elif velocity.y != 0:
-		animation_tree["parameters/conditions/idle"] = false
-		animation_tree["parameters/conditions/is_moving"] = false
+		# idle
+		if velocity == Vector2.ZERO:
+			animation_tree["parameters/conditions/idle"] = true
+			animation_tree["parameters/conditions/is_moving"] = false
+			
+			animation_tree["parameters/conditions/in_air"] = false
+			animation_tree["parameters/JumpStateMachine/conditions/on_ground"] = true
 		
-		animation_tree["parameters/conditions/in_air"] = true
-		animation_tree["parameters/JumpStateMachine/conditions/on_ground"] = false
+		# jump
+		elif velocity.y != 0:
+			animation_tree["parameters/conditions/idle"] = false
+			animation_tree["parameters/conditions/is_moving"] = false
+			
+			animation_tree["parameters/conditions/in_air"] = true
+			animation_tree["parameters/JumpStateMachine/conditions/on_ground"] = false
+			
+			if velocity.y > 0:
+				animation_tree["parameters/JumpStateMachine/conditions/jump"] = false
+				animation_tree["parameters/JumpStateMachine/conditions/fall"] = true
+			else:
+				animation_tree["parameters/JumpStateMachine/conditions/jump"] = true
+				animation_tree["parameters/JumpStateMachine/conditions/fall"] = false
 		
-		if velocity.y > 0:
-			animation_tree["parameters/JumpStateMachine/conditions/jump"] = false
-			animation_tree["parameters/JumpStateMachine/conditions/fall"] = true
+		# walk
+		else: 
+			animation_tree["parameters/conditions/idle"] = false
+			animation_tree["parameters/conditions/is_moving"] = true
+			
+			animation_tree["parameters/conditions/in_air"] = false
+			animation_tree["parameters/JumpStateMachine/conditions/on_ground"] = true
+		
+		# jump cont.  ----- Note: x = velocity.y, y = velocity.y v acceleration.y (abs(v.y) > abs(a.y) == 1; abs(v.y) < abs(a.y) == -1)
+		animation_tree["parameters/JumpStateMachine/BlendSpace2D/blend_position"] = Vector2(1 if velocity.y > 0 else -1, 1 if abs(velocity.y) >= abs(gravity * delta * 10) else -1)
+		
+		# slash
+		if Input.is_action_just_pressed("attack"):
+			animation_tree["parameters/conditions/slash"] = true
+		else: 
+			animation_tree["parameters/conditions/slash"] = false
+		
+		# hurt
+		if hurt_ani:
+			animation_tree["parameters/conditions/hurt"] = true
+			hurt_ani = false
 		else:
-			animation_tree["parameters/JumpStateMachine/conditions/jump"] = true
-			animation_tree["parameters/JumpStateMachine/conditions/fall"] = false
-	# walk
-	else: 
-		animation_tree["parameters/conditions/idle"] = false
-		animation_tree["parameters/conditions/is_moving"] = true
-		
-		animation_tree["parameters/conditions/in_air"] = false
-		animation_tree["parameters/JumpStateMachine/conditions/on_ground"] = true
+			# reset
+			animation_tree["parameters/conditions/hurt"] = false
 	
-	# jump cont.  ----- Note: x = velocity.y, y = velocity.y v acceleration.y (abs(v.y) > abs(a.y) == 1; abs(v.y) < abs(a.y) == -1)
-	animation_tree["parameters/JumpStateMachine/BlendSpace2D/blend_position"] = Vector2(1 if velocity.y > 0 else -1, 1 if abs(velocity.y) >= abs(gravity * delta * 10) else -1)
-	
-	# slash
-	if Input.is_action_just_pressed("attack"):
-		animation_tree["parameters/conditions/slash"] = true
-	else: 
-		animation_tree["parameters/conditions/slash"] = false
-	
-	# hurt
-	if hurt_ani:
-		animation_tree["parameters/conditions/hurt"] = true
-		hurt_ani = false
 	else:
-		# reset
-		animation_tree["parameters/conditions/hurt"] = false
+		animation_tree["parameters/conditions/dead"] = true

@@ -25,7 +25,7 @@ func update_bar():
 	set_value(clamp((health_component.get_current_health() * 100) / health_component.get_max_health(), 0, 100))
 
 
-func flash_background(background):
+func flash_background():
 	if background:
 		background.set_color(Color(1, 1, 1, 1))
 		await get_tree().create_timer(0.15).timeout
@@ -34,6 +34,6 @@ func flash_background(background):
 
 func update(heal):
 	if not heal:
-		flash_background(background)
+		flash_background()
 	
 	update_bar()

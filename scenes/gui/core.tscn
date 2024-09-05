@@ -4,13 +4,16 @@
 [ext_resource type="Script" path="res://scripts/gui/core.gd" id="1_y5cdo"]
 [ext_resource type="PackedScene" uid="uid://bduv2ruwnvnui" path="res://scenes/gui/pause_menu.tscn" id="3_jqyij"]
 [ext_resource type="Texture2D" uid="uid://efsdgl5hh6jy" path="res://assets/gui/health_bar.png" id="3_vd4kn"]
-[ext_resource type="Script" path="res://scripts/gui/health_bar.gd" id="4_acide"]
 [ext_resource type="Texture2D" uid="uid://6jahmgp6d3o4" path="res://assets/gui/health_bar_top.png" id="5_agxyv"]
+[ext_resource type="Script" path="res://scripts/components/health_bar_component.gd" id="6_w83xi"]
 
 [node name="Core" type="Node2D"]
 script = ExtResource("1_y5cdo")
 
 [node name="Player" parent="." instance=ExtResource("1_382ph")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(3, 3)
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -24,7 +27,7 @@ scale = Vector2(3, 3)
 texture_over = ExtResource("3_vd4kn")
 texture_progress = ExtResource("5_agxyv")
 texture_progress_offset = Vector2(22, 21)
-script = ExtResource("4_acide")
+script = ExtResource("6_w83xi")
 player = NodePath("../../Player")
 
 [node name="HealthBarBackground" type="ColorRect" parent="GUI/HealthBar"]

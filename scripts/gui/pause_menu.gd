@@ -18,7 +18,7 @@ func _on_exit_button_pressed():
 	# get_tree().change_scene_to_file("res://scenes/gui/main_menu.tscn")
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("pause_game"):
 		pauseMenu()
 
