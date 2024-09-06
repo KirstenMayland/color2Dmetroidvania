@@ -3,6 +3,16 @@ extends CharacterBody2D
 @export var max_speed : float = 50.0
 
 @onready var animation = $AnimationPlayer
+@onready var health_component: HealthComponent = $HealthComponent
+
+# ----------------------------------------------------------------
+# -----------------------------ready------------------------------
+# ----------------------------------------------------------------
+func _ready():
+	health_component.died.connect(on_death)
+
+func on_death():
+	queue_free()
 
 # ----------------------------------------------------------------
 # ---------------------_physics_process---------------------------
