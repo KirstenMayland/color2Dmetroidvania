@@ -1,12 +1,30 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgosrp8rmcq4w"]
+[gd_scene load_steps=17 format=3 uid="uid://cgosrp8rmcq4w"]
 
 [ext_resource type="Script" path="res://scripts/levels/base_scene.gd" id="1_bus6f"]
 [ext_resource type="Texture2D" uid="uid://c8inkaek5lgw8" path="res://assets/backgrounds/russet_grove_3.png" id="2_wkl04"]
+[ext_resource type="Texture2D" uid="uid://lqi1farasaes" path="res://assets/misc/russet_grove_orbs.png" id="3_ipc10"]
 [ext_resource type="PackedScene" uid="uid://bsmnunnhaal0q" path="res://scenes/components/scene_trigger_component.tscn" id="4_kic5e"]
 [ext_resource type="PackedScene" uid="uid://huoqkmgswaek" path="res://scenes/gui/core.tscn" id="4_v0ww0"]
 [ext_resource type="PackedScene" uid="uid://c83w2rf5qwajx" path="res://scenes/components/camera_boundaries_component.tscn" id="5_ifgre"]
 [ext_resource type="PackedScene" uid="uid://wbbgttji4k7b" path="res://scenes/entities/sheep.tscn" id="7_o4uk1"]
+[ext_resource type="Texture2D" uid="uid://cv0j8scxdym8u" path="res://assets/misc/2d_lights_and_shadows_neutral_point_light.png" id="9_6v8e8"]
 [ext_resource type="Texture2D" uid="uid://og58iqswnewb" path="res://assets/tilesets/russet_grove_tileset.png" id="russet_grove_tileset"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o8e2c"]
+lifetime_randomness = 0.4
+emission_shape = 3
+emission_box_extents = Vector3(500, 250, 1)
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 10.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+hue_variation_min = -0.02
+hue_variation_max = 0.05
+turbulence_noise_strength = 4.7
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0"]
 texture = ExtResource("russet_grove_tileset")
@@ -444,12 +462,42 @@ size = Vector2(990, 474.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4or7c"]
 size = Vector2(21, 82)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mjlcq"]
+blend_mode = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1vk4n"]
+lifetime_randomness = 0.4
+emission_shape = 3
+emission_box_extents = Vector3(500, 250, 1)
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 10.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.01
+scale_max = 0.04
+hue_variation_min = -0.02
+hue_variation_max = 0.05
+turbulence_noise_strength = 4.7
+
 [node name="russet_grove_3" type="Node2D"]
 script = ExtResource("1_bus6f")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(511, 255)
 texture = ExtResource("2_wkl04")
+
+[node name="RedOrbsParticles" type="GPUParticles2D" parent="."]
+position = Vector2(520, 223)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_o8e2c")
+texture = ExtResource("3_ipc10")
+lifetime = 60.0
+preprocess = 30.0
+randomness = 0.42
+visibility_rect = Rect2(-525, -215, 1025, 500)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_0")
@@ -497,3 +545,14 @@ offset_top = 432.0
 offset_right = 1011.0
 offset_bottom = 512.0
 color = Color(0.180392, 0.0823529, 0.0509804, 1)
+
+[node name="RedLightParticles" type="GPUParticles2D" parent="."]
+modulate = Color(0.835294, 0.184314, 0.176471, 0.305882)
+material = SubResource("CanvasItemMaterial_mjlcq")
+position = Vector2(484, 256)
+amount = 75
+process_material = SubResource("ParticleProcessMaterial_1vk4n")
+texture = ExtResource("9_6v8e8")
+lifetime = 60.0
+preprocess = 30.0
+visibility_rect = Rect2(-515, -215, 1015, 500)

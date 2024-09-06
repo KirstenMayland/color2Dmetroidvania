@@ -456,7 +456,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_0")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0s3ma"]
-size = Vector2(1976, 932)
+size = Vector2(1976, 887)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k2buk"]
 size = Vector2(44.25, 136)
@@ -491,10 +491,11 @@ turbulence_noise_strength = 4.7
 script = ExtResource("1_fiffr")
 
 [node name="Background" type="Sprite2D" parent="."]
+show_behind_parent = true
 position = Vector2(1024, 510)
 texture = ExtResource("2_epnu6")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="RedOrbsParticles" type="GPUParticles2D" parent="."]
 position = Vector2(1046, 520)
 amount = 250
 process_material = SubResource("ParticleProcessMaterial_5e7si")
@@ -537,10 +538,9 @@ offset_bottom = 457.0
 color = Color(0.180392, 0.0823529, 0.0509804, 1)
 
 [node name="CameraBoundariesComponent" parent="." instance=ExtResource("3_vkiq8")]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundariesComponent"]
-position = Vector2(1030, 510)
+position = Vector2(1030, 532.5)
 shape = SubResource("RectangleShape2D_0s3ma")
 
 [node name="EntranceMarkers" type="Node2D" parent="."]
@@ -574,7 +574,7 @@ connected_scene = "russet_grove_4"
 position = Vector2(1474, 993)
 shape = SubResource("RectangleShape2D_rhaps")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+[node name="RedLightParticles" type="GPUParticles2D" parent="."]
 modulate = Color(0.835294, 0.184314, 0.176471, 0.305882)
 material = SubResource("CanvasItemMaterial_j2nvb")
 position = Vector2(1086.97, 510.396)

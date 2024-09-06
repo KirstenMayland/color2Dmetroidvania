@@ -1,18 +1,31 @@
-1.2) lock camera in center during boss fight
-2) create some way to lock the bounds of the fighting arena for boss fights
+Necessary To Publish Demo:
+1) boss fight
+	1.1) lock camera in center during boss fight
+	1.2) create some way to lock the bounds of the fighting arena for boss fights
+	1.3) at least 3 different attack types
+	1.4) boss health bar (if no stagger)
+2) interactable character in the hut in room 3
+3) name the game
+4) make it so that mouse only appears in a menu screen
+5) revert back to autofull screen, no boundaries
+6) finish shading all the trees
+7) "the end" or option to respawn if dead
 
 
 enemies =========
-- create boss fight in russet_grove_4
 - make it so that if the sheep can't locate us or we are dead it does its own thing
+- -------------- Grove Guardian
+	- create boss fight in russet_grove_4
+	- enemy attack: the red orbs floating around the world open an eye and do damage of some sort (eg. passive damage, fly at player, pop, etc.)
+	- make improve grove guardian grass in idle animation
 
 player ==========
 - create some signifier when < 20% health left
-- create death scene when you die in mid-air or on spikes or something similarly less stable
+- fix death scene so that the melt doesn't hang in the air
+	- create death scene when you die in mid-air or on spikes or something similarly less stable
 
 levels ==========
 - fix bug where it crashes after 1) starting game and switching scenes 2) pausing and exitting to main menu 3) trying to start again
-- when boss fight starts, camera stablizes to the middle of the screen
 
 UI ==============
 - create a settings screen

@@ -1212,7 +1212,7 @@ position = Vector2(0, -0.5)
 polygon = PackedVector2Array(-5, -1, -5, 12, 6, 12, 6, -8, 2, -12, -2, -12, -5, -8)
 
 [node name="HealthComponent" parent="." instance=ExtResource("13_3h35b")]
-max_health = 20.0
+max_health = 30.0
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "invulnerablilty_timer") instance=ExtResource("14_jqlrc")]
 visible = false
