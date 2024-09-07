@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=3 uid="uid://ctp67a0qjcvom"]
+[gd_scene load_steps=129 format=3 uid="uid://ctp67a0qjcvom"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_m4g60"]
 [ext_resource type="Texture2D" uid="uid://gqfx5jpp751" path="res://assets/entities/player/player2.0-Door.png" id="2_jhtnp"]
@@ -164,25 +164,21 @@ region = Rect2(256, 0, 128, 128)
 atlas = ExtResource("5_av1j8")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fhcfk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lepq"]
 atlas = ExtResource("6_e6iha")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2hhw5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq7yi"]
 atlas = ExtResource("6_e6iha")
 region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y8hbm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rg3ci"]
 atlas = ExtResource("6_e6iha")
 region = Rect2(256, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_88yly"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_u08px"]
 atlas = ExtResource("6_e6iha")
 region = Rect2(384, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q7h5h"]
-atlas = ExtResource("6_e6iha")
-region = Rect2(512, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmssf"]
 atlas = ExtResource("7_of3wd")
@@ -384,19 +380,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fhcfk")
+"texture": SubResource("AtlasTexture_0lepq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2hhw5")
+"texture": SubResource("AtlasTexture_iq7yi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y8hbm")
+"texture": SubResource("AtlasTexture_rg3ci")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_88yly")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q7h5h")
+"texture": SubResource("AtlasTexture_u08px")
 }],
 "loop": true,
 "name": &"slash",
@@ -792,8 +785,8 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_qsbw4"]
 resource_name = "SwordSlash"
-length = 0.4
-step = 0.05
+length = 0.25
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -801,7 +794,7 @@ tracks/0/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.4),
+"times": PackedFloat32Array(0, 0.01, 0.24),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -813,10 +806,10 @@ tracks/1/path = NodePath("HitboxComponent/CollisionShape2D:shape:size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.15, 0.25, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.07, 0.14, 0.21),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(12.1641, 26.5624), Vector2(13.2657, 26.5624), Vector2(16.5249, 26.5624), Vector2(18.8742, 26.5624), Vector2(20.8339, 26.5624)]
+"values": [Vector2(24.3856, 24.1464), Vector2(22.3593, 41.7731), Vector2(19.0228, 47.3242), Vector2(28.5257, 32.9978)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -825,10 +818,10 @@ tracks/2/path = NodePath("HitboxComponent/CollisionShape2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.15, 0.25, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.07, 0.14, 0.21),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(14, -11), Vector2(18.0816, -6.57814), Vector2(18.1267, -1.62463), Vector2(10, 5), Vector2(-6, 9)]
+"values": [Vector2(17.9375, -6.17335), Vector2(9.48198, -4.0932), Vector2(-1.54542, 2.49849), Vector2(-13, -5)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -837,10 +830,10 @@ tracks/3/path = NodePath("HitboxComponent/CollisionShape2D:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.15, 0.25, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.07, 0.14, 0.21),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [-2.45025, -1.7618, -1.49298, -0.910766, 0.125774]
+"values": [-2.45025, -1.7618, -1.53748, 0.125774]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -861,10 +854,10 @@ tracks/5/path = NodePath("AnimatedSprite2D:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.15, 0.25, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.07, 0.14, 0.21),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_pepxw"]

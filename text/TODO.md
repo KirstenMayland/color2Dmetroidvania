@@ -7,9 +7,10 @@ Necessary To Publish Demo:
 2) interactable character in the hut in room 3
 3) name the game
 4) make it so that mouse only appears in a menu screen
-5) revert back to autofull screen, no boundaries
+5) revert back to auto-full screen, no boundaries
 6) finish shading all the trees
 7) "the end" or option to respawn if dead
+8) add augmented tile map (rocks, one way platforms, etc)
 
 
 enemies =========
