@@ -809,7 +809,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.07, 0.14, 0.21),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(24.3856, 24.1464), Vector2(22.3593, 41.7731), Vector2(19.0228, 47.3242), Vector2(28.5257, 32.9978)]
+"values": [Vector2(24.3856, 24.1464), Vector2(29.1811, 39.884), Vector2(27.9512, 47.3242), Vector2(26.2571, 51.0065)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -821,7 +821,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.07, 0.14, 0.21),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(17.9375, -6.17335), Vector2(9.48198, -4.0932), Vector2(-1.54542, 2.49849), Vector2(-13, -5)]
+"values": [Vector2(12, -5), Vector2(6.94443, -6.01554), Vector2(7.13261, -4.97892), Vector2(2.47991, -3.85032)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -833,7 +833,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.07, 0.14, 0.21),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [-2.45025, -1.7618, -1.53748, 0.125774]
+"values": [-2.45025, -1.58725, -1.53748, -1.53988]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1226,6 +1226,7 @@ damage_dealt = 40
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(16.602, -15.2365)
 rotation = 1.19655
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_3i8uc")
 disabled = true
 debug_color = Color(0.685779, 0, 0, 0.419608)
