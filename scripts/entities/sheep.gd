@@ -5,6 +5,8 @@ extends CharacterBody2D
 @export var jump_velocity : float = -200.0
 
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var direction_component: DirectionComponent = $DirectionComponent
+
 var direction_old_x: float = 1
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -26,7 +28,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	move(get_direction_vector_to_player())
+	move(direction_component.get_direction_vector_to_player())
 
 func move(direction):
 	# Horizontal movement
@@ -43,11 +45,3 @@ func move(direction):
 		velocity.y = jump_velocity
 	
 	move_and_slide()
-
-func get_direction_vector_to_player():
-	var core_node = get_parent().get_node("Core")
-	if core_node != null:
-		var player_node = core_node.get_node("Player") as Player
-		if player_node != null:
-			return (player_node.global_position - global_position).normalized()
-	return Vector2.ZERO

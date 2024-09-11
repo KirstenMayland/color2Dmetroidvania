@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://wbbgttji4k7b"]
+[gd_scene load_steps=10 format=3 uid="uid://wbbgttji4k7b"]
 
 [ext_resource type="Script" path="res://scripts/entities/sheep.gd" id="1_xv23r"]
 [ext_resource type="Texture2D" uid="uid://b5yf3qbb7bv6q" path="res://assets/entities/sheep/sheep.png" id="2_m7uom"]
 [ext_resource type="PackedScene" uid="uid://d2ojf0bbv5n5j" path="res://scenes/components/health_component.tscn" id="3_i5oi7"]
 [ext_resource type="PackedScene" uid="uid://dty8yax2de5v4" path="res://scenes/components/hurtbox_component.tscn" id="4_r5lim"]
 [ext_resource type="PackedScene" uid="uid://dodtc5a30e5v2" path="res://scenes/components/hitbox_component.tscn" id="5_rmope"]
+[ext_resource type="PackedScene" uid="uid://cynv53tkxjt1o" path="res://scenes/components/direction_component.tscn" id="6_s6fi6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tfjjf"]
 animations = [{
@@ -49,3 +50,5 @@ shape = SubResource("RectangleShape2D_ufglh")
 position = Vector2(10, -5)
 shape = SubResource("RectangleShape2D_5hrmn")
 debug_color = Color(0.686275, 0, 0, 0.419608)
+
+[node name="DirectionComponent" parent="." instance=ExtResource("6_s6fi6")]

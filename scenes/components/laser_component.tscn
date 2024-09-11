@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://knfhls4iere7"]
+
+[ext_resource type="Script" path="res://scripts/components/laser_component.gd" id="1_ccwnr"]
+[ext_resource type="Texture2D" uid="uid://fklokas7wn18" path="res://assets/entities/grove_guardian/laser-Charge.png" id="2_3rmui"]
+[ext_resource type="Texture2D" uid="uid://ca8w8fkj6klqf" path="res://assets/entities/grove_guardian/laser-Shoot.png" id="3_2ak2g"]
+[ext_resource type="Script" path="res://scripts/components/hitbox_component.gd" id="3_lq837"]
+[ext_resource type="Texture2D" uid="uid://c7pavbsn0vlf" path="res://assets/entities/grove_guardian/laser-CollisionSparks.png" id="5_p8dae"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_m0qdr"]
+b = Vector2(87, 0)
+
+[node name="LaserComponent" type="Node2D"]
+script = ExtResource("1_ccwnr")
+
+[node name="Charge" type="Sprite2D" parent="."]
+position = Vector2(0.125, 0)
+texture = ExtResource("2_3rmui")
+hframes = 8
+frame = 5
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(85, 0)
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 89, 0)
+width = 64.0
+default_color = Color(0.980392, 0.964706, 0.968627, 1)
+texture = ExtResource("3_2ak2g")
+texture_mode = 1
+
+[node name="HitboxComponent" type="Area2D" parent="Line2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("3_lq837")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/HitboxComponent"]
+shape = SubResource("SegmentShape2D_m0qdr")
+
+[node name="CollisionSparks" type="Sprite2D" parent="."]
+texture = ExtResource("5_p8dae")

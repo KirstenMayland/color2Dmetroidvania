@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @onready var animation = $AnimationPlayer
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var direction_component: DirectionComponent = $DirectionComponent
 
 # ----------------------------------------------------------------
 # -----------------------------ready------------------------------
@@ -18,12 +19,10 @@ func on_death():
 # ---------------------_physics_process---------------------------
 # ----------------------------------------------------------------
 func _physics_process(delta):
-	move()
+	move(direction_component.get_direction_vector_to_player())
 	update_animation_parameters(delta)
 
-func move():
-	var direction = get_direction_vector_to_player()
-
+func move(direction):
 	# Horizontal movement
 	if direction.x != 0:
 		velocity.x = direction.x * max_speed
@@ -33,13 +32,6 @@ func move():
 		velocity.y = direction.y * max_speed
 	
 	move_and_slide()
-
-
-func get_direction_vector_to_player():
-	var player_node = get_parent().get_node("Core").get_node("Player") as Player
-	if player_node != null:
-		return (player_node.global_position - global_position).normalized()
-	return Vector2.ZERO
 
 
 func update_animation_parameters(_delta):

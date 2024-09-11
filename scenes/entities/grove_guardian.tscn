@@ -1,9 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://xlupq7k0124k"]
+[gd_scene load_steps=23 format=3 uid="uid://xlupq7k0124k"]
 
 [ext_resource type="Texture2D" uid="uid://d0djuollqe6ux" path="res://assets/entities/grove_guardian/grove_guardian_2.0-Idle.png" id="1_04r56"]
 [ext_resource type="Script" path="res://scripts/entities/grove_guardian.gd" id="1_ukhr5"]
 [ext_resource type="PackedScene" uid="uid://d2ojf0bbv5n5j" path="res://scenes/components/health_component.tscn" id="2_ps1je"]
 [ext_resource type="PackedScene" uid="uid://dty8yax2de5v4" path="res://scenes/components/hurtbox_component.tscn" id="4_s11qr"]
+[ext_resource type="PackedScene" uid="uid://knfhls4iere7" path="res://scenes/components/laser_component.tscn" id="5_k3qm2"]
+[ext_resource type="PackedScene" uid="uid://cynv53tkxjt1o" path="res://scenes/components/direction_component.tscn" id="6_v34r5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3lcj"]
 atlas = ExtResource("1_04r56")
@@ -186,3 +188,9 @@ position = Vector2(-2, -5)
 rotation = -1.56945
 shape = SubResource("CapsuleShape2D_i2r7u")
 debug_color = Color(0.686275, 0, 0, 0.419608)
+
+[node name="LaserComponent" parent="." instance=ExtResource("5_k3qm2")]
+position = Vector2(-33, -9)
+based_width = 64.0
+
+[node name="DirectionComponent" parent="." instance=ExtResource("6_v34r5")]

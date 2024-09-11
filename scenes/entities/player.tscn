@@ -1205,7 +1205,7 @@ position = Vector2(0, -0.5)
 polygon = PackedVector2Array(-5, -1, -5, 12, 6, 12, 6, -8, 2, -12, -2, -12, -5, -8)
 
 [node name="HealthComponent" parent="." instance=ExtResource("13_3h35b")]
-max_health = 30.0
+max_health = 100.0
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "invulnerablilty_timer") instance=ExtResource("14_jqlrc")]
 visible = false
@@ -1226,7 +1226,6 @@ damage_dealt = 40
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(16.602, -15.2365)
 rotation = 1.19655
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_3i8uc")
 disabled = true
 debug_color = Color(0.685779, 0, 0, 0.419608)

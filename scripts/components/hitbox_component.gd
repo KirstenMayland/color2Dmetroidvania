@@ -15,3 +15,6 @@ func on_hitbox_entered(_other_area: HurtboxComponent):
 
 func get_damage_dealt():
 	return damage_dealt
+
+func set_damage_dealt(amount):
+	damage_dealt = amount

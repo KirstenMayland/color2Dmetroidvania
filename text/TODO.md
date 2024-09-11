@@ -24,6 +24,7 @@ player ==========
 - create some signifier when < 20% health left
 - fix death scene so that the melt doesn't hang in the air
 	- create death scene when you die in mid-air or on spikes or something similarly less stable
+- when you tap a direction to go in, it just turns the player initially, instead of really moving
 
 levels ==========
 - fix bug where it crashes after 1) starting game and switching scenes 2) pausing and exitting to main menu 3) trying to start again
