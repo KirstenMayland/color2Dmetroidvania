@@ -192,5 +192,6 @@ debug_color = Color(0.686275, 0, 0, 0.419608)
 [node name="LaserComponent" parent="." instance=ExtResource("5_k3qm2")]
 position = Vector2(-33, -9)
 based_width = 64.0
+beam_dist_from_center = 7.0
 
 [node name="DirectionComponent" parent="." instance=ExtResource("6_v34r5")]

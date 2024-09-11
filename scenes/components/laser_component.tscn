@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://knfhls4iere7"]
+[gd_scene load_steps=10 format=3 uid="uid://knfhls4iere7"]
 
 [ext_resource type="Script" path="res://scripts/components/laser_component.gd" id="1_ccwnr"]
 [ext_resource type="Texture2D" uid="uid://fklokas7wn18" path="res://assets/entities/grove_guardian/laser-Charge.png" id="2_3rmui"]
@@ -9,6 +9,28 @@
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_m0qdr"]
 b = Vector2(87, 0)
 
+[sub_resource type="Gradient" id="Gradient_sertj"]
+offsets = PackedFloat32Array(0.296552, 0.593103, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.684932, 0.684932, 0.684932, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ok2kg"]
+gradient = SubResource("Gradient_sertj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3smil"]
+emission_shape = 3
+emission_box_extents = Vector3(5, 12, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 30, 0)
+initial_velocity_min = -10.0
+initial_velocity_max = 10.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 0.537255, 0.2, 1)
+color_ramp = SubResource("GradientTexture1D_ok2kg")
+hue_variation_max = 0.1
+
 [node name="LaserComponent" type="Node2D"]
 script = ExtResource("1_ccwnr")
 
@@ -16,7 +38,7 @@ script = ExtResource("1_ccwnr")
 position = Vector2(0.125, 0)
 texture = ExtResource("2_3rmui")
 hframes = 8
-frame = 5
+frame = 7
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(85, 0)
@@ -38,3 +60,9 @@ shape = SubResource("SegmentShape2D_m0qdr")
 
 [node name="CollisionSparks" type="Sprite2D" parent="."]
 texture = ExtResource("5_p8dae")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CollisionSparks"]
+position = Vector2(10.1249, -0.375)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_3smil")
+lifetime = 0.75
