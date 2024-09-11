@@ -11,11 +11,3 @@ func get_direction_vector_to_player():
 			if player_node != null:
 				return (player_node.global_position - global_position).normalized()
 	return Vector2.ZERO
-
-func sweep(location, left, right, delta):
-	if location >= right:
-		location -= delta
-	if location <= left:
-		location += delta
-		
-	return location
