@@ -515,11 +515,13 @@ laser_one = NodePath("LaserComponent")
 laser_two = NodePath("LaserComponent2")
 
 [node name="LaserComponent" parent="GroveGuardian" node_paths=PackedStringArray("start_point", "end_point") instance=ExtResource("6_p7fdi")]
+visible = false
 position = Vector2(-32.321, -8.298)
 start_point = NodePath("../../LaserPoints/LeftLaserStartPoint")
 end_point = NodePath("../../LaserPoints/LeftLaserEndPoint")
 
 [node name="LaserComponent2" parent="GroveGuardian" node_paths=PackedStringArray("start_point", "end_point") instance=ExtResource("6_p7fdi")]
+visible = false
 position = Vector2(19.7789, 19.9618)
 start_point = NodePath("../../LaserPoints/RightLaserStartPoint")
 end_point = NodePath("../../LaserPoints/RightLaserEndPoint")

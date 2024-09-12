@@ -119,8 +119,12 @@ func activate_laser():
 
 func deactivate_laser():
 	active = false
+	
+	# reset position
+	if start_point and end_point:
+		path_position = start_point.global_position
 
 
-# TODO: create fire_up_laser function
+# TODO: create fire_up_laser function that deals with animation
 func fire_up_laser():
 	pass

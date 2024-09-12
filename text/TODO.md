@@ -7,10 +7,9 @@ Necessary To Publish Demo:
 2) interactable character in the hut in room 3
 3) name the game
 4) make it so that mouse only appears in a menu screen
-5) revert back to auto-full screen, no boundaries
+5) change back to auto-full screen, no boundaries
 6) finish shading all the trees
 7) "the end" or option to respawn if dead
-8) add augmented tile map (rocks, one way platforms, etc)
 
 
 enemies =========
@@ -28,6 +27,7 @@ player ==========
 
 levels ==========
 - fix bug where it crashes after 1) starting game and switching scenes 2) pausing and exitting to main menu 3) trying to start again
+- add to augmented tile maps with rocks and various overlays
 
 UI ==============
 - create a settings screen
@@ -36,10 +36,7 @@ UI ==============
 visuals =========
 - add landing pixels when player transitions between landing and walking (instead of landing to idle) + fix getting stuck in that animation
 		^ proposal, instead of the pixels being tied to the player animation, just have them seperate and have them appear for a blip whenever the player touches the ground
-
 - add parallax backgrounds
-- add slowly moving, floating red light particle effects (like russet_grove_1 but moving )
-		^ add subemitter so red -> smaller orange; see if can add light
 - create black foreground visuals
 
 components ======

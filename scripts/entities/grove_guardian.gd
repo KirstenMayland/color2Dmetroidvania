@@ -76,13 +76,16 @@ func move(direction):
 
 func laser_state():
 	animation.play("Idle")
-	# TODO: when lasers are first activated, have charge period
+	
+	# TODO: when lasers are first activated, have charge period, see laser_component todo
+	# TODO: also, for when state machine gets more complicated later, have it move towards the center while charging
 	laser_one.activate_laser()
 	laser_two.activate_laser()
 
 func laser_reached_destination():
 	laser_one.deactivate_laser()
 	laser_two.deactivate_laser()
+	
 	in_laser_state = false
 	in_follow_state = true
 

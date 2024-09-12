@@ -11,3 +11,7 @@ func get_direction_vector_to_player():
 			if player_node != null:
 				return (player_node.global_position - global_position).normalized()
 	return Vector2.ZERO
+
+
+func get_direction_to_point(point: Vector2):
+	return global_position.direction_to(point)
