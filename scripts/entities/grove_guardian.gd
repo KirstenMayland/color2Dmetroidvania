@@ -19,8 +19,8 @@ func on_death():
 # ---------------------_physics_process---------------------------
 # ----------------------------------------------------------------
 func _physics_process(delta):
-	move(direction_component.get_direction_vector_to_player())
 	update_animation_parameters(delta)
+	idle_state()
 
 func move(direction):
 	# Horizontal movement
@@ -36,3 +36,18 @@ func move(direction):
 
 func update_animation_parameters(_delta):
 	animation.play("Idle")
+
+func finite_state_machine():
+	pass
+
+func idle_state():
+	move_and_slide()
+
+func follow_state():
+	move(direction_component.get_direction_vector_to_player())
+
+func laser_state():
+	pass
+
+func death_state():
+	pass

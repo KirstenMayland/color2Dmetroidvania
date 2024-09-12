@@ -965,7 +965,7 @@ position = Vector2(-51, -33.5)
 shape = SubResource("RectangleShape2D_6yo68")
 
 [node name="SceneTriggerComponent3" parent="." instance=ExtResource("4_2eus5")]
-connected_scene = "russet_grove_4"
+connected_scene = "russet_grove_boss"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTriggerComponent3"]
 position = Vector2(1474, 993)
