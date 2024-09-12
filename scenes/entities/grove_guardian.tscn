@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://xlupq7k0124k"]
+[gd_scene load_steps=25 format=3 uid="uid://xlupq7k0124k"]
 
 [ext_resource type="Texture2D" uid="uid://d0djuollqe6ux" path="res://assets/entities/grove_guardian/grove_guardian_2.0-Idle.png" id="1_04r56"]
 [ext_resource type="Script" path="res://scripts/entities/grove_guardian.gd" id="1_ukhr5"]
 [ext_resource type="PackedScene" uid="uid://d2ojf0bbv5n5j" path="res://scenes/components/health_component.tscn" id="2_ps1je"]
 [ext_resource type="PackedScene" uid="uid://dty8yax2de5v4" path="res://scenes/components/hurtbox_component.tscn" id="4_s11qr"]
+[ext_resource type="PackedScene" uid="uid://dodtc5a30e5v2" path="res://scenes/components/hitbox_component.tscn" id="5_02bvo"]
 [ext_resource type="PackedScene" uid="uid://cynv53tkxjt1o" path="res://scenes/components/direction_component.tscn" id="6_v34r5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3lcj"]
@@ -157,6 +158,14 @@ _data = {
 radius = 41.0
 height = 93.9945
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6146l"]
+radius = 7.80252
+height = 65.0938
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7a51h"]
+radius = 9.0
+height = 46.8169
+
 [node name="GroveGuardian" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_ukhr5")
@@ -188,4 +197,19 @@ rotation = -1.56945
 shape = SubResource("CapsuleShape2D_i2r7u")
 debug_color = Color(0.686275, 0, 0, 0.419608)
 
+[node name="HitboxComponent" parent="." instance=ExtResource("5_02bvo")]
+visible = false
+damage_dealt = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(23, -23)
+rotation = -0.85456
+shape = SubResource("CapsuleShape2D_6146l")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-26, -32)
+rotation = 1.23094
+shape = SubResource("CapsuleShape2D_7a51h")
+
 [node name="DirectionComponent" parent="." instance=ExtResource("6_v34r5")]
+visible = false

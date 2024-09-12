@@ -5,6 +5,7 @@ extends CharacterBody2D
 # references to subcomponents
 @export var laser_one: LaserComponent
 @export var laser_two: LaserComponent
+@export var location_to_fire_from: Marker2D
 
 @onready var animation = $AnimationPlayer
 @onready var health_component: HealthComponent = $HealthComponent
@@ -18,6 +19,7 @@ signal to_laser_state
 
 # finite state machine variables
 var is_following: bool = false
+var is_to_laser: bool = false
 var start: bool = false
 
 # ----------------------------------------------------------------
@@ -40,10 +42,14 @@ func _ready():
 # ----------------------------------------------------------------
 # ---------------------_physics_process---------------------------
 # ----------------------------------------------------------------
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_following:
 		move(direction_component.get_direction_vector_to_player())
+	elif is_to_laser:
+		move(direction_component.get_direction_vector_to_point(location_to_fire_from.global_position))
 
+# TODO: fix move such that it just gets close enough and then stays, because right now if it's trying to go to a point
+# it overshoots it continuously so it looks like it jitters
 func move(direction):
 	# Horizontal movement
 	if direction.x != 0:
@@ -55,13 +61,18 @@ func move(direction):
 
 	move_and_slide()
 
+
 # ----------------------------------------------------------------
 # ---------------------finite_state_machine-----------------------
 # ----------------------------------------------------------------
 
-# right now, starts as idle, until it is hurt
-# it then switches to laser
-# and once the laser is done, it switches to follow
+# start = idle
+# middle attacks = laser, follow
+# end = death
+
+# TOOO: current plan is create a system, where it randomly goes back and forth between the attack fazes (laser and follow)
+# without cutting the laser short
+
 
 # ---------- idle
 func idle_state():
@@ -82,6 +93,7 @@ func follow_state():
 
 # ---------- laser
 func laser_state():
+	is_to_laser = true
 	is_following = false
 	animation.play("Idle")
 
@@ -91,6 +103,7 @@ func laser_state():
 	laser_two.activate_laser()
 
 func laser_reached_destination():
+	is_to_laser = false
 	laser_one.deactivate_laser()
 	laser_two.deactivate_laser()
 

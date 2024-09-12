@@ -13,5 +13,5 @@ func get_direction_vector_to_player():
 	return Vector2.ZERO
 
 
-func get_direction_to_point(point: Vector2):
+func get_direction_vector_to_point(point: Vector2):
 	return global_position.direction_to(point)
