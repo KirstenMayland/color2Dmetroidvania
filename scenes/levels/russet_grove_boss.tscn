@@ -515,18 +515,19 @@ position = Vector2(549.321, 244.298)
 [node name="LaserComponent" parent="GroveGuardian" node_paths=PackedStringArray("start_point", "end_point") instance=ExtResource("6_p7fdi")]
 position = Vector2(-32.321, -8.298)
 based_width = 64.0
+speed = 20.0
 active = true
 start_point = NodePath("../../LeftLaserStartPoint")
 end_point = NodePath("../../LeftLaserEndPoint")
 
 [node name="LeftLaserStartPoint" type="Marker2D" parent="."]
-position = Vector2(194.92, 285.678)
+position = Vector2(196.255, 282.34)
 
 [node name="LeftLaserEndPoint" type="Marker2D" parent="."]
-position = Vector2(547.986, 383.789)
+position = Vector2(552.656, 372.442)
 
 [node name="Core" parent="." instance=ExtResource("6_wreqg")]
-position = Vector2(150, 258)
+position = Vector2(119, 259)
 
 [node name="CameraBoundariesComponent" parent="." instance=ExtResource("7_l6k1n")]
 visible = false

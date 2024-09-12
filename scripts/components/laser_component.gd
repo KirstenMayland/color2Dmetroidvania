@@ -11,7 +11,7 @@ const max_range = 5000
 @export var start_point: Marker2D
 @export var end_point: Marker2D
 
-@onready var max_cast_to: Vector2
+@onready var path_position: Vector2 = start_point.global_position
 
 @onready var ray_cast = $RayCast2D
 @onready var line = $Line2D
@@ -38,28 +38,28 @@ func _physics_process(delta):
 		set_visible(true)
 		collision_line.set_disabled(false)
 		if start_point and end_point:
-			update_path(start_point.global_position, end_point.global_position, speed, delta)
+			move_between_points(start_point.global_position, end_point.global_position, speed, delta)
 			update_angles_and_positions()
 	else:
 		set_visible(false)
 		collision_line.set_disabled(true)
 
-# TODO: right now, only goes left to right, down to right and doesn't loop, need to implement further
-func update_path(start: Vector2, end: Vector2, speed, delta):
-	if max_cast_to == null:
-		max_cast_to = start
+
+func move_between_points(start: Vector2, end: Vector2, speed, delta):
+	if path_position == null:
+		path_position = start
 	
-	#	var x_increment = (end.x - start.x) / 100
-	#	var y_increment = (end.y - start.y) / 100
-	#
-	#	while max_cast_to.x < end.x and max_cast_to.y < end.y:
-	#		max_cast_to.x += x_increment * speed * delta
-	#		max_cast_to.y += y_increment * speed * delta
+	# calculate ratio to move in
+	var x_increment = (end.x - start.x) / 100
+	var y_increment = (end.y - start.y) / 100
 	
+	# move along path
+	if path_position.x < end.x and path_position.y < end.y:
+		path_position.x += x_increment * speed * delta
+		path_position.y += y_increment * speed * delta
 	
-	var mouse_position = get_local_mouse_position()
-	var max_cast_to = mouse_position.normalized() * max_range
-	
+	# convert to local coords, extend to go until walls, and set as target
+	var max_cast_to = to_local(path_position).normalized() * max_range
 	ray_cast.target_position = max_cast_to
 
 func update_angles_and_positions():

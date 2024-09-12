@@ -2,4 +2,4 @@ video gammmmmemmememememmemeeeee
 
 aka
 
-TODO:
+TODO: write up

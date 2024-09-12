@@ -21,7 +21,7 @@ scene_manager="*res://scripts/autoload/scene_manager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg")
 
 [input]
 
