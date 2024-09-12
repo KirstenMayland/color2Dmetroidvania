@@ -23,11 +23,12 @@ var x_direction: int
 var y_direction: int
 
 # references to subcomponents
+@export var hitbox: HitboxComponent
+@onready var collision_line = hitbox.get_node("CollisionShape2D")
+
 # TODO: make Line2D texture and default color + charge sprite + collision sparks sprite exports
 @onready var ray_cast = $RayCast2D
 @onready var line = $Line2D
-@onready var hitbox = $Line2D/HitboxComponent
-@onready var collision_line = $Line2D/HitboxComponent/CollisionShape2D
 @onready var collision_sparks = $CollisionSparks
 @onready var charge_ani = $Charge
 
@@ -40,7 +41,9 @@ signal laser_destination_reached
 func _ready():
 	if start_point and end_point:
 		path_pre_calculations(start_point.global_position, end_point.global_position)
+		
 	hitbox.set_damage_dealt(damage_dealt)
+	hitbox.reparent(line)
 
 
 func path_pre_calculations(start: Vector2, end: Vector2):

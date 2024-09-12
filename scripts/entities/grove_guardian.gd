@@ -3,11 +3,13 @@ extends CharacterBody2D
 @export var max_speed : float = 50.0
 
 # references to subcomponents
+@export var laser_one: LaserComponent
+@export var laser_two: LaserComponent
+
 @onready var animation = $AnimationPlayer
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var direction_component: DirectionComponent = $DirectionComponent
-@export var laser_one: LaserComponent
-@export var laser_two: LaserComponent
+@onready var boss_battle_component: BossBattleComponent = get_parent().get_node("BossBattleComponent")
 
 # finite state machine variables
 @onready var in_idle_state = true
@@ -19,13 +21,11 @@ var in_death_state = false
 # -----------------------------ready------------------------------
 # ----------------------------------------------------------------
 func _ready():
-	health_component.died.connect(on_death)
+	health_component.died.connect(death_state)
 	health_component.health_change.connect(on_hurt)
 	
 	laser_one.laser_destination_reached.connect(laser_reached_destination)
 
-func on_death():
-	queue_free()
 
 # ----------------------------------------------------------------
 # ---------------------_physics_process---------------------------
@@ -49,11 +49,14 @@ func finite_state_machine():
 		death_state()
 
 # TODO: unfortunately no pointers, so figure out a way to cleanly change between states without looping
+func transition_between_states(from_state: String, to_state: String):
+	pass
+
 
 func idle_state():
 	animation.play("Idle")
 
-func on_hurt(heal):
+func on_hurt(_heal):
 	in_idle_state = false
 	in_laser_state = true
 
@@ -73,12 +76,16 @@ func move(direction):
 	
 	move_and_slide()
 
-
+# FIXME: Left laser isn't working
+var start: bool = false
 func laser_state():
+	if not start:
+		boss_battle_component.start_boss_battle()
+		start = true
 	animation.play("Idle")
 	
 	# TODO: when lasers are first activated, have charge period, see laser_component todo
-	# TODO: also, for when state machine gets more complicated later, have it move towards the center while charging
+	# TODO: also, for when state machine gets more complicated later, have boss move towards the center while charging laser
 	laser_one.activate_laser()
 	laser_two.activate_laser()
 
@@ -90,6 +97,6 @@ func laser_reached_destination():
 	in_follow_state = true
 
 
-# should probably have on_death signal go straight here
 func death_state():
-	pass
+	boss_battle_component.end_boss_battle()
+	queue_free()

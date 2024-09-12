@@ -1,15 +1,15 @@
 Necessary To Publish Demo:
 1) boss fight
-	1.1) lock camera in center during boss fight
-	1.2) create some way to lock the bounds of the fighting arena for boss fights
-	1.3) at least 3 different attack types
-	1.4) boss health bar (if no stagger)
-2) interactable character in the hut in room 3
-3) name the game
-4) make it so that mouse only appears in a menu screen
-5) change back to auto-full screen, no boundaries
-6) finish shading all the trees
-7) "the end" or option to respawn if dead
+	1.1) boss health bar (if no stagger)
+	1.2) at least 3 different attack types
+	1.3) lock camera in center during boss fight
+	1.4) create some way to lock the bounds of the fighting arena for boss fights
+2) game option after player death, "the end" or option to respawn if dead
+3) more interesting things in room 3
+4) name the game
+5) make it so that mouse only appears in a menu screen
+6) change back to auto-full screen, no boundaries before publishing
+7) finish shading all the trees
 
 
 enemies =========
@@ -20,7 +20,7 @@ enemies =========
 	- make improve grove guardian grass in idle animation
 
 player ==========
-- create some signifier when < 20% health left
+- create some visual signifier when < 20% health left
 - fix death scene so that the melt doesn't hang in the air
 	- create death scene when you die in mid-air or on spikes or something similarly less stable
 - when you tap a direction to go in, it just turns the player initially, instead of really moving
@@ -28,6 +28,7 @@ player ==========
 levels ==========
 - fix bug where it crashes after 1) starting game and switching scenes 2) pausing and exitting to main menu 3) trying to start again
 - add to augmented tile maps with rocks and various overlays
+- interactable character in the hut in room 3
 
 UI ==============
 - create a settings screen

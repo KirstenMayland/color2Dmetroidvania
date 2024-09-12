@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b81ol54kb0cfj"]
+[gd_scene load_steps=20 format=3 uid="uid://b81ol54kb0cfj"]
 
 [ext_resource type="Script" path="res://scripts/levels/base_scene.gd" id="1_uewpl"]
 [ext_resource type="Texture2D" uid="uid://c46gryvi5dol7" path="res://assets/backgrounds/russet_grove_4.png" id="2_mmna1"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://knfhls4iere7" path="res://scenes/components/laser_component.tscn" id="6_p7fdi"]
 [ext_resource type="PackedScene" uid="uid://huoqkmgswaek" path="res://scenes/gui/core.tscn" id="6_wreqg"]
 [ext_resource type="PackedScene" uid="uid://c83w2rf5qwajx" path="res://scenes/components/camera_boundaries_component.tscn" id="7_l6k1n"]
+[ext_resource type="PackedScene" uid="uid://dodtc5a30e5v2" path="res://scenes/components/hitbox_component.tscn" id="8_4f68n"]
 [ext_resource type="Texture2D" uid="uid://cv0j8scxdym8u" path="res://assets/misc/2d_lights_and_shadows_neutral_point_light.png" id="8_ao2bm"]
+[ext_resource type="PackedScene" uid="uid://b6owphnk86wkd" path="res://scenes/components/boss_battle_component.tscn" id="10_pplbb"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hknk8"]
 lifetime_randomness = 0.4
@@ -456,6 +458,12 @@ texture = ExtResource("4_m5vd5")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_0")
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bakds"]
+b = Vector2(89, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_e2dx5"]
+b = Vector2(88.9001, 0.740204)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lsyqt"]
 size = Vector2(906, 347)
 
@@ -514,17 +522,27 @@ position = Vector2(549.321, 244.298)
 laser_one = NodePath("LaserComponent")
 laser_two = NodePath("LaserComponent2")
 
-[node name="LaserComponent" parent="GroveGuardian" node_paths=PackedStringArray("start_point", "end_point") instance=ExtResource("6_p7fdi")]
-visible = false
+[node name="LaserComponent" parent="GroveGuardian" node_paths=PackedStringArray("start_point", "end_point", "hitbox") instance=ExtResource("6_p7fdi")]
 position = Vector2(-32.321, -8.298)
 start_point = NodePath("../../LaserPoints/LeftLaserStartPoint")
 end_point = NodePath("../../LaserPoints/LeftLaserEndPoint")
+hitbox = NodePath("HitboxComponent")
 
-[node name="LaserComponent2" parent="GroveGuardian" node_paths=PackedStringArray("start_point", "end_point") instance=ExtResource("6_p7fdi")]
-visible = false
+[node name="HitboxComponent" parent="GroveGuardian/LaserComponent" instance=ExtResource("8_4f68n")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroveGuardian/LaserComponent/HitboxComponent"]
+shape = SubResource("SegmentShape2D_bakds")
+
+[node name="LaserComponent2" parent="GroveGuardian" node_paths=PackedStringArray("start_point", "end_point", "hitbox") instance=ExtResource("6_p7fdi")]
 position = Vector2(19.7789, 19.9618)
 start_point = NodePath("../../LaserPoints/RightLaserStartPoint")
 end_point = NodePath("../../LaserPoints/RightLaserEndPoint")
+hitbox = NodePath("HitboxComponent")
+
+[node name="HitboxComponent" parent="GroveGuardian/LaserComponent2" instance=ExtResource("8_4f68n")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroveGuardian/LaserComponent2/HitboxComponent"]
+shape = SubResource("SegmentShape2D_e2dx5")
 
 [node name="LaserPoints" type="Node2D" parent="."]
 
@@ -566,3 +584,5 @@ texture = ExtResource("8_ao2bm")
 lifetime = 60.0
 preprocess = 30.0
 visibility_rect = Rect2(-515, -215, 1015, 500)
+
+[node name="BossBattleComponent" parent="." instance=ExtResource("10_pplbb")]
