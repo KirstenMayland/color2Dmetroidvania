@@ -12,4 +12,4 @@ func end_boss_battle():
 
 # TODO: create func that reparents Camera2D from Core and puts fixes it at a certain point
 
-# TODO: create func that reparents Camera2D back to wear it originally was
+# TODO: create func that reparents Camera2D back to where it originally was
