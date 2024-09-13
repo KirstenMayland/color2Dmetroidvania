@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var max_speed : float = 100.0
+@export var max_speed : float = 80.0
 
 # references to subcomponents
 @export var laser_one: LaserComponent
@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var direction_component: DirectionComponent = $DirectionComponent
 @onready var boss_battle_component: BossBattleComponent = get_parent().get_node("BossBattleComponent")
+@onready var hitbox_component: HitboxComponent = $HitboxComponent
 
 # finite state machine signals
 signal to_idle_state
@@ -28,11 +29,12 @@ var is_ground_pounding: bool = false
 var start: bool = false
 
 # ground pound variables
-var gp_pause_timer = 0.5  # seconds
+var gp_pause_timer = 1  # seconds
 var gravity = 2000
 var gp_move_speed = 300
 var gp_target_position = Vector2()
 var gp_min_distance_from_player = 50  # Distance before stopping above the player
+
 
 # ----------------------------------------------------------------
 # -----------------------------ready------------------------------
@@ -68,33 +70,15 @@ func _physics_process(delta):
 	elif is_ground_pounding:
 		ground_pound(delta)
 
-#func move(direction):
-#	# Horizontal movement
-#	if direction.x != 0:
-#		velocity.x = direction.x * max_speed
-#
-#	# Vertical movement
-#	if direction.y != 0:
-#		velocity.y = direction.y * max_speed
-#
-#	move_and_slide()
-
 
 # ----------------------------------------------------------------
 # ---------------------finite_state_machine-----------------------
 # ----------------------------------------------------------------
 
-# start = idle
-# middle attacks = laser
-# end = death
-
-# TOOO: current plan is create a system, where it randomly goes back and forth between the attack fazes (laser and gp)
-# without cutting the laser short
-
-
 # ----------------------------idle------------------------------
 func idle_state():
 	animation.play("Idle")
+
 
 # ----------------------------death------------------------------
 func death_state():
@@ -103,18 +87,18 @@ func death_state():
 
 
 # ----------------------------------------------------------------
-# ----------------------------attack------------------------------
+# ----------------------------attacks------------------------------
 
-func on_hurt(_heal):
+func on_hurt(_heal): # to start attack phase
 	if not start:
 		boss_battle_component.start_boss_battle()
 		start = true
 		end_of_attack.emit()
 
-# triggers first time grove guardian is hurt
 func attack_state():
 	var random_index = randi() % attacks.size()  # Get a random attack
 	var selected_attack = attacks[random_index]
+	# TOOO: have some way of making sure there's a balanced amount, eg. not 5 lasers in a row
 	match selected_attack:
 		"laser":
 			to_laser_state.emit()
@@ -125,34 +109,27 @@ func attack_state():
 # ----------------------------laser------------------------------
 func laser_state():
 	is_to_laser = true
-	is_ground_pounding = false
-	is_moving_above = false
-	animation.play("Idle")
 
 	# TODO: when lasers are first activated, have charge period, see laser_component todo
+	# TODO: make lasers interesting to dodge, maybe variable path?
 	laser_one.activate_laser()
 	laser_two.activate_laser()
 
 func laser_reached_destination():
-	is_to_laser = false
 	laser_one.deactivate_laser()
 	laser_two.deactivate_laser()
 	
+	is_to_laser = false
 	end_of_attack.emit()
 
 
 # ----------------------------ground_pound------------------------------
-func ground_pound_state():
-	is_to_laser = false
-	is_ground_pounding = false 
-	is_moving_above = false
-	
+func ground_pound_state():	
 	start_ground_pound()
 
 
 func start_ground_pound():
 	is_moving_above = true
-
 
 func move_above_player(delta):
 	# calibrate target
@@ -172,8 +149,7 @@ func move_above_player(delta):
 
 func plunge_down():
 	is_ground_pounding = true
-	# TODO: when plunging downward, enable hitbox
-
+	hitbox_component.get_node("CollisionShape2D").set_disabled(true)
 
 func ground_pound(delta):
 	# Apply gravity and move downwards
@@ -183,5 +159,6 @@ func ground_pound(delta):
 	# Check if the boss hits the ground
 	if is_on_floor():
 		is_ground_pounding = false
+		hitbox_component.get_node("CollisionShape2D").set_disabled(false)
 		end_of_attack.emit()
-		# TODO: hit floor, disable hitbox and add shockwave effect
+		# TODO: add shockwave effect + pause at bottom/rise slowly to allow player to get hits in

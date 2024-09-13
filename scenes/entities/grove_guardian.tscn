@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://xlupq7k0124k"]
+[gd_scene load_steps=23 format=3 uid="uid://xlupq7k0124k"]
 
 [ext_resource type="Texture2D" uid="uid://d0djuollqe6ux" path="res://assets/entities/grove_guardian/grove_guardian_2.0-Idle.png" id="1_04r56"]
 [ext_resource type="Script" path="res://scripts/entities/grove_guardian.gd" id="1_ukhr5"]
@@ -158,14 +158,6 @@ _data = {
 radius = 41.0
 height = 93.9945
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6146l"]
-radius = 7.80252
-height = 65.0938
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7a51h"]
-radius = 9.0
-height = 46.8169
-
 [node name="GroveGuardian" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_ukhr5")
@@ -191,25 +183,22 @@ max_health = 300.0
 visible = false
 health_component = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(-2, -5)
 rotation = -1.56945
 shape = SubResource("CapsuleShape2D_i2r7u")
-debug_color = Color(0.686275, 0, 0, 0.419608)
+debug_color = Color(0.415686, 0, 0, 0.419608)
 
 [node name="HitboxComponent" parent="." instance=ExtResource("5_02bvo")]
 visible = false
-damage_dealt = 2
+damage_dealt = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(23, -23)
-rotation = -0.85456
-shape = SubResource("CapsuleShape2D_6146l")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(-26, -32)
-rotation = 1.23094
-shape = SubResource("CapsuleShape2D_7a51h")
+position = Vector2(-2, -5)
+rotation = -1.56945
+shape = SubResource("CapsuleShape2D_i2r7u")
+disabled = true
+debug_color = Color(0.686275, 0, 0, 0.419608)
 
 [node name="DirectionComponent" parent="." instance=ExtResource("6_v34r5")]
 visible = false
