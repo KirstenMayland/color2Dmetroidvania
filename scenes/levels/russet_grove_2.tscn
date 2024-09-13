@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://320c50r2n18l"]
+[gd_scene load_steps=21 format=3 uid="uid://320c50r2n18l"]
 
 [ext_resource type="Script" path="res://scripts/levels/base_scene.gd" id="1_fiffr"]
 [ext_resource type="Texture2D" uid="uid://i73jibf25xh4" path="res://assets/backgrounds/russet_grove_2.png" id="2_epnu6"]
 [ext_resource type="PackedScene" uid="uid://c83w2rf5qwajx" path="res://scenes/components/camera_boundaries_component.tscn" id="3_vkiq8"]
 [ext_resource type="PackedScene" uid="uid://bsmnunnhaal0q" path="res://scenes/components/scene_trigger_component.tscn" id="4_2eus5"]
 [ext_resource type="PackedScene" uid="uid://huoqkmgswaek" path="res://scenes/gui/core.tscn" id="4_etf4g"]
+[ext_resource type="Texture2D" uid="uid://c1rykeji0fts4" path="res://assets/backgrounds/russet_grove_background.png" id="5_ofbpr"]
 [ext_resource type="Texture2D" uid="uid://lqi1farasaes" path="res://assets/misc/russet_grove_orbs.png" id="7_87dvw"]
 [ext_resource type="Texture2D" uid="uid://cv0j8scxdym8u" path="res://assets/misc/2d_lights_and_shadows_neutral_point_light.png" id="8_fr5ss"]
 [ext_resource type="Texture2D" uid="uid://og58iqswnewb" path="res://assets/tilesets/russet_grove_tileset.png" id="russet_grove_tileset"]
@@ -913,6 +914,15 @@ layer_1/tile_data = PackedInt32Array(0, 786432, 2, 1, 786432, 2, 2, 786432, 2, 3
 tile_set = SubResource("TileSet_8s3nu")
 format = 2
 layer_0/tile_data = PackedInt32Array(1703965, 65537, 19, 1835044, 65537, 17, 1835045, 131073, 17, 1835046, 196609, 17, 3342351, 65537, 18, 3342352, 131073, 18, 3080201, 65537, 17, 3080202, 131073, 17, 3080203, 196609, 17, 2818057, 65537, 19, 2555918, 65537, 18, 2555919, 131073, 18, 2293769, 65537, 17, 2293770, 131073, 17, 2293771, 196609, 17)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.25, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(510, 255)
+texture = ExtResource("5_ofbpr")
 
 [node name="Core" parent="." instance=ExtResource("4_etf4g")]
 position = Vector2(107.181, 204.668)
