@@ -14,12 +14,15 @@ extends CharacterBody2D
 
 # finite state machine signals
 signal to_idle_state
-signal to_follow_state
 signal to_laser_state
 signal to_ground_pound_state
 
+# Define the different attack modes
+enum State {IDLE, ATTACK, DEATH}
+var state = State.IDLE
+
+
 # finite state machine variables
-var is_following: bool = false
 var is_to_laser: bool = false
 var is_moving_above: bool = false
 var is_ground_pounding: bool = false
@@ -38,7 +41,6 @@ var gp_min_distance_from_player = 50  # Distance before stopping above the playe
 func _ready():
 	# signals
 	to_idle_state.connect(idle_state)
-	to_follow_state.connect(follow_state)
 	to_laser_state.connect(laser_state)
 	to_ground_pound_state.connect(ground_pound_state)
 	
@@ -54,25 +56,23 @@ func _ready():
 # ---------------------_physics_process---------------------------
 # ----------------------------------------------------------------
 func _physics_process(delta):
-	if is_following:
-		move(direction_component.get_direction_vector_to_player())
-	elif is_to_laser:
+	if is_to_laser:
 		global_position = global_position.move_toward(location_to_fire_from.global_position, max_speed * (3.0/5.0) * delta)
 	elif is_moving_above:
 		move_above_player(delta)
 	elif is_ground_pounding:
 		ground_pound(delta)
 
-func move(direction):
-	# Horizontal movement
-	if direction.x != 0:
-		velocity.x = direction.x * max_speed
-
-	# Vertical movement
-	if direction.y != 0:
-		velocity.y = direction.y * max_speed
-
-	move_and_slide()
+#func move(direction):
+#	# Horizontal movement
+#	if direction.x != 0:
+#		velocity.x = direction.x * max_speed
+#
+#	# Vertical movement
+#	if direction.y != 0:
+#		velocity.y = direction.y * max_speed
+#
+#	move_and_slide()
 
 
 # ----------------------------------------------------------------
@@ -80,10 +80,10 @@ func move(direction):
 # ----------------------------------------------------------------
 
 # start = idle
-# middle attacks = laser, follow
+# middle attacks = laser
 # end = death
 
-# TOOO: current plan is create a system, where it randomly goes back and forth between the attack fazes (laser and follow)
+# TOOO: current plan is create a system, where it randomly goes back and forth between the attack fazes (laser and gp)
 # without cutting the laser short
 
 
@@ -107,19 +107,11 @@ func death_state():
 # ----------------------------------------------------------------
 # ----------------------------attack------------------------------
 
-# ----------------------------follow------------------------------
-func follow_state():
-	is_to_laser = false
-	is_following = true
-	is_ground_pounding = false
-	is_moving_above = false
-	animation.play("Idle")
 
 
 # ----------------------------laser------------------------------
 func laser_state():
 	is_to_laser = true
-	is_following = false
 	is_ground_pounding = false
 	is_moving_above = false
 	animation.play("Idle")
@@ -139,7 +131,6 @@ func laser_reached_destination():
 # ----------------------------ground_pound------------------------------
 func ground_pound_state():
 	is_to_laser = false
-	is_following = false
 	is_ground_pounding = false 
 	is_moving_above = false
 	
