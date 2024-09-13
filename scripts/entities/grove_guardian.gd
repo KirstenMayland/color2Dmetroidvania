@@ -16,11 +16,10 @@ extends CharacterBody2D
 signal to_idle_state
 signal to_laser_state
 signal to_ground_pound_state
+signal end_of_attack
 
-# Define the different attack modes
-enum State {IDLE, ATTACK, DEATH}
-var state = State.IDLE
-
+# Define the different attacks modes
+var attacks = ["laser", "ground_pound"]
 
 # finite state machine variables
 var is_to_laser: bool = false
@@ -39,13 +38,19 @@ var gp_min_distance_from_player = 50  # Distance before stopping above the playe
 # -----------------------------ready------------------------------
 # ----------------------------------------------------------------
 func _ready():
+	randomize() # Seed the random number generator
+	
 	# signals
 	to_idle_state.connect(idle_state)
 	to_laser_state.connect(laser_state)
 	to_ground_pound_state.connect(ground_pound_state)
+	end_of_attack.connect(attack_state)
 	
-	health_component.died.connect(death_state)
+	# to start fight
 	health_component.health_change.connect(on_hurt)
+	# to end fight
+	health_component.died.connect(death_state)
+	
 	laser_one.laser_destination_reached.connect(laser_reached_destination)
 	
 	# to start
@@ -91,13 +96,6 @@ func _physics_process(delta):
 func idle_state():
 	animation.play("Idle")
 
-# TODO: instead of "on_hurt" it should be "on_attack", we don't need to know if it's hurt or not
-func on_hurt(_heal):
-	if not start:
-		boss_battle_component.start_boss_battle()
-		start = true
-		to_laser_state.emit()
-
 # ----------------------------death------------------------------
 func death_state():
 	boss_battle_component.end_boss_battle()
@@ -107,6 +105,21 @@ func death_state():
 # ----------------------------------------------------------------
 # ----------------------------attack------------------------------
 
+func on_hurt(_heal):
+	if not start:
+		boss_battle_component.start_boss_battle()
+		start = true
+		end_of_attack.emit()
+
+# triggers first time grove guardian is hurt
+func attack_state():
+	var random_index = randi() % attacks.size()  # Get a random attack
+	var selected_attack = attacks[random_index]
+	match selected_attack:
+		"laser":
+			to_laser_state.emit()
+		"ground_pound":
+			to_ground_pound_state.emit()
 
 
 # ----------------------------laser------------------------------
@@ -124,8 +137,8 @@ func laser_reached_destination():
 	is_to_laser = false
 	laser_one.deactivate_laser()
 	laser_two.deactivate_laser()
-
-	to_ground_pound_state.emit()
+	
+	end_of_attack.emit()
 
 
 # ----------------------------ground_pound------------------------------
@@ -170,4 +183,5 @@ func ground_pound(delta):
 	# Check if the boss hits the ground
 	if is_on_floor():
 		is_ground_pounding = false
+		end_of_attack.emit()
 		# TODO: hit floor, disable hitbox and add shockwave effect
