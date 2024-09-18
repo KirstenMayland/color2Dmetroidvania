@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cgosrp8rmcq4w"]
+[gd_scene load_steps=20 format=3 uid="uid://cgosrp8rmcq4w"]
 
 [ext_resource type="Script" path="res://scripts/levels/base_scene.gd" id="1_bus6f"]
 [ext_resource type="Texture2D" uid="uid://c8inkaek5lgw8" path="res://assets/backgrounds/russet_grove_3.png" id="2_wkl04"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bsmnunnhaal0q" path="res://scenes/components/scene_trigger_component.tscn" id="4_kic5e"]
 [ext_resource type="PackedScene" uid="uid://huoqkmgswaek" path="res://scenes/gui/core.tscn" id="4_v0ww0"]
 [ext_resource type="PackedScene" uid="uid://c83w2rf5qwajx" path="res://scenes/components/camera_boundaries_component.tscn" id="5_ifgre"]
+[ext_resource type="PackedScene" uid="uid://c28o2f8tnq8k8" path="res://scenes/components/path_follow_component.tscn" id="6_8kerx"]
 [ext_resource type="PackedScene" uid="uid://wbbgttji4k7b" path="res://scenes/entities/sheep.tscn" id="7_o4uk1"]
 [ext_resource type="Texture2D" uid="uid://cv0j8scxdym8u" path="res://assets/misc/2d_lights_and_shadows_neutral_point_light.png" id="9_6v8e8"]
 [ext_resource type="Texture2D" uid="uid://og58iqswnewb" path="res://assets/tilesets/russet_grove_tileset.png" id="russet_grove_tileset"]
@@ -911,10 +912,31 @@ layer_0/tile_data = PackedInt32Array(1245208, 65536, 17, 1245209, 131072, 17, 12
 [node name="Sheep" parent="." instance=ExtResource("7_o4uk1")]
 position = Vector2(802, 435)
 
+[node name="PathFollowComponent" parent="." instance=ExtResource("6_8kerx")]
+speed = 35.0
+
+[node name="Points" type="Node2D" parent="PathFollowComponent"]
+
+[node name="Marker2D2" type="Marker2D" parent="PathFollowComponent/Points"]
+position = Vector2(429, 84)
+
+[node name="Marker2D" type="Marker2D" parent="PathFollowComponent/Points"]
+position = Vector2(600, 84)
+
+[node name="Marker2D3" type="Marker2D" parent="PathFollowComponent/Points"]
+position = Vector2(428.819, 83.988)
+
+[node name="ToFollowPath" type="Node2D" parent="PathFollowComponent"]
+
+[node name="Sheep2" parent="PathFollowComponent/ToFollowPath" instance=ExtResource("7_o4uk1")]
+position = Vector2(425, 84)
+follow_player = false
+
 [node name="Core" parent="." instance=ExtResource("4_v0ww0")]
 position = Vector2(85, 418)
 
 [node name="CameraBoundariesComponent" parent="." instance=ExtResource("5_ifgre")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundariesComponent"]
 position = Vector2(521, 258.75)

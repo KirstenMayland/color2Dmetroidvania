@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://320c50r2n18l"]
+[gd_scene load_steps=23 format=3 uid="uid://320c50r2n18l"]
 
 [ext_resource type="Script" path="res://scripts/levels/base_scene.gd" id="1_fiffr"]
 [ext_resource type="Texture2D" uid="uid://i73jibf25xh4" path="res://assets/backgrounds/russet_grove_2.png" id="2_epnu6"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bsmnunnhaal0q" path="res://scenes/components/scene_trigger_component.tscn" id="4_2eus5"]
 [ext_resource type="PackedScene" uid="uid://huoqkmgswaek" path="res://scenes/gui/core.tscn" id="4_etf4g"]
 [ext_resource type="Texture2D" uid="uid://c1rykeji0fts4" path="res://assets/backgrounds/russet_grove_background.png" id="5_ofbpr"]
+[ext_resource type="PackedScene" uid="uid://c28o2f8tnq8k8" path="res://scenes/components/path_follow_component.tscn" id="6_ookrd"]
 [ext_resource type="Texture2D" uid="uid://lqi1farasaes" path="res://assets/misc/russet_grove_orbs.png" id="7_87dvw"]
+[ext_resource type="PackedScene" uid="uid://wbbgttji4k7b" path="res://scenes/entities/sheep.tscn" id="7_yir5x"]
 [ext_resource type="Texture2D" uid="uid://cv0j8scxdym8u" path="res://assets/misc/2d_lights_and_shadows_neutral_point_light.png" id="8_fr5ss"]
 [ext_resource type="Texture2D" uid="uid://og58iqswnewb" path="res://assets/tilesets/russet_grove_tileset.png" id="russet_grove_tileset"]
 
@@ -951,7 +953,7 @@ script = ExtResource("1_fiffr")
 
 [node name="Background" type="Sprite2D" parent="."]
 show_behind_parent = true
-position = Vector2(1024, 510)
+position = Vector2(1022, 508)
 texture = ExtResource("2_epnu6")
 
 [node name="RedOrbsParticles" type="GPUParticles2D" parent="."]
@@ -990,6 +992,32 @@ motion_scale = Vector2(0.25, 0.25)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(510, 255)
 texture = ExtResource("5_ofbpr")
+
+[node name="PathFollowComponent" parent="." node_paths=PackedStringArray("points", "things_to_be_moved") instance=ExtResource("6_ookrd")]
+position = Vector2(1086.97, 510.396)
+speed = 35.0
+points = NodePath("Points")
+things_to_be_moved = NodePath("ToFollowPath")
+
+[node name="Points" type="Node2D" parent="PathFollowComponent"]
+
+[node name="Marker2D" type="Marker2D" parent="PathFollowComponent/Points"]
+position = Vector2(-430.41, -280.442)
+
+[node name="Marker2D2" type="Marker2D" parent="PathFollowComponent/Points"]
+position = Vector2(-204.97, -280.396)
+
+[node name="Marker2D3" type="Marker2D" parent="PathFollowComponent/Points"]
+position = Vector2(-429.97, -280.396)
+
+[node name="ToFollowPath" type="Node2D" parent="PathFollowComponent"]
+
+[node name="Sheep" parent="PathFollowComponent/ToFollowPath" instance=ExtResource("7_yir5x")]
+position = Vector2(-431.97, -266.396)
+follow_player = false
+
+[node name="Sheep" parent="." instance=ExtResource("7_yir5x")]
+position = Vector2(1237, 798)
 
 [node name="Core" parent="." instance=ExtResource("4_etf4g")]
 position = Vector2(107.181, 204.668)

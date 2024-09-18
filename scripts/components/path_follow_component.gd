@@ -7,8 +7,8 @@ class_name PathFollowComponent
 @export var rotates: bool = false
 @export var loop: bool = true
 
-@onready var points = $Points
-@onready var things_to_be_moved = $ToFollowPath
+@export var points: Node2D
+@export var things_to_be_moved: Node2D
 
 @onready var path = $Path2D
 @onready var path_follow = $Path2D/PathFollow2D
@@ -33,9 +33,21 @@ func _ready():
 # ----------------------------------------------------------------
 # --------------------------_process------------------------------
 # ----------------------------------------------------------------
+var flip = false
 func _process(delta):
 	path_follow.progress += speed * delta
 
+	if path_follow.progress_ratio >= 0.5:
+		for child in things_to_be_moved.get_children():
+			if child is CharacterBody2D and not flip:
+				flip_sprite(child)
+				flip = true
+	
+	if path_follow.progress_ratio < 0.5:
+		for child in things_to_be_moved.get_children():
+			if child is CharacterBody2D and flip:
+				flip_sprite(child)
+				flip = false
 
 func set_speed(value: float):
 	speed = value
@@ -46,10 +58,5 @@ func set_sprite_rotates(value: bool):
 func set_loop(value: bool):
 	path_follow.loop = value
 
-# Logical overview:
-# 1) component takes child "Points" with marker2D node children and creates a back and forth path between them
-# 2) 
-
-
-
-# Later, instead of 2 marker nodes, have a variable amount
+func flip_sprite(node : CharacterBody2D):
+	Global.change_character_visual_direction(node)

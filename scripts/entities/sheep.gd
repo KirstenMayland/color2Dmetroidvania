@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var max_speed : float = 50.0
 @export var jump_velocity : float = -200.0
+@export var follow_player : bool = true
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var direction_component: DirectionComponent = $DirectionComponent
@@ -28,7 +29,8 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	move(direction_component.get_direction_vector_to_player())
+	if follow_player:
+		move(direction_component.get_direction_vector_to_player())
 
 func move(direction):
 	# Horizontal movement

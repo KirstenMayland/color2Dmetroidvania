@@ -1,7 +1,45 @@
-[gd_scene load_steps=7 format=3 uid="uid://hkv456ism5o5"]
+[gd_scene load_steps=12 format=3 uid="uid://hkv456ism5o5"]
 
 [ext_resource type="Script" path="res://scripts/gui/main_menu.gd" id="1_s2c22"]
 [ext_resource type="FontFile" uid="uid://c05s4j8qxq8k6" path="res://assets/gui/fonts/Unbalanced.ttf" id="2_d3cer"]
+[ext_resource type="Texture2D" uid="uid://cv0j8scxdym8u" path="res://assets/misc/2d_lights_and_shadows_neutral_point_light.png" id="3_d11ar"]
+[ext_resource type="Texture2D" uid="uid://lqi1farasaes" path="res://assets/misc/russet_grove_orbs.png" id="3_s8l3t"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fa20h"]
+lifetime_randomness = 0.4
+emission_shape = 3
+emission_box_extents = Vector3(1000, 500, 1)
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 10.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 2.0
+hue_variation_min = -0.02
+hue_variation_max = 0.05
+turbulence_noise_strength = 4.7
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2kqja"]
+blend_mode = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r22vj"]
+lifetime_randomness = 0.4
+emission_shape = 3
+emission_box_extents = Vector3(1000, 500, 1)
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 10.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.02
+scale_max = 0.06
+hue_variation_min = -0.02
+hue_variation_max = 0.05
+turbulence_noise_strength = 4.7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smpni"]
 bg_color = Color(1, 1, 1, 1)
@@ -48,7 +86,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.298039, 0.215686, 0.298039, 1)
+color = Color(0.301961, 0.172549, 0.172549, 1)
+
+[node name="RedOrbsParticles" type="GPUParticles2D" parent="."]
+position = Vector2(1024, 518)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_fa20h")
+texture = ExtResource("3_s8l3t")
+lifetime = 60.0
+preprocess = 30.0
+randomness = 0.42
+visibility_rect = Rect2(-1025, -525, 2050, 1025)
+
+[node name="RedLightParticles" type="GPUParticles2D" parent="."]
+modulate = Color(0.835294, 0.184314, 0.176471, 0.305882)
+material = SubResource("CanvasItemMaterial_2kqja")
+position = Vector2(1017, 504)
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_r22vj")
+texture = ExtResource("3_d11ar")
+lifetime = 60.0
+preprocess = 60.0
+visibility_rect = Rect2(-1050, -525, 2050, 1025)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -124,7 +183,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 10
 theme_override_fonts/font = ExtResource("2_d3cer")
 theme_override_font_sizes/font_size = 200
-text = "Game Title"
+text = "Russet Grove"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
