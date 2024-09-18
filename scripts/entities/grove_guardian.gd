@@ -54,8 +54,10 @@ func _ready():
 	health_component.died.connect(death_state)
 	
 	laser_one.laser_destination_reached.connect(laser_reached_destination)
+	laser_two.laser_destination_reached.connect(laser_reached_destination)
 	
 	# to start
+	hitbox_component.get_node("CollisionShape2D").set_disabled(true)
 	to_idle_state.emit()
 
 
@@ -112,15 +114,33 @@ func laser_state():
 
 	# TODO: when lasers are first activated, have charge period, see laser_component todo
 	# TODO: make lasers interesting to dodge, maybe variable path?
+	
+	# TODO: fix funcking offset things
+	var offset: float
+	offset = randf_range(-500, 500)
+	print(offset)
+
+	laser_one.beam_path_x_offset = offset
+	laser_two.beam_path_x_offset = offset
+	
 	laser_one.activate_laser()
 	laser_two.activate_laser()
 
-func laser_reached_destination():
-	laser_one.deactivate_laser()
-	laser_two.deactivate_laser()
+
+var total_laser_end: int = 0
+func laser_reached_destination(_laser):
+	total_laser_end += 1
+	laser_end()
 	
-	is_to_laser = false
-	end_of_attack.emit()
+
+func laser_end():
+	if total_laser_end == 2:
+		is_to_laser = false
+		laser_one.deactivate_laser()
+		laser_two.deactivate_laser()
+		total_laser_end = 0
+		
+		end_of_attack.emit()
 
 
 # ----------------------------ground_pound------------------------------
@@ -131,6 +151,7 @@ func ground_pound_state():
 func start_ground_pound():
 	is_moving_above = true
 
+# TODO: make sure it doesn't glitch into the walls
 func move_above_player(delta):
 	# calibrate target
 	var player_pos = direction_component.get_global_position_of_player()
@@ -149,7 +170,7 @@ func move_above_player(delta):
 
 func plunge_down():
 	is_ground_pounding = true
-	hitbox_component.get_node("CollisionShape2D").set_disabled(true)
+	hitbox_component.get_node("CollisionShape2D").set_disabled(false)
 
 func ground_pound(delta):
 	# Apply gravity and move downwards
@@ -159,6 +180,7 @@ func ground_pound(delta):
 	# Check if the boss hits the ground
 	if is_on_floor():
 		is_ground_pounding = false
-		hitbox_component.get_node("CollisionShape2D").set_disabled(false)
+		hitbox_component.get_node("CollisionShape2D").set_disabled(true)
+		await get_tree().create_timer(0.5).timeout
 		end_of_attack.emit()
 		# TODO: add shockwave effect + pause at bottom/rise slowly to allow player to get hits in

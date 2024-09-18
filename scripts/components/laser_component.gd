@@ -13,6 +13,7 @@ const max_range = 5000
 @export var active: bool = false
 
 # beam path variables
+@export var beam_path_x_offset: float
 @export var start_point: Marker2D
 @export var end_point: Marker2D
 @onready var path_position: Vector2
@@ -33,18 +34,21 @@ var y_direction: int
 @onready var charge_ani = $Charge
 
 # signals
-signal laser_destination_reached
+signal laser_destination_reached(laser: LaserComponent)
 
 # ----------------------------------------------------------------
 # -----------------------------ready------------------------------
 # ----------------------------------------------------------------
 func _ready():
 	if start_point and end_point:
+		offset_end_point(beam_path_x_offset)
 		path_pre_calculations(start_point.global_position, end_point.global_position)
 		
 	hitbox.set_damage_dealt(damage_dealt)
 	hitbox.reparent(line)
 
+func offset_end_point(offset: float):
+	end_point.global_position.x += offset
 
 func path_pre_calculations(start: Vector2, end: Vector2):
 	path_position = start
@@ -84,7 +88,8 @@ func move_between_points(end: Vector2, delta):
 		path_position.x += x_increment * speed * delta
 		path_position.y += y_increment * speed * delta
 	else:
-		emit_signal("laser_destination_reached")
+#		emit_signal("laser_destination_reached", self)
+		laser_destination_reached.emit(self)
 	
 	# convert to local coords, extend to go until walls, and set as target
 	var max_cast_to = to_local(path_position).normalized() * max_range

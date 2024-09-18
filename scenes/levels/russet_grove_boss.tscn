@@ -921,6 +921,7 @@ location_to_fire_from = NodePath("../LaserPoints/LocationToFireFrom")
 
 [node name="LaserComponent" parent="GroveGuardian" node_paths=PackedStringArray("start_point", "end_point", "hitbox") instance=ExtResource("6_p7fdi")]
 position = Vector2(-32.321, -8.298)
+speed = 50.0
 start_point = NodePath("../../LaserPoints/LeftLaserStartPoint")
 end_point = NodePath("../../LaserPoints/LeftLaserEndPoint")
 hitbox = NodePath("HitboxComponent")
@@ -932,6 +933,7 @@ shape = SubResource("SegmentShape2D_bakds")
 
 [node name="LaserComponent2" parent="GroveGuardian" node_paths=PackedStringArray("start_point", "end_point", "hitbox") instance=ExtResource("6_p7fdi")]
 position = Vector2(19.7789, 19.9618)
+speed = 50.0
 start_point = NodePath("../../LaserPoints/RightLaserStartPoint")
 end_point = NodePath("../../LaserPoints/RightLaserEndPoint")
 hitbox = NodePath("HitboxComponent")
