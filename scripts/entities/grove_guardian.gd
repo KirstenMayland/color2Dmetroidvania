@@ -29,7 +29,8 @@ var is_ground_pounding: bool = false
 var start: bool = false
 
 # ground pound variables
-var gp_pause_timer = 1  # seconds
+var gp_pause_timer_top = 0.5  # seconds
+var gp_pause_timer_bottom = 0.5  # seconds
 var gravity = 2000
 var gp_move_speed = 300
 var gp_target_position = Vector2()
@@ -164,7 +165,7 @@ func move_above_player(delta):
 	if global_position.distance_to(gp_target_position) < gp_min_distance_from_player:
 		is_moving_above = false
 		# Pause before plunging down
-		await get_tree().create_timer(gp_pause_timer).timeout
+		await get_tree().create_timer(gp_pause_timer_top).timeout
 		plunge_down()
 
 
@@ -181,6 +182,6 @@ func ground_pound(delta):
 	if is_on_floor():
 		is_ground_pounding = false
 		hitbox_component.get_node("CollisionShape2D").set_disabled(true)
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(gp_pause_timer_bottom).timeout
 		end_of_attack.emit()
 		# TODO: add shockwave effect + pause at bottom/rise slowly to allow player to get hits in

@@ -6,9 +6,7 @@ Necessary To Publish Demo:
 	1.4) create some way to lock the bounds of the fighting arena for boss fights
 2) game option after player death, "the end" or option to respawn if dead
 3) more interesting things in room 3
-4) name the game
 5) make it so that mouse only appears in a menu screen
-6) change back to auto-full screen, no boundaries before publishing
 7) finish shading all the trees
 
 
