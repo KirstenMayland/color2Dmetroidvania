@@ -912,8 +912,10 @@ layer_0/tile_data = PackedInt32Array(1245208, 65536, 17, 1245209, 131072, 17, 12
 [node name="Sheep" parent="." instance=ExtResource("7_o4uk1")]
 position = Vector2(802, 435)
 
-[node name="PathFollowComponent" parent="." instance=ExtResource("6_8kerx")]
+[node name="PathFollowComponent" parent="." node_paths=PackedStringArray("points", "things_to_be_moved") instance=ExtResource("6_8kerx")]
 speed = 35.0
+points = NodePath("Points")
+things_to_be_moved = NodePath("ToFollowPath")
 
 [node name="Points" type="Node2D" parent="PathFollowComponent"]
 

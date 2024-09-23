@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://320c50r2n18l"]
+[gd_scene load_steps=22 format=3 uid="uid://320c50r2n18l"]
 
 [ext_resource type="Script" path="res://scripts/levels/base_scene.gd" id="1_fiffr"]
 [ext_resource type="Texture2D" uid="uid://i73jibf25xh4" path="res://assets/backgrounds/russet_grove_2.png" id="2_epnu6"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bsmnunnhaal0q" path="res://scenes/components/scene_trigger_component.tscn" id="4_2eus5"]
 [ext_resource type="PackedScene" uid="uid://huoqkmgswaek" path="res://scenes/gui/core.tscn" id="4_etf4g"]
 [ext_resource type="Texture2D" uid="uid://c1rykeji0fts4" path="res://assets/backgrounds/russet_grove_background.png" id="5_ofbpr"]
-[ext_resource type="PackedScene" uid="uid://c28o2f8tnq8k8" path="res://scenes/components/path_follow_component.tscn" id="6_ookrd"]
 [ext_resource type="Texture2D" uid="uid://lqi1farasaes" path="res://assets/misc/russet_grove_orbs.png" id="7_87dvw"]
 [ext_resource type="PackedScene" uid="uid://wbbgttji4k7b" path="res://scenes/entities/sheep.tscn" id="7_yir5x"]
 [ext_resource type="Texture2D" uid="uid://cv0j8scxdym8u" path="res://assets/misc/2d_lights_and_shadows_neutral_point_light.png" id="8_fr5ss"]
@@ -917,7 +916,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_iig6r")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0s3ma"]
-size = Vector2(1976, 887)
+size = Vector2(1976, 875)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k2buk"]
 size = Vector2(44.25, 136)
@@ -993,31 +992,11 @@ motion_scale = Vector2(0.25, 0.25)
 position = Vector2(510, 255)
 texture = ExtResource("5_ofbpr")
 
-[node name="PathFollowComponent" parent="." node_paths=PackedStringArray("points", "things_to_be_moved") instance=ExtResource("6_ookrd")]
-position = Vector2(1086.97, 510.396)
-speed = 35.0
-points = NodePath("Points")
-things_to_be_moved = NodePath("ToFollowPath")
-
-[node name="Points" type="Node2D" parent="PathFollowComponent"]
-
-[node name="Marker2D" type="Marker2D" parent="PathFollowComponent/Points"]
-position = Vector2(-430.41, -280.442)
-
-[node name="Marker2D2" type="Marker2D" parent="PathFollowComponent/Points"]
-position = Vector2(-204.97, -280.396)
-
-[node name="Marker2D3" type="Marker2D" parent="PathFollowComponent/Points"]
-position = Vector2(-429.97, -280.396)
-
-[node name="ToFollowPath" type="Node2D" parent="PathFollowComponent"]
-
-[node name="Sheep" parent="PathFollowComponent/ToFollowPath" instance=ExtResource("7_yir5x")]
-position = Vector2(-431.97, -266.396)
-follow_player = false
-
 [node name="Sheep" parent="." instance=ExtResource("7_yir5x")]
 position = Vector2(1237, 798)
+
+[node name="Sheep2" parent="." instance=ExtResource("7_yir5x")]
+position = Vector2(728.257, 238.717)
 
 [node name="Core" parent="." instance=ExtResource("4_etf4g")]
 position = Vector2(107.181, 204.668)
@@ -1039,10 +1018,9 @@ offset_bottom = 457.0
 color = Color(0.180392, 0.0823529, 0.0509804, 1)
 
 [node name="CameraBoundariesComponent" parent="." instance=ExtResource("3_vkiq8")]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundariesComponent"]
-position = Vector2(1030, 532.5)
+position = Vector2(1030, 526.5)
 shape = SubResource("RectangleShape2D_0s3ma")
 
 [node name="EntranceMarkers" type="Node2D" parent="."]

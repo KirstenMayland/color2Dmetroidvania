@@ -28,7 +28,8 @@ func _ready():
 	path_follow.loop = loop
 	
 	# move things to be moved where they belong
-	things_to_be_moved.reparent(path_follow)
+	if path_follow and things_to_be_moved:
+		things_to_be_moved.reparent(path_follow)
 
 # ----------------------------------------------------------------
 # --------------------------_process------------------------------
@@ -36,18 +37,18 @@ func _ready():
 var flip = false
 func _process(delta):
 	path_follow.progress += speed * delta
-
-	if path_follow.progress_ratio >= 0.5:
-		for child in things_to_be_moved.get_children():
-			if child is CharacterBody2D and not flip:
-				flip_sprite(child)
-				flip = true
-	
-	if path_follow.progress_ratio < 0.5:
-		for child in things_to_be_moved.get_children():
-			if child is CharacterBody2D and flip:
-				flip_sprite(child)
-				flip = false
+	if things_to_be_moved:
+		if path_follow.progress_ratio >= 0.5:
+			for child in things_to_be_moved.get_children():
+				if child is CharacterBody2D and not flip:
+					flip_sprite(child)
+					flip = true
+		
+		if path_follow.progress_ratio < 0.5:
+			for child in things_to_be_moved.get_children():
+				if child is CharacterBody2D and flip:
+					flip_sprite(child)
+					flip = false
 
 func set_speed(value: float):
 	speed = value
