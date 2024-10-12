@@ -1,5 +1,3 @@
-video gammmmmemmememememmemeeeee
+Currently available for Windows on itch.io at the following link: [Russet Grove](https://kirstenmayland.itch.io/russet-grove)
 
-aka
-
-TODO: write up
+Further information and platform compatibility coming soon!
